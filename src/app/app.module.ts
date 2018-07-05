@@ -3,14 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavGlobalComponent } from './shared/nav-global/nav-global.component';
+import { HomeComponent } from './modules/home/home.component';
+import { DonutComponent } from './modules/home/components/charts/donut/donut.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavGlobalComponent,
+    HomeComponent,
+    DonutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

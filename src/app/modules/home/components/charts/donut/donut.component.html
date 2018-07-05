@@ -1,0 +1,17 @@
+<kendo-chart>
+    <kendo-chart-tooltip>
+      </kendo-chart-tooltip>
+    <kendo-chart-area background="transparent" [margin]="6">
+    </kendo-chart-area>
+    <kendo-chart-series>
+      <kendo-chart-series-item
+          type="donut" [data]="data"
+          categoryField="kind" field="share">
+        <kendo-chart-series-item-labels
+          [content]="labelContent"
+          color="#fff" background="transparent">
+        </kendo-chart-series-item-labels>
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+    <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+  </kendo-chart>

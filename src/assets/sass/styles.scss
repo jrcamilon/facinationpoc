@@ -1,0 +1,14 @@
+/* You can add global styles to this file, 
+and also import other style files 
+
+All styling imported here will be applied globally,
+meaning all components
+*/
+
+@import './_variables';
+@import '~@progress/kendo-theme-default';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+body {
+    background-color: rgb(73, 73, 73);
+}
