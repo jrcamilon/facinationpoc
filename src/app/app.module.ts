@@ -8,6 +8,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { DonutComponent } from './modules/home/components/charts/donut/donut.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from '@progress/kendo-angular-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
 
@@ -22,7 +23,8 @@ import 'hammerjs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
