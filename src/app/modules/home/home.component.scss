@@ -103,7 +103,7 @@ $cardSd: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
     @include ts;
   
     &:first-child {
-      --gradient: linear-gradient(to right, rgb(68, 160, 141), rgb(9, 54, 55));
+      --gradient: linear-gradient(to right, #44a08d, rgb(9, 54, 55));
     }
     &:nth-child(2) {
       --gradient: linear-gradient(to right, rgb(238, 9, 121), rgb(255, 106, 0));

@@ -4,6 +4,13 @@ import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { _appIdRandomProviderFactory } from '@angular/core/src/application_tokens';
 import { Key } from 'protractor';
+import { IbeService } from '../../services/ibe.service';
+
+class Parameter {
+  prompt: String;
+  value: String;
+}
+
 
 @Component({
   selector: 'app-home',
@@ -19,13 +26,14 @@ export class HomeComponent implements OnInit {
   dynamicData: any;
   genderGrouped: any;
   drillDownSelected = false;
+  cacheQuery1: Subscription;
 
   gender: String;
 
   allData: Subscription;
 
 
-  constructor(private _nodeApi: NodejsApiService ) {
+  constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
       this.processAllTheDatad(data);
     });
@@ -37,6 +45,27 @@ export class HomeComponent implements OnInit {
       // console.log(data);
       this._nodeApi.allData.next(data);
     });
+
+
+    const parameters: Parameter[] = [];
+    const xdc: String = '439';
+    const xdcQueryName: String = 'Genders';
+
+      if (this.cacheQuery1) {
+        this.cacheQuery1.unsubscribe();
+      }
+      this.cacheQuery1 = this._IBE.cacheQuery(xdcQueryName, xdc, parameters).subscribe(data => {
+
+        const tmpData = JSON.parse(data);
+        if (typeof tmpData['ErrorMessage'] !== 'undefined') {
+          // this._IBE.Toast(tmpData['ErrorMessage']);
+          console.error(tmpData['ErrorMessage']);
+        } else {
+            this._IBE.genders.next(tmpData);
+            console.log('here is the data', tmpData);
+        }
+      });
+
   }
 
   processAllTheDatad(data: any) {

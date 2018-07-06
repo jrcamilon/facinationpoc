@@ -13,6 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import 'hammerjs';
 import { ShufflerComponent } from './modules/home/components/shuffler/shuffler.component';
 import { FunnelComponent } from './modules/home/components/charts/funnel/funnel.component';
+import { AreaComponent } from './modules/home/components/charts/area/area.component';
+import { BarComponent } from './modules/home/components/charts/bar/bar.component';
+import { LineComponent } from './modules/home/components/charts/line/line.component';
+import { IbeService } from './services/ibe.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,10 @@ import { FunnelComponent } from './modules/home/components/charts/funnel/funnel.
     HomeComponent,
     DonutComponent,
     ShufflerComponent,
-    FunnelComponent
+    FunnelComponent,
+    AreaComponent,
+    BarComponent,
+    LineComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +38,7 @@ import { FunnelComponent } from './modules/home/components/charts/funnel/funnel.
     ChartsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [IbeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

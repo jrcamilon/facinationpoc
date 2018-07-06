@@ -1,0 +1,19 @@
+<kendo-chart style="padding-bottom: 70px">
+    <kendo-chart-area background="transparent" [margin]="2">
+      </kendo-chart-area>
+  <kendo-chart-title text="Units sold"></kendo-chart-title>
+  <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item
+          [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']"
+          [title]="{ text: 'Months' }">
+      </kendo-chart-category-axis-item>
+  </kendo-chart-category-axis>
+  <kendo-chart-series>
+    <kendo-chart-series-item type="area" [data]="[123, 276, 310, 212, 240, 156, 98]">
+    </kendo-chart-series-item>
+    <kendo-chart-series-item type="area" [data]="[165, 210, 287, 144, 190, 167, 212]">
+    </kendo-chart-series-item>
+    <kendo-chart-series-item type="area" [data]="[56, 140, 195, 46, 123, 78, 95]">
+    </kendo-chart-series-item>
+  </kendo-chart-series>
+</kendo-chart>
