@@ -29,7 +29,9 @@
             "styles": [
               "src/assets/sass/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/modules/home/components/shuffler/dependencies/js/jquery-1.8.3.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -76,9 +78,11 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "src/assets/sass/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/app/modules/home/components/shuffler/dependencies/js/jquery-1.8.3.min.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

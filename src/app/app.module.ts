@@ -11,13 +11,17 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
+import { ShufflerComponent } from './modules/home/components/shuffler/shuffler.component';
+import { FunnelComponent } from './modules/home/components/charts/funnel/funnel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavGlobalComponent,
     HomeComponent,
-    DonutComponent
+    DonutComponent,
+    ShufflerComponent,
+    FunnelComponent
   ],
   imports: [
     BrowserModule,

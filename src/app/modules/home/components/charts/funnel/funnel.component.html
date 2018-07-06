@@ -1,0 +1,20 @@
+<kendo-chart>
+    <kendo-chart-tooltip>
+      </kendo-chart-tooltip>
+    <kendo-chart-area background="transparent" [margin]="6">
+    </kendo-chart-area>
+    <kendo-chart-title text="Sales funnel"></kendo-chart-title>
+    <kendo-chart-series>
+      <kendo-chart-series-item type="funnel" [data]="model"
+                               field="count" categoryField="stat" colorField="color">
+        <kendo-chart-series-item-labels background="none" color="white" format="N0">
+        </kendo-chart-series-item-labels>
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+    <kendo-chart-tooltip>
+      <ng-template kendoChartSeriesTooltipTemplate let-category="category">
+          {{ category }}
+      </ng-template>
+    </kendo-chart-tooltip>
+    <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+  </kendo-chart>

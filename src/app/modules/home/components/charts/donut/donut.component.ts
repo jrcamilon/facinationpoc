@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { data } from './donut-mock-data';
+
 
 @Component({
   selector: 'app-donut',
@@ -8,27 +9,21 @@ import { data } from './donut-mock-data';
 })
 export class DonutComponent implements OnInit {
 
+  @Input() data: any;
+  @Output() selected: EventEmitter<any> = new EventEmitter();
+
   ngOnInit() {
 
   }
 
-  // tslint:disable-next-line:member-ordering
-  public data: any[] = [{
-    kind: 'Mystique', share: 0.175
-  }, {
-    kind: 'Nuclear', share: 0.238
-  }, {
-    kind: 'Coal', share: 0.118
-  }, {
-    kind: 'Solar', share: 0.052
-  }, {
-    kind: 'Wind', share: 0.225
-  }, {
-    kind: 'Other', share: 0.192
-  }];
-
   public labelContent(e: any): string {
+    // console.log(e.category);
     return e.category;
+  }
+
+  itemClicked(e: any) {
+    // console.log(e.category);
+    this.selected.emit(e.category);
   }
 
 

@@ -1,0 +1,100 @@
+
+#app {
+	position: relative;
+	width: auto;
+	height: 704px;
+	overflow: hidden;
+	background-color: #1C1C1C;
+}
+
+#topBanner {
+	position: fixed;
+	width: 1024px;
+	background-color: black;
+	z-index: 10000;
+	border-bottom: 3px solid white;
+}
+
+#lv {
+	margin-top:60px;
+}
+
+#lv .ibe-listview-item { /*SET SIZE OF SQUARES HERE*/
+	width: 50px;
+	height: 50px;
+	border-radius: 1px;
+}
+
+#lv .ibe-listview-item.A { 
+	background: orange; 
+	border-color: orange; 
+	border-width: 2px; 
+	color: #EEE; 
+}
+#lv .ibe-listview-item.B { 
+	background: green; 
+	border-color: green; 
+	border-width: 2px; 
+	color: #EEE; 
+}
+
+#lv .ibe-listview-item.C { 
+	background: red; 
+	border-color: red; 
+	border-width: 2px; 
+	color: #EEE; 
+}
+
+.bestAlertValue {
+	background: blue; 
+	border-color: blue; 
+	border-width: 2px; 
+	color: #EEE;
+}
+
+.middleAlertValue {
+	background: orange; 
+	border-color: orange; 
+	border-width: 2px; 
+	color: #EEE;
+}
+
+.worstAlertValue {
+	background: red; 
+	border-color: red; 
+	border-width: 2px; 
+	color: #EEE;
+}
+
+
+
+.ulBtnInline {
+	margin: 0;
+	padding: 0;
+	
+}
+
+.ulBtnInline li {
+	display: inline;
+	vertical-align: top;
+}
+
+#sortAndFilterContainer div {
+	float:left;
+	color: white;
+}
+
+#btnBack {
+	visibility: hidden;
+}
+
+#drillPage {
+	background-color: blue;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+	z-index:100;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
