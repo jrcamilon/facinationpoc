@@ -17,6 +17,8 @@ import { AreaComponent } from './modules/home/components/charts/area/area.compon
 import { BarComponent } from './modules/home/components/charts/bar/bar.component';
 import { LineComponent } from './modules/home/components/charts/line/line.component';
 import { IbeService } from './services/ibe.service';
+import { ColrowHeaderComponent } from './modules/home/components/grid/colrow-header/colrow-header.component';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { IbeService } from './services/ibe.service';
     FunnelComponent,
     AreaComponent,
     BarComponent,
-    LineComponent
+    LineComponent,
+    ColrowHeaderComponent
   ],
   imports: [
     BrowserModule,

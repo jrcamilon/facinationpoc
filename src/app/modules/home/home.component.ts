@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   advantages = [{title: '', subtitle: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity'},
-    {title: 'Passion', subtitle: 'Forward-thinking . Entrepreneurial'},
+    {title: 'Passion', subtitle: 'You are pretty cool'},
     {title: 'Power', subtitle: 'Forward-thinking . Entrepreneurial'},
     {title: 'Prestigue', subtitle: 'Forward-thinking . Entrepreneurial'},
     {title: 'Trust', subtitle: 'Forward-thinking . Entrepreneurial'},
@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
     this._nodeApi.allData.subscribe((data) => {
       this.processAllTheDatad(data);
     });
-
   }
 
   ngOnInit() {
@@ -79,9 +78,9 @@ export class HomeComponent implements OnInit {
 
 
   processAllTheDatad(data: any) {
-    this.groupByGender(data);
-    this.groupByArchetype(data);
-    this.groupByPrimary(data);
+    // this.groupByGender(data);
+    // this.groupByArchetype(data);
+    // this.groupByPrimary(data);
   }
 
   groupByGender(data: any) {

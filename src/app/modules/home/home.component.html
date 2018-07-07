@@ -10,16 +10,19 @@
 
                 <!-- Row and Column Headers -->
                 <div *ngIf="x === 0 && y !== 0" >
-                    <div><b>{{ item2.title }}</b>
+                    <!-- <div><b>{{ item2.title }}</b>
                         {{item2.subtitle}}
-                    </div>
+                    </div> -->
+                    <!-- column title -->
+                    <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle"></app-colrow-header>
                 </div>
                 <div *ngIf="y === 0 && x !== 0" >
-                    <div><b>{{ item.title }}</b></div>
+                    <!-- <div><b>{{ item.title }}</b></div> -->
+                    <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle"></app-colrow-header>
                 </div>
                 <!-- End Row and Column Headers -->
                 
-                <div *ngIf="x === 1 && y === y && y !== 0" >
+                <!-- <div *ngIf="x === 1 && y === y && y !== 0" >
                     <div>People Innovation as secondary</div>
                 </div>
 
@@ -29,12 +32,12 @@
 
                 <div *ngIf="y === 1 && y === y && x !== 0" >
                     <div>People Innovation as primary</div>
-                </div>
+                </div> -->
                 
 
                 <!-- inside the cards -->
                 <div *ngIf="x === 1 && y === 1" >
-                    <div>YES</div>
+                    <div>This is the super archetype</div>
                 </div>
 
                 <div *ngIf="x === 1 && y === 2" >
