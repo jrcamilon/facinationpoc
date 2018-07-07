@@ -1,58 +1,55 @@
-<div class="container-fluid" >
-  <div class="row banner"></div>
-  <div class="row">
-    <div class="col-md ">
-        <div class="card">
-          
-            <div class="card__gradient card__gradient--above"></div>
-            <div class="card__gradient card__gradient--between"></div>
-            <div class="card__gradient card__gradient--below"></div>
-          
-            <div class="card__content" *ngIf="!drillDownSelected">
-              <h3 class="card__title">Gender</h3>
-              <div class="card__action"></div>
-              <app-donut [data]="genderData" (selected)="drillDown($event)"></app-donut>
-            </div>
+<div class="container-fluid">
+    <div class="row gridLabelTop">SECONDARY</div>
+    <div class="row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
+        <div class="col" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'" (click)="boxClicked(x, y)">
+            <div class="box" [attr.id]="'box' + x + y" >
+                
+                <!-- you can see where the array is here -->
+                <!-- <p>Box: [ {{x}} , {{y}} ] </p>
+                <p>Box ID: box{{x}}{{y}}</p> -->
 
-                      
-            <div class="card__content" *ngIf="drillDownSelected">
-                <h3 class="card__title" (click)="returnToGender()">Primary Strengths by {{gender}}</h3>
-                <div class="card__action"></div>
-                <app-donut [data]="dynamicData"></app-donut>
-            </div>
-            <!--  -->
+                <!-- Row and Column Headers -->
+                <div *ngIf="x === 0 && y !== 0" >
+                    <div><b>{{ item2.title }}</b>
+                        {{item2.subtitle}}
+                    </div>
+                </div>
+                <div *ngIf="y === 0 && x !== 0" >
+                    <div><b>{{ item.title }}</b></div>
+                </div>
+                <!-- End Row and Column Headers -->
+                
+                <div *ngIf="x === 1 && y === y && y !== 0" >
+                    <div>People Innovation as secondary</div>
+                </div>
+
+                <div *ngIf="x === 2 && y === y && y !== 0" >
+                    <div>People Passion as secondary</div>
+                </div>
+
+                <div *ngIf="y === 1 && y === y && x !== 0" >
+                    <div>People Innovation as primary</div>
+                </div>
+                
+
+                <!-- inside the cards -->
+                <div *ngIf="x === 1 && y === 1" >
+                    <div>YES</div>
+                </div>
+
+                <div *ngIf="x === 1 && y === 2" >
+                        <div>HAHAH shits working</div>
+                </div>
+
+                <div *ngIf="x === 4 && y === 6" >
+                        <div>HAHAH shits working</div>
+                        
+                </div>
+
+            </div>            
         </div>
-      
     </div>
-    <div class="col-md ">
-        <div class="card">  
-          
-            <div class="card__gradient card__gradient--above"></div>
-            <div class="card__gradient card__gradient--between"></div>
-            <div class="card__gradient card__gradient--below"></div>
-          
-            <div class="card__content">
-                <h3 class="card__title">Archetypes</h3>
-                <div class="card__action"></div>
-                <app-donut [data]="archetypesData"></app-donut>
-            </div>
-        </div>
-      
-    </div>
-    <div class="col-lg ">
-        <div class="card">
-          
-            <div class="card__gradient card__gradient--above"></div>
-            <div class="card__gradient card__gradient--between"></div>
-            <div class="card__gradient card__gradient--below"></div>
-          
-            <div class="card__content">
-              <h3 class="card__title">Primary Strengths</h3>
-              <div class="card__action"></div>
-              <app-donut [data]="primaryData"></app-donut>
-            </div>
-        </div>
-      
-    </div>
-  </div>
 </div>
+ 
+
+ 

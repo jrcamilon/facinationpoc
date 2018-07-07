@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NodejsApiService } from '../../services/nodejs-api.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
-import { _appIdRandomProviderFactory } from '@angular/core/src/application_tokens';
 import { Key } from 'protractor';
 import { IbeService } from '../../services/ibe.service';
 
@@ -11,7 +10,6 @@ class Parameter {
   value: String;
 }
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +17,18 @@ class Parameter {
 })
 export class HomeComponent implements OnInit {
 
-  // dataLocal: any;
+
+  advantages = [{title: '', subtitle: ''},
+    {title: 'Innovation', subtitle: 'You change the game with creativity'},
+    {title: 'Passion', subtitle: 'Forward-thinking . Entrepreneurial'},
+    {title: 'Power', subtitle: 'Forward-thinking . Entrepreneurial'},
+    {title: 'Prestigue', subtitle: 'Forward-thinking . Entrepreneurial'},
+    {title: 'Trust', subtitle: 'Forward-thinking . Entrepreneurial'},
+    {title: 'Mystique', subtitle: 'Forward-thinking . Entrepreneurial'},
+    {title: 'Alert', subtitle: 'Forward-thinking . Entrepreneurial'}];
+
+  // titleHeadersArray: TitleHeader[];
+
   genderData: any;
   archetypesData: any;
   primaryData: any;
@@ -67,6 +76,7 @@ export class HomeComponent implements OnInit {
       });
 
   }
+
 
   processAllTheDatad(data: any) {
     this.groupByGender(data);
@@ -215,7 +225,15 @@ export class HomeComponent implements OnInit {
     this.drillDownSelected = false;
   }
 
+  boxClicked(x: Number, y: Number) {
+    let message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
+    alert(message);
+    console.log('clicked', x, y);
+  }
 
+  // test(x: number, y: number) {
+  //   console.log(x, y);
+  // }
 
 
 
