@@ -56,7 +56,13 @@ export class GridboxComponent implements OnInit {
       }
       // console.log("Found a header");
     } else{
-      this.content= "Data Point";
+      console.log("")
+      for(let i=0;i<this.indexedData.length;i++){
+        let row = this.indexedData[i];
+        if(row.primaryIndex === this.primaryIndex && this.secondaryIndex ===row.secondary){
+          
+        }
+      }
       // console.log("found a data point");
     }
   }
