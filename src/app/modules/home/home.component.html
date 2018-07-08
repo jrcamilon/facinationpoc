@@ -1,58 +1,38 @@
 <div class="container-fluid">
-    <div class="row gridLabelTop">SECONDARY</div>
-    <div class="row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
-        <div class="col" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'" (click)="boxClicked(x, y)">
-            <div class="box" [attr.id]="'box' + x + y" >
-                
-                <!-- you can see where the array is here -->
-                <!-- <p>Box: [ {{x}} , {{y}} ] </p>
-                <p>Box ID: box{{x}}{{y}}</p> -->
-
-                <!-- Row and Column Headers -->
-                <div *ngIf="x === 0 && y !== 0" >
-                    <!-- <div><b>{{ item2.title }}</b>
-                        {{item2.subtitle}}
+        <div class="row gridLabelTop">SECONDARY</div>
+        <div class="row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
+            
+            <div class="col" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'" (click)="boxClicked(x, y)">
+                <div class="box" [attr.id]="'box' + x + y" >
+                    
+                    <div *ngIf="x === 0 && y !== 0" >
+                        <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle"></app-colrow-header>
+                    </div>
+                    <div *ngIf="y === 0 && x !== 0" >
+                        <!-- <div><b>{{ item.title }}</b></div> -->
+                        <app-colrow-header [title]="item.title" [subtitle]="item.subtitle"></app-colrow-header>
+                    </div>
+                    <!-- End Row and Column Headers -->
+    
+                    <!-- inside the cards -->
+                    <!-- <div *ngIf="x === 1 && y === 1" >
+                    </div>
+    
+                    <div *ngIf="x === 1 && y === 2" >        
+                    </div>
+    
+                    <div *ngIf="x === 4 && y === 6" >
                     </div> -->
-                    <!-- column title -->
-                    <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle"></app-colrow-header>
-                </div>
-                <div *ngIf="y === 0 && x !== 0" >
-                    <!-- <div><b>{{ item.title }}</b></div> -->
-                    <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle"></app-colrow-header>
-                </div>
-                <!-- End Row and Column Headers -->
-                
-                <!-- <div *ngIf="x === 1 && y === y && y !== 0" >
-                    <div>People Innovation as secondary</div>
-                </div>
+      
 
-                <div *ngIf="x === 2 && y === y && y !== 0" >
-                    <div>People Passion as secondary</div>
-                </div>
 
-                <div *ngIf="y === 1 && y === y && x !== 0" >
-                    <div>People Innovation as primary</div>
-                </div> -->
-                
-
-                <!-- inside the cards -->
-                <div *ngIf="x === 1 && y === 1" >
-                    <div>This is the super archetype</div>
-                </div>
-
-                <div *ngIf="x === 1 && y === 2" >
-                        <div>HAHAH shits working</div>
-                </div>
-
-                <div *ngIf="x === 4 && y === 6" >
-                        <div>HAHAH shits working</div>
-                        
-                </div>
-
-            </div>            
+    
+                </div>            
+            </div>
         </div>
     </div>
-</div>
- 
-
- 
+     
+    
+     
+    
+    

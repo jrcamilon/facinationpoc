@@ -1,0 +1,45 @@
+@import "../../../../../../assets/sass/_variables";
+
+.header1 {
+    margin-top: 13px;
+    height: auto;
+    width: auto;
+}
+
+.header1 h5, p {
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.innovation {
+    background-color: $innovation;
+
+}
+       
+
+.passion {
+    background-color: red;
+}
+
+.power {
+    background-color: red;
+}
+
+.prestigue {
+    background-color: red;
+}
+
+.trust {
+    background-color: red;
+}
+
+.mystique {
+    background-color: red;
+}
+
+.alert {
+    background-color: red;
+}

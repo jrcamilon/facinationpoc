@@ -17,15 +17,14 @@ class Parameter {
 })
 export class HomeComponent implements OnInit {
 
-
   advantages = [{title: '', subtitle: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity'},
-    {title: 'Passion', subtitle: 'You are pretty cool'},
-    {title: 'Power', subtitle: 'Forward-thinking . Entrepreneurial'},
-    {title: 'Prestigue', subtitle: 'Forward-thinking . Entrepreneurial'},
-    {title: 'Trust', subtitle: 'Forward-thinking . Entrepreneurial'},
-    {title: 'Mystique', subtitle: 'Forward-thinking . Entrepreneurial'},
-    {title: 'Alert', subtitle: 'Forward-thinking . Entrepreneurial'}];
+    {title: 'Passion', subtitle: 'You connect with emotion'},
+    {title: 'Power', subtitle: 'You lead with command'},
+    {title: 'Prestigue', subtitle: 'You earn respect with higher standards'},
+    {title: 'Trust', subtitle: 'You build loyalty with consistency'},
+    {title: 'Mystique', subtitle: 'You communicate with substance'},
+    {title: 'Alert', subtitle: 'You prevent problems with care'}];
   archetypes=[
     {key:'innovation', value:1},
     {key:'passion', value:2},
@@ -79,7 +78,7 @@ export class HomeComponent implements OnInit {
           console.error(tmpData['ErrorMessage']);
         } else {
             this._IBE.genders.next(tmpData);
-            console.log('here is the data', tmpData);
+            // console.log('here is the data', tmpData);
         }
       });
 
@@ -88,13 +87,13 @@ export class HomeComponent implements OnInit {
 
   processAllTheDatad(data: any) {
     // this.groupByGender(data);
-    // this.groupByArchetype(data);
+    this.groupByArchetype(data);
     // this.groupByPrimary(data);
 
-    console.log('I am here');
+    // console.log('I am here');
    this.indexedData =  data.map(row=>{
-      console.log('The Primary for this record:', row.primary);
-      console.log('The Secondary for this record:',row.secondary);
+      // console.log('The Primary for this record:', row.primary);
+      // console.log('The Secondary for this record:',row.secondary);
       //Assign Primary Index to the data
       switch(row.primary) {
         case "innovation":
@@ -147,7 +146,7 @@ export class HomeComponent implements OnInit {
       }
       return row;
     });
-    console.log(this.indexedData);
+    // console.log(this.indexedData);
   }
 
   groupByGender(data: any) {
@@ -185,24 +184,27 @@ export class HomeComponent implements OnInit {
     // console.log(genderGrouped);
     // console.log(groupGender);
 
-    const genderObjectsArray = [];
+    const archetypesGrouped = [];
     const group = Object.keys(genderGrouped);
     // console.log(group);
 
     for (let i = 0; i < groupGender.length; i++) {
       // console.log(this.groupByGender[i]);
-      genderObjectsArray.push(new Object({key: group[i], value: groupGender[i]}));
+      archetypesGrouped.push(new Object({key: group[i], value: groupGender[i]}));
     }
 
+    // console.log(archetypesGrouped);
+    // this.archetypesData = archetypesGrouped;
 
-    // this.genderData = genderObjectsArray;
+    this.genderData = archetypesGrouped;
 
-    const organizedByGender = genderObjectsArray.map(ele => {
+    const organizedByArchetype = archetypesGrouped.map(ele => {
       return new Object({kind: ele.key, share: ele.value.length});
     });
 
 
-    this.archetypesData = organizedByGender;
+    this.archetypesData = organizedByArchetype;
+    // console.log(this.archetypesData);
 
   }
 
@@ -297,9 +299,16 @@ export class HomeComponent implements OnInit {
     console.log('clicked', x, y);
   }
 
-  // test(x: number, y: number) {
-  //   console.log(x, y);
-  // }
+  getData(x: number, y: number) {
+    console.log(x, y);
+    if ( x === 1 && y === 1) {
+      console.log(this.archetypesData);
+    }
+  }
+
+  test(x: number, y: number) {
+    console.log(x, y);
+  }
 
 
 

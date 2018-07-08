@@ -10,7 +10,10 @@ export class ColrowHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() subtitle: string;
 
-  constructor() { }
+
+  constructor() {
+    console.log('colrow header initialized');
+  }
 
   ngOnInit() {
   }
