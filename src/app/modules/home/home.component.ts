@@ -91,10 +91,10 @@ export class HomeComponent implements OnInit {
     // this.groupByArchetype(data);
     // this.groupByPrimary(data);
 
-    console.log('I am here');
+    // console.log('I am here');
    this.indexedData =  data.map(row=>{
-      console.log('The Primary for this record:', row.primary);
-      console.log('The Secondary for this record:',row.secondary);
+      // console.log('The Primary for this record:', row.primary);
+      // console.log('The Secondary for this record:',row.secondary);
       //Assign Primary Index to the data
       switch(row.primary) {
         case "innovation":
@@ -147,7 +147,6 @@ export class HomeComponent implements OnInit {
       }
       return row;
     });
-    console.log(this.indexedData);
   }
 
   groupByGender(data: any) {

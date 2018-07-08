@@ -18,6 +18,7 @@ import { BarComponent } from './modules/home/components/charts/bar/bar.component
 import { LineComponent } from './modules/home/components/charts/line/line.component';
 import { IbeService } from './services/ibe.service';
 import { ColrowHeaderComponent } from './modules/home/components/grid/colrow-header/colrow-header.component';
+import { GridboxComponent } from './modules/home/components/gridbox/gridbox.component';
 
 
 
@@ -32,7 +33,8 @@ import { ColrowHeaderComponent } from './modules/home/components/grid/colrow-hea
     AreaComponent,
     BarComponent,
     LineComponent,
-    ColrowHeaderComponent
+    ColrowHeaderComponent,
+    GridboxComponent
   ],
   imports: [
     BrowserModule,
