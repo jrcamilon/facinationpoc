@@ -33,18 +33,6 @@ export class GridTileComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.boxNumber = this.x.toString() + this.y.toString();
-    // console.log('component', this.boxNumber + ' initialized');
-    // this.getDataForLocal();
-
-
   }
-
-  // getDataForLocal() {
-  //   const index = this.data.findIndex(x => x.key === this.boxNumber);
-  //   this.dataLocal = this.data[index]['data'];
-  // }
-  
-
 }

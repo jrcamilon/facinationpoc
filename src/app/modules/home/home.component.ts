@@ -106,7 +106,6 @@ export class HomeComponent implements OnInit {
   genderGrouped: any;
   drillDownSelected = false;
   cacheQuery1: Subscription;
-
   gender: String;
 
   // This is all the data needed for each tile
@@ -115,10 +114,7 @@ export class HomeComponent implements OnInit {
   filteredBoxData: any;
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
-      // console.log(data);
-      // console.log(this.responseData);
 
-      this.processAllTheDatad(data);
     });
   }
 
