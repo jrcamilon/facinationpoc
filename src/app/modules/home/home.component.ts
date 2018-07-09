@@ -111,17 +111,43 @@ export class HomeComponent implements OnInit {
 
   // This is all the data needed for each tile
   allData: Subscription;
-
-
+  responseData: any;
+  filteredBoxData: any;
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
+      // console.log(data);
+      // console.log(this.responseData);
+
       this.processAllTheDatad(data);
     });
   }
 
   ngOnInit() {
+    let filterKey;
+    let commonArchetypes =[];
+    let newArr =[];
     this._nodeApi.getAllFiles().subscribe((data) => {
-      // console.log(data);
+      for (let i = 1 ; i <=7 ; i++ ){
+        for(let j = 1; j <= 7 ; j++){
+          filterKey  = `${i}${j}`;
+          commonArchetypes = [];
+
+          for (let a = 0; a< data.length;a++){
+            let row = data[a];
+    
+            if( row.key === filterKey ){
+              commonArchetypes.push(row);
+            }
+          }
+    
+          let newParsedBoxData = {key: filterKey , data: commonArchetypes};
+          newArr.push(newParsedBoxData);
+
+        }
+      }
+
+      console.log(newArr);
+      this.addToService(newArr);
       this._nodeApi.allData.next(data);
     });
 
@@ -148,7 +174,12 @@ export class HomeComponent implements OnInit {
   }
 
 
-
+// Method to filter the data
+addToService(arr: any){
+ this._nodeApi.gridTileData.next(arr) ;
+          
+ 
+}
   processAllTheDatad(data: any) {
     // this.groupByGender(data);
     this.groupByArchetype(data);
@@ -245,6 +276,7 @@ export class HomeComponent implements OnInit {
 
   groupByArchetype(data: any) {
 
+
     const genderGrouped = _.groupBy(data, function(item) { return  item.archetype; });
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
     // console.log(genderGrouped);
@@ -275,7 +307,7 @@ export class HomeComponent implements OnInit {
     // TO Do: Parse Data Before you Pass it On
     // once the data is parsed save to this.gridTileData, then we handle which box needs which data
     // on service and subscribe to it per box.
-    this._nodeApi.gridTileData.next(this.gridTileData);
+    // this._nodeApi.gridTileData.next(this.gridTileData);
 
   }
 

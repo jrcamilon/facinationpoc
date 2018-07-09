@@ -26,14 +26,15 @@ export class GridTileComponent implements OnInit {
 
   constructor(private node: NodejsApiService) {
     this.node.gridTileData.subscribe(data => {
+      // console.log(data);
       const index = data.findIndex(x => x.key === this.boxNumber);
-      this.dataLocal = data[index]['data'];
+      this.dataLocal = data[index]['data'].length;
     });
   }
 
   ngOnInit() {
 
-    this.boxNumber = 'box' + this.x.toString() + this.y.toString();
+    this.boxNumber = this.x.toString() + this.y.toString();
     // console.log('component', this.boxNumber + ' initialized');
     // this.getDataForLocal();
 
@@ -41,10 +42,9 @@ export class GridTileComponent implements OnInit {
   }
 
   // getDataForLocal() {
-    // const index = this.data.findIndex(x => x.key === this.boxNumber);
-    // this.dataLocal = this.data[index]['data'];
+  //   const index = this.data.findIndex(x => x.key === this.boxNumber);
+  //   this.dataLocal = this.data[index]['data'];
   // }
-
-
+  
 
 }
