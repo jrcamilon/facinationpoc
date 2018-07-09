@@ -6,7 +6,7 @@
     width: auto;
 }
 
-.header1 h5, p {
+.header1 h5, h6, p {
     text-align: center;
     padding-left: 3px;
     padding-right: 3px;
@@ -15,10 +15,8 @@
 }
 
 .innovation {
-    background-color: $innovation;
-
+    background-color: red;
 }
-       
 
 .passion {
     background-color: red;
@@ -43,3 +41,30 @@
 .alert {
     background-color: red;
 }
+
+.firstline {
+    margin-bottom: -5px;
+    font-size: 11px;
+}
+
+.thirdline {
+    margin-top: -13px;
+    font-size: 11px;
+}
+
+.subtitle {
+    margin-top: -10px;
+    font-size: 9px;
+}
+
+.rune {
+    color: transparent;
+    margin-top: -7px;
+    text-align: center;
+}
+
+.logo {
+    width: 20%;
+}
+
+

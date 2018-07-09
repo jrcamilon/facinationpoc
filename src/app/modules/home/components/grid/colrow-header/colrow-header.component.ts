@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NodejsApiService } from '../../../../../services/nodejs-api.service';
 
 @Component({
   selector: 'app-colrow-header',
@@ -9,13 +10,15 @@ export class ColrowHeaderComponent implements OnInit {
 
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() rune: any;
 
+  constructor(public node: NodejsApiService) {
 
-  constructor() {
-    console.log('colrow header initialized');
   }
 
   ngOnInit() {
   }
+
+
 
 }

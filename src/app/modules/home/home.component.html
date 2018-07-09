@@ -6,31 +6,44 @@
                 <div class="box" [attr.id]="'box' + x + y" >
                     
                     <div *ngIf="x === 0 && y !== 0" >
-                        <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle"></app-colrow-header>
+                        <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle" [rune]="item2.rune"></app-colrow-header>
                     </div>
                     <div *ngIf="y === 0 && x !== 0" >
-                        <!-- <div><b>{{ item.title }}</b></div> -->
-                        <app-colrow-header [title]="item.title" [subtitle]="item.subtitle"></app-colrow-header>
+                        <app-colrow-header [title]="item.title" [subtitle]="item.subtitle" [rune]="item.rune"></app-colrow-header>
                     </div>
-                    <!-- End Row and Column Headers -->
-    
-                    <!-- inside the cards -->
-                    <!-- <div *ngIf="x === 1 && y === 1" >
-                    </div>
-    
-                    <div *ngIf="x === 1 && y === 2" >        
-                    </div>
-    
-                    <div *ngIf="x === 4 && y === 6" >
-                    </div> -->
-      
 
+                    <div *ngIf="x === 1 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
 
+                    <div *ngIf="x === 2 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
+
+                    <div *ngIf="x === 3 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
+
+                    <div *ngIf="x === 4 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
+
+                    <div *ngIf="x === 5 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
+
+                    <div *ngIf="x === 6 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
     
+                    <div *ngIf="x === 7 && y === y && y !== 0" >
+                        <app-grid-tile [data]="gridTileData" [x]="x" [y]="y"></app-grid-tile>
+                    </div>
+                    
                 </div>            
             </div>
         </div>
-    </div>
+</div>
      
     
      
