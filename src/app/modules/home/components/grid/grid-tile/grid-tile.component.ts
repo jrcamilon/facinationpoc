@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NodejsApiService } from '../../../../../services/nodejs-api.service';
 
 @Component({
   selector: 'app-grid-tile',
@@ -16,28 +17,33 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class GridTileComponent implements OnInit {
 
-  @Input() data: any;
+  // @Input() data: any;
   @Input() x: any;
   @Input() y: any;
 
   boxNumber: string;
   dataLocal: any;
 
-  constructor() {
-
+  constructor(private node: NodejsApiService) {
+    this.node.gridTileData.subscribe(data => {
+      const index = data.findIndex(x => x.key === this.boxNumber);
+      this.dataLocal = data[index]['data'];
+    });
   }
 
   ngOnInit() {
 
     this.boxNumber = 'box' + this.x.toString() + this.y.toString();
     // console.log('component', this.boxNumber + ' initialized');
-    this.getDataForLocal();
+    // this.getDataForLocal();
+
+
   }
 
-  getDataForLocal() {
-    const index = this.data.findIndex(x => x.key === this.boxNumber);
-    this.dataLocal = this.data[index]['data'];
-  }
+  // getDataForLocal() {
+    // const index = this.data.findIndex(x => x.key === this.boxNumber);
+    // this.dataLocal = this.data[index]['data'];
+  // }
 
 
 

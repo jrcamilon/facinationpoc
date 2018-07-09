@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   /*
     this is the key and data. data can be anything we set to.
-    we pass this down to component component and check with key
+    we pass this down to service  and check with key
     to determine which data for which box.
   */
   gridTileData = [
@@ -109,6 +109,7 @@ export class HomeComponent implements OnInit {
 
   gender: String;
 
+  // This is all the data needed for each tile
   allData: Subscription;
 
 
@@ -271,8 +272,10 @@ export class HomeComponent implements OnInit {
     this.archetypesData = organizedByArchetype;
     // console.log(this.archetypesData);
 
-    // TO Do: Parse Data and Pass it On
-    // this._nodeApi.passData(this.gridTileData);
+    // TO Do: Parse Data Before you Pass it On
+    // once the data is parsed save to this.gridTileData, then we handle which box needs which data
+    // on service and subscribe to it per box.
+    this._nodeApi.gridTileData.next(this.gridTileData);
 
   }
 
