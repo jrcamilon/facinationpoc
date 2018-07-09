@@ -17,17 +17,6 @@ export class NodejsApiService {
     return this.http.get(this.nodeJSEndpoint);
   }
 
-  // public getGridTileData(boxNumber: string) {
-  //   // const index = this.gridTileData.findIndex(x => x.key === boxNumber);
-  //   // return this.gridTileData[index]['data'];
-  // }
-
-  // passData(data): any {
-  //   console.log(data);
-  //   console.log('data in service');
-  //   this.gridTileData = data;
-  // }
-
   constructor(private http: HttpClient) { }
 
 }
