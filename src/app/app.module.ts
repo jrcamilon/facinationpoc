@@ -46,4 +46,6 @@ import { GridboxComponent } from './modules/home/components/gridbox/gridbox.comp
   providers: [IbeService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+ }

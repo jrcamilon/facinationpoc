@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { Key } from 'protractor';
 import { IbeService } from '../../services/ibe.service';
+import { NodejsApiService } from '../../services/nodejs-api.service';
 
 class Parameter {
   prompt: String;
@@ -15,7 +16,6 @@ class Parameter {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
 
   advantages = [{title: '', subtitle: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity'},
@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
   ];
    indexedData = [];
   // titleHeadersArray: TitleHeader[];
-
   genderData: any;
   archetypesData: any;
   primaryData: any;
@@ -44,15 +43,13 @@ export class HomeComponent implements OnInit {
   genderGrouped: any;
   drillDownSelected = false;
   cacheQuery1: Subscription;
-
   gender: String;
-
   allData: Subscription;
+  defined: any;
+  filterBoxData;
+  matrixData: any;
 
-
-  constructor( public _IBE: IbeService) {
-   
-  }
+  constructor( public _nodeApi: NodejsApiService, public _IBE: IbeService) { }
 
   ngOnInit() {
   
@@ -77,8 +74,39 @@ export class HomeComponent implements OnInit {
         }
       });
 
-  }
 
+      this.getSamples();
+  }
+  filterData(){
+    let filterKey;
+    let commonArchetypes;
+   
+    console.log(NodejsApiService.BoxData);
+
+    for (let i = 1 ; i <=7 ; i++ ){
+      for(let j = 1; j <= 7 ; j++){
+        filterKey  = `${i}${j}`;
+        commonArchetypes = [];
+        for (let a = 0; a< NodejsApiService.BoxData.length;a++){
+          let row = NodejsApiService.BoxData[a];
+
+          if( row.key === filterKey){
+            commonArchetypes.push(row);
+          }
+        }
+
+        let newParsedBoxData = {key: filterKey , data: commonArchetypes};
+        console.log(newParsedBoxData);
+        NodejsApiService.filteredBoxData.push(newParsedBoxData);
+      }
+    }
+
+    console.log(NodejsApiService.filteredBoxData.length)
+  }
+ 
+  getSamples():void{
+    this._nodeApi.getSamples().subscribe(data=>{console.log(data)});
+  }
   groupByGender(data: any) {
 
     const genderGrouped = _.groupBy(data, function(item) { return  item.ga_gender; });

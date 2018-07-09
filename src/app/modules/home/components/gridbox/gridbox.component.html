@@ -1,5 +1,5 @@
 <div class="box" [attr.id]="'box' + x + y" >
-  <div  >
+  <div *ngIf="content" >
       {{content}}
   </div>
 </div>            

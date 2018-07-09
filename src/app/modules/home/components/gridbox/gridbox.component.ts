@@ -35,8 +35,8 @@ export class GridboxComponent implements OnInit {
  indexedData = [];
 
  constructor(private _nodeApi: NodejsApiService) {
-  this._nodeApi.allData.subscribe((data) => {
-  });
+  // this._nodeApi.allData.subscribe((data) => {
+  // });
 }
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class GridboxComponent implements OnInit {
       // console.log("Found a header");
     } else{
       let filter = `${this.primaryIndex}${this.secondaryIndex}`;
-      // this.content = NodejsApiService.getFilteredBox(filter);
+       this.content = NodejsApiService.getFilteredBox(filter);
     }
   }
  

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="defined" class="container-fluid">
     <div class="row gridLabelTop">SECONDARY</div>
     <div class="row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
         <div class="col" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'" (click)="boxClicked(x, y)">
