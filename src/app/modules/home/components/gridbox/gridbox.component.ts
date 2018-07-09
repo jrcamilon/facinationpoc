@@ -36,7 +36,6 @@ export class GridboxComponent implements OnInit {
 
  constructor(private _nodeApi: NodejsApiService) {
   this._nodeApi.allData.subscribe((data) => {
-    this.processAllTheDatad(data);
   });
 }
 
@@ -46,87 +45,19 @@ export class GridboxComponent implements OnInit {
   determineGridBoxType(){
     if((this.primaryIndex ===0 && this.secondaryIndex !== 0) ||
     (this.primaryIndex !==0 && this.secondaryIndex === 0)){
-      console.log(this.item, this.item2);
+      // console.log(this.item, this.item2);
       if(this.item.title==""){
-        this.content = {title:this.item2.title, subtitle:this.item2.subtitle, type:"header"}
+        this.content = this.item2.title+ this.item2.subtitle;
 
       } else {
-        this.content = {title:this.item.title, subtitle:this.item.subtitle, type:"header"}
+        this.content = this.item.title+ this.item.subtitle;
 
       }
       // console.log("Found a header");
     } else{
-      console.log("")
-      for(let i=0;i<this.indexedData.length;i++){
-        let row = this.indexedData[i];
-        if(row.primaryIndex === this.primaryIndex && this.secondaryIndex ===row.secondary){
-          
-        }
-      }
-      // console.log("found a data point");
+      let filter = `${this.primaryIndex}${this.secondaryIndex}`;
+      // this.content = NodejsApiService.getFilteredBox(filter);
     }
   }
-  processAllTheDatad(data: any) {
-    // this.groupByGender(data);
-    // this.groupByArchetype(data);
-    // this.groupByPrimary(data);
-
-    // console.log('I am here');
-   this.indexedData =  data.map(row=>{
-      // console.log('The Primary for this record:', row.primary);
-      // console.log('The Secondary for this record:',row.secondary);
-      //Assign Primary Index to the data
-      switch(row.primary) {
-        case "innovation":
-        row.primaryIndex = 1;
-        break;
-        case "passion":
-        row.primaryIndex = 2;        
-        break;
-        case "power":
-        row.primaryIndex = 3;        
-        break;
-        case "prestige":
-        row.primaryIndex = 4;        
-        break;
-        case "trust":
-        row.primaryIndex = 5;                
-        break;
-        case "mystique":
-        row.primaryIndex = 6;                
-        break;
-        case "alert":
-        row.primaryIndex = 7;              
-        break;
-      }
-
-      //Assign Secondary Index to the data
-      //Assign Primary Index to the data
-      switch(row.secondary) {
-        case "innovation":
-        row.secondaryIndex = 1;
-        break;
-        case "passion":
-        row.secondaryIndex = 2;        
-        break;
-        case "power":
-        row.secondaryIndex = 3;        
-        break;
-        case "prestige":
-        row.secondaryIndex = 4;        
-        break;
-        case "trust":
-        row.secondaryIndex = 5;                
-        break;
-        case "mystique":
-        row.secondaryIndex = 6;                
-        break;
-        case "alert":
-        row.secondaryIndex = 7;              
-        break;
-      }
-      return row;
-      
-    });
-  }
+ 
 }

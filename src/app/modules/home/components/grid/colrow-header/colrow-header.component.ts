@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ColrowHeaderComponent implements OnInit {
 
 
-  @Input() type: any;
   @Input() content: any;
 
   boxContent: any;
