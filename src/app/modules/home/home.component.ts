@@ -171,7 +171,7 @@ addToService(arr: any) {
 }
   processAllTheDatad(data: any) {
     // this.groupByGender(data);
-    this.groupByArchetype(data);
+    // this.groupByArchetype(data);
     // this.groupByPrimary(data);
 
     // console.log('I am here');
@@ -233,56 +233,56 @@ addToService(arr: any) {
 
   }
 
-  groupByGender(data: any) {
+  // groupByGender(data: any) {
 
-    const genderGrouped = _.groupBy(data, function(item) { return  item.ga_gender; });
-    const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
-    this.genderGrouped = genderGrouped;
-    console.log(groupGender);
+  //   const genderGrouped = _.groupBy(data, function(item) { return  item.ga_gender; });
+  //   const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
+  //   this.genderGrouped = genderGrouped;
+  //   console.log(groupGender);
 
-    const genderObjectsArray = [];
-    const group = Object.keys(genderGrouped);
-    console.log(group);
+  //   const genderObjectsArray = [];
+  //   const group = Object.keys(genderGrouped);
+  //   console.log(group);
 
-    for (let i = 0; i < groupGender.length; i++) {
-      genderObjectsArray.push(new Object({key: group[i], value: groupGender[i]}));
-    }
+  //   for (let i = 0; i < groupGender.length; i++) {
+  //     genderObjectsArray.push(new Object({key: group[i], value: groupGender[i]}));
+  //   }
 
-    console.log(genderObjectsArray);
+  //   console.log(genderObjectsArray);
 
-    const organizedByGender = genderObjectsArray.map(ele => {
-      return new Object({kind: ele.key, share: ele.value.length});
-    });
+  //   const organizedByGender = genderObjectsArray.map(ele => {
+  //     return new Object({kind: ele.key, share: ele.value.length});
+  //   });
 
-    console.log(organizedByGender);
-    this.genderData = organizedByGender;
+  //   console.log(organizedByGender);
+  //   this.genderData = organizedByGender;
 
-  }
+  // }
 
-  groupByArchetype(data: any) {
+  // groupByArchetype(data: any) {
 
-    const genderGrouped = _.groupBy(data, function(item) { return  item.archetype; });
-    const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
+  //   const genderGrouped = _.groupBy(data, function(item) { return  item.archetype; });
+  //   const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
 
-    const archetypesGrouped = [];
-    const group = Object.keys(genderGrouped);
-
-
-    for (let i = 0; i < groupGender.length; i++) {
-      archetypesGrouped.push(new Object({key: group[i], value: groupGender[i]}));
-    }
-
-    this.genderData = archetypesGrouped;
-
-    const organizedByArchetype = archetypesGrouped.map(ele => {
-      return new Object({kind: ele.key, share: ele.value.length});
-    });
+  //   const archetypesGrouped = [];
+  //   const group = Object.keys(genderGrouped);
 
 
-    this.archetypesData = organizedByArchetype;
+  //   for (let i = 0; i < groupGender.length; i++) {
+  //     archetypesGrouped.push(new Object({key: group[i], value: groupGender[i]}));
+  //   }
+
+  //   this.genderData = archetypesGrouped;
+
+  //   const organizedByArchetype = archetypesGrouped.map(ele => {
+  //     return new Object({kind: ele.key, share: ele.value.length});
+  //   });
 
 
-  }
+  //   this.archetypesData = organizedByArchetype;
+
+
+  // }
 
   // groupByPrimary(data: any) {
 
