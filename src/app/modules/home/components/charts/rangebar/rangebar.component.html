@@ -1,0 +1,21 @@
+<kendo-chart [title]="{ text: 'Average Advantage Scores' }">
+  <kendo-chart-series>
+    <kendo-chart-series-item type="rangeColumn"
+                             [data]="weatherData" fromField="min" toField="max" categoryField="month">
+      <kendo-chart-series-item-labels-from [content]="labelContentFrom">
+      </kendo-chart-series-item-labels-from>
+      <kendo-chart-series-item-labels-to [content]="labelContentTo">
+      </kendo-chart-series-item-labels-to>
+    </kendo-chart-series-item>
+  </kendo-chart-series>
+  <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item [labels]="{ rotation: 'auto' }">
+      </kendo-chart-category-axis-item>
+  </kendo-chart-category-axis>
+  <kendo-chart-tooltip>
+    <ng-template kendoChartSeriesTooltipTemplate let-value="value">
+      Avg Min Temp : {{ value.from }} °C <br>
+      Avg Max Temp : {{ value.to }} °C"
+    </ng-template>
+  </kendo-chart-tooltip>
+</kendo-chart>

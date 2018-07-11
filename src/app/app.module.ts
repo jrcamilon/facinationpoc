@@ -19,6 +19,8 @@ import { LineComponent } from './modules/home/components/charts/line/line.compon
 import { IbeService } from './services/ibe.service';
 import { ColrowHeaderComponent } from './modules/home/components/grid/colrow-header/colrow-header.component';
 import { GridTileComponent } from './modules/home/components/grid/grid-tile/grid-tile.component';
+import { RadarComponent } from './modules/home/components/charts/radar/radar.component';
+import { RangebarComponent } from './modules/home/components/charts/rangebar/rangebar.component';
 
 
 
@@ -34,7 +36,9 @@ import { GridTileComponent } from './modules/home/components/grid/grid-tile/grid
     BarComponent,
     LineComponent,
     ColrowHeaderComponent,
-    GridTileComponent
+    GridTileComponent,
+    RadarComponent,
+    RangebarComponent
   ],
   imports: [
     BrowserModule,
