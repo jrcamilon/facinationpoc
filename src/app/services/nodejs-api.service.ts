@@ -11,7 +11,7 @@ export class NodejsApiService {
   public allData = new Subject<any>();
   public gridTileData = new Subject<any>();
 
-  nodeJSEndpoint = 'http://vm3.infosol.com:8012/';
+  nodeJSEndpoint = 'http://localhost:8012/data';
 
   getAllFiles(): Observable<any> {
     return this.http.get(this.nodeJSEndpoint);

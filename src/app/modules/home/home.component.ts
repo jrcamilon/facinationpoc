@@ -120,6 +120,7 @@ export class HomeComponent implements OnInit {
     let commonArchetypes = [];
     const newArr = [];
     this._nodeApi.getAllFiles().subscribe((data) => {
+      console.log(data);
       for (let i = 1 ; i <= 7 ; i++ ) {
         for (let j = 1; j <= 7 ; j++) {
           filterKey  = `${i}${j}`;
@@ -128,7 +129,7 @@ export class HomeComponent implements OnInit {
           for (let a = 0; a < data.length; a++) {
             const row = data[a];
 
-            if ( row.key === filterKey ) {
+            if ( `${row.boxKey}` === filterKey ) {
               commonArchetypes.push(row);
             }
           }
