@@ -1,22 +1,39 @@
-#databox{
+.card-container {
+    perspective: 700;
+}
+
+.databox{
     color: white;
     font-size: 1.5em;
     text-align:  center;
     padding-top: 25%;
 }
 
+
+.frot {
+    transition: all 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+.back {
+    color: black;
+    background-color: gray;
+    height: 120px;
+    font-size: 1em;
+    text-align:  center;
+    padding-top: 25%;
+
+}
+
 // .card-container {
 //     perspective: 700;
 // }
 
-// .card {
-//     transition: all 0.8s ease;
-//     background-color: red;
-//     width: 100px;
-//     height: 100px;
+// .front {
+
 //     transform-style: preserve-3d;
 // }
 
-// .card:hover {
-//     transform: rotateY(120deg);
+// .back {
+//     transform: rotateY(180deg);
 // }

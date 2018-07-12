@@ -23,6 +23,7 @@ class Parameter {
 })
 export class HomeComponent implements OnInit {
 
+
   advantages = [{title: '', subtitle: '', rune: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
     {title: 'Passion', subtitle: 'You connect with emotion', rune: Runes.passion},
@@ -320,8 +321,8 @@ addToService(arr: any) {
   // }
 
   boxClicked(x: Number, y: Number) {
-    const message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
-    alert(message);
+    // const message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
+    // alert(message);
     console.log('clicked', x, y);
   }
 

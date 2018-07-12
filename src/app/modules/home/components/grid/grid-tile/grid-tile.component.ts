@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NodejsApiService } from '../../../../../services/nodejs-api.service';
+
 
 
 
@@ -23,9 +24,12 @@ export class GridTileComponent implements OnInit {
   // @Input() data: any;
   @Input() x: any;
   @Input() y: any;
+  @Output() openClose: EventEmitter<any> = new EventEmitter();
 
   boxNumber: string;
   dataLocal: any;
+
+  showBack =  false;
 
   constructor(private node: NodejsApiService) {
     this.node.gridTileData.subscribe(data => {
@@ -38,4 +42,10 @@ export class GridTileComponent implements OnInit {
   ngOnInit() {
     this.boxNumber = this.x.toString() + this.y.toString();
   }
+
+  public onBoxClick() {
+    console.log('clicked open back');
+    this.showBack = !this.showBack;
+  }
+
 }
