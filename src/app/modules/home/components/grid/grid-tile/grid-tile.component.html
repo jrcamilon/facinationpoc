@@ -1,3 +1,9 @@
-<p id='databox'>
-  {{dataLocal}}
-</p>
+<div class="card-container">
+  <p class="databox front" (click)="onBoxClick()" *ngIf="!showBack">
+    {{dataLocal}}
+  </p>
+  
+  <p class="databox back" (click)="onBoxClick()" *ngIf="showBack">
+    Back of Card
+  </p>
+</div>

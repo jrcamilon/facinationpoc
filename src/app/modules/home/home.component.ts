@@ -18,14 +18,6 @@ class Parameter {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public primary: any = 'primary';
-  public secondary: any= 'secondary';
-  @Output() primaryData:    any;
-  @Output() secondaryData:  any;
-  @Output() primaryTitle:   any = "Primary Advantage Totals";
-  @Output() secondaryTitle: any = "Secondary Advantage Totals";
-  
-  @Output() rangeBarData:      any;
   /*
     this is the key and data. data can be anything we set to.
     we pass this down to service  and check with key
@@ -160,7 +152,7 @@ export class HomeComponent implements OnInit {
     });
 
     this._nodeApi.getAllRangeBarData().subscribe((data)=>{
-      this.rangeBarData = data;
+      // this.rangeBarData = data;
     });
   
     const parameters: Parameter[] = [];

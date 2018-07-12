@@ -24,6 +24,8 @@ import { RangebarComponent } from './modules/home/components/charts/rangebar/ran
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,

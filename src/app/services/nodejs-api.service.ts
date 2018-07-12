@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -16,6 +17,8 @@ export class NodejsApiService {
   nodeJSRangeBarDataEndpoint = 'http://localhost:8012/rangebar-data';
   nodeJsPrimaryCountData = 'http://localhost:8012/primary-counts';
   nodeJsSecondaryCountData = 'http://localhost:8012/secondary-counts';
+
+  nodeJSEndpoint = environment.nodeJs.vm3;
 
   getAllFiles(): Observable<any> {
     return this.http.get(this.nodeJSAllDataEndpoint);
