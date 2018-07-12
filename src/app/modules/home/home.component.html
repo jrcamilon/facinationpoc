@@ -3,18 +3,18 @@
     <app-rangebar class="col-md-4"></app-rangebar>
     <app-radar class="col-md-4"></app-radar>
 </div>
-<div class="container-fluid">
-        <div class="row gridLabelTop">SECONDARY</div>
+<div class="container-fluid" [@listAnimation]="advantages.length" >
+        <div class="row gridLabelTop" >SECONDARY</div>
         <div class="row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
             
-            <div class="col" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'" (click)="boxClicked(x, y)">
+            <div class="col box-container" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'"  (click)="boxClicked(x, y)" >
                 <div class="box" [attr.id]="'box' + x + y" >
                     
-                    <div *ngIf="x === 0 && y !== 0" >
-                        <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle" [rune]="item2.rune"></app-colrow-header>
+                    <div *ngIf="x === 0 && y !== 0">
+                        <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle" [rune]="item2.rune" ></app-colrow-header>
                     </div>
                     <div *ngIf="y === 0 && x !== 0" >
-                        <app-colrow-header [title]="item.title" [subtitle]="item.subtitle" [rune]="item.rune"></app-colrow-header>
+                        <app-colrow-header [title]="item.title" [subtitle]="item.subtitle" [rune]="item.rune" ></app-colrow-header>
                     </div>
 
                     <div *ngIf="x === 1 && y === y && y !== 0" >

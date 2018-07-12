@@ -5,6 +5,9 @@ import * as _ from 'lodash';
 import { Key } from 'protractor';
 import { IbeService } from '../../services/ibe.service';
 import { Runes } from './components/grid/colrow-header/models/runes.model';
+import { listAnimation } from './components/animations/listAnimate';
+
+
 
 
 class Parameter {
@@ -15,7 +18,8 @@ class Parameter {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [ listAnimation ]
 })
 export class HomeComponent implements OnInit {
 
