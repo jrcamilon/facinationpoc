@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  infosolApi: 'http://vm1.infosol.com:8551'
+  infosolApi: 'http://vm1.infosol.com:8551',
+  nodeJs: {
+    local: 'http://localhost:8012/data',
+    vm3: 'http://vm3.infosol.com:8012/data'
+  }
+
 };
 
 /*
