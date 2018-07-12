@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output } from '@angular/core';
 import { NodejsApiService } from '../../services/nodejs-api.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
@@ -18,7 +18,14 @@ class Parameter {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  public primary: any = 'primary';
+  public secondary: any= 'secondary';
+  @Output() primaryData:    any;
+  @Output() secondaryData:  any;
+  @Output() primaryTitle:   any = "Primary Advantage Totals";
+  @Output() secondaryTitle: any = "Secondary Advantage Totals";
+  
+  @Output() rangeBarData:      any;
   /*
     this is the key and data. data can be anything we set to.
     we pass this down to service  and check with key
@@ -99,7 +106,6 @@ export class HomeComponent implements OnInit {
 
   genderData: any;
   archetypesData: any;
-  primaryData: any;
   dynamicData: any;
   genderGrouped: any;
   drillDownSelected = false;
@@ -138,11 +144,25 @@ export class HomeComponent implements OnInit {
 
         }
       }
-
       this.addToService(newArr);
       this._nodeApi.allData.next(data);
     });
 
+    //First Radar Chart: Primary Advantage Count
+    this._nodeApi.getAllPrimaryCountData().subscribe((data)=>{
+      this._nodeApi.primaryCountData.next(data);
+    });
+    //Second Radar Chart: Secondary Advantage Count
+
+    this._nodeApi.getAllSecondaryCountData().subscribe((data)=>{
+      this._nodeApi.secondaryCountData.next(data);
+
+    });
+
+    this._nodeApi.getAllRangeBarData().subscribe((data)=>{
+      this.rangeBarData = data;
+    });
+  
     const parameters: Parameter[] = [];
     const xdc: String = '439';
     const xdcQueryName: String = 'Genders';

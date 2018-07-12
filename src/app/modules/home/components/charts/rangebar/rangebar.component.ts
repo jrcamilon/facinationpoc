@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { NodejsApiService } from '../../../../../services/nodejs-api.service';
 
 @Component({
   selector: 'app-rangebar',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RangebarComponent implements OnInit {
 
+  @Input() data: any;
   public weatherData = [
     { month: "Passion", min: 5, max: 11 },
     { month: "Innovation", min: 5, max: 13 },
@@ -18,6 +20,10 @@ export class RangebarComponent implements OnInit {
     
   ];
 
+  constructor(private _nodeApi: NodejsApiService) {
+    this._nodeApi.allData.subscribe((data) => {
+    });
+  }
   public labelContentFrom(e: any): string {
       return `${ e.value.from } `;
   }
@@ -27,6 +33,7 @@ export class RangebarComponent implements OnInit {
   }
 
   ngOnInit() {
+   
   }
 
 }

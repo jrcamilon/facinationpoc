@@ -1,13 +1,10 @@
-<kendo-chart [title]="{ text: 'Primary Advantage Scores' }">
+<kendo-chart [title]="title">
   <kendo-chart-series>
     <kendo-chart-series-item type="radarLine"
                              name="Market value as of 2007"
-                             [data]="banksData" field="pre" categoryField="name">
+                             [data]="data" field="Total" categoryField="Advantage">
     </kendo-chart-series-item>
-    <kendo-chart-series-item type="radarLine"
-                             name="Market value as of 2009"
-                             [data]="banksData" field="post" categoryField="name">
-    </kendo-chart-series-item>
+    
   </kendo-chart-series>
   <kendo-chart-value-axis>
       <kendo-chart-value-axis-item [labels]="{ format: '0' }">

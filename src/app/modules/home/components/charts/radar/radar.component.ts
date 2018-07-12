@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NodejsApiService } from '../../../../../services/nodejs-api.service';
 
 @Component({
   selector: 'app-radar',
@@ -7,19 +8,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RadarComponent implements OnInit {
 
-  public banksData = [
-    { name: "Passion", pre: 15, post: 16 },
-    { name: "Innovation", pre: 2, post: 16 },
-    { name: "Power", pre: 4, post: 4 },
-    { name: "Trust", pre: 7, post: 7 },
-    { name: "Prestige", pre: 13, post: 10 },
-    { name: "Alert", pre: 11, post:  12 },
-    { name: "Mystique", pre: 9, post: 11 }   
-  ];
-  ngOnInit(){
+ 
+  @Input() isPrimary: any;
+
+  private data: any =[
+    { Advantage: "Passion"   , Total: 15  },
+    { Advantage: "Innovation", Total: 2   },
+    { Advantage: "Power"     , Total: 4  },
+    { Advantage: "Trust"     , Total: 7  },
+    { Advantage: "Prestige"  , Total: 13  },
+    { Advantage: "Alert"     , Total: 11  },
+    { Advantage: "Mystique"  , Total: 9  }   
+  ]; 
+  private title: any;
+  public showAll: any = true;
+  public boxKeyFilter: any;
+  public showPrimary: any = true;
+
+
+  constructor(private _nodeApi: NodejsApiService) {
+    console.log(this.isPrimary);
+    if(this.isPrimary==1){
+      this._nodeApi.primaryCountData.subscribe(data => {
+        this.data = data;
+      });
+    }else{
+      this._nodeApi.secondaryCountData.subscribe(data => {
+        this.data = data;
+      });
+    }
     
   }
-  public labelContent(e: any): string {
-      return `${ e.dataItem.time.substring(0, 2) }h`;
+  ngOnInit(){   
+
+  } 
+  public labelContent(e: any): string {      return `${ e.dataItem.time.substring(0, 2) }h`;
   }
+
 }

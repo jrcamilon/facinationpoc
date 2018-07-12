@@ -10,11 +10,24 @@ export class NodejsApiService {
 
   public allData = new Subject<any>();
   public gridTileData = new Subject<any>();
-
-  nodeJSEndpoint = 'http://localhost:8012/data';
+  public primaryCountData = new Subject<any>();
+  public secondaryCountData = new Subject<any>();
+  nodeJSAllDataEndpoint = 'http://localhost:8012/data';
+  nodeJSRangeBarDataEndpoint = 'http://localhost:8012/rangebar-data';
+  nodeJsPrimaryCountData = 'http://localhost:8012/primary-counts';
+  nodeJsSecondaryCountData = 'http://localhost:8012/secondary-counts';
 
   getAllFiles(): Observable<any> {
-    return this.http.get(this.nodeJSEndpoint);
+    return this.http.get(this.nodeJSAllDataEndpoint);
+  }
+  getAllRangeBarData(): Observable<any> {
+    return this.http.get(this.nodeJSRangeBarDataEndpoint); 
+  }
+  getAllPrimaryCountData(): Observable<any> {
+    return this.http.get(this.nodeJsPrimaryCountData)
+  }
+  getAllSecondaryCountData(): Observable<any> {
+    return this.http.get(this.nodeJsSecondaryCountData)
   }
 
   constructor(private http: HttpClient) { }
