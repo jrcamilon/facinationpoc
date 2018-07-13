@@ -11,7 +11,7 @@ export class RadarComponent implements OnInit {
  
   @Input() isPrimary: any;
 
-  private data: any =[
+  public data: any =[
     { Advantage: "Passion"   , Total: 15  },
     { Advantage: "Innovation", Total: 2   },
     { Advantage: "Power"     , Total: 4  },
@@ -20,7 +20,7 @@ export class RadarComponent implements OnInit {
     { Advantage: "Alert"     , Total: 11  },
     { Advantage: "Mystique"  , Total: 9  }   
   ]; 
-  private title: any;
+  public title: any ="Hello";
   public showAll: any = true;
   public boxKeyFilter: any;
   public showPrimary: any = true;
