@@ -24,7 +24,7 @@ export class NodejsApiService {
 
 
   getAllFiles(): Observable<any> {
-    return this.http.get(this.nodeJSAllDataEndpoint);
+    return this.http.get(this.vm3NodeJSEndpoint+ this.nodeJSAllDataEndpoint);
   }
   getPrimaryDonutChartData(org: any): Observable<any> {
     console.log(org);
