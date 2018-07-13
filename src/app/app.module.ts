@@ -24,9 +24,6 @@ import { RangebarComponent } from './modules/home/components/charts/rangebar/ran
 import { MutlidonutComponent } from './modules/home/components/charts/mutlidonut/mutlidonut.component';
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +44,9 @@ import { MutlidonutComponent } from './modules/home/components/charts/mutlidonut
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [IbeService],
   bootstrap: [AppComponent]
