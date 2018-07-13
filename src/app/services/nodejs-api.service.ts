@@ -9,18 +9,18 @@ import { environment } from '../../environments/environment';
 })
 export class NodejsApiService {
 
+  //public variables
   public allData = new Subject<any>();
   public gridTileData = new Subject<any>();
- 
   public primaryDonutChartData = new Subject<any>();
   public dormantDonutChartData = new Subject<any>();
 
-  nodeJSAllDataEndpoint = '/data';
-  nodeJSPrimaryDonutChartData = '/primary-population:';
-  nodeJSDormantDonutChartData = '/dormant-population:';
-
-  vm3NodeJSEndpoint = environment.nodeJs.vm3;
-  localNodeJSEndpoint = environment.nodeJs.local;
+  //local variables
+  private nodeJSAllDataEndpoint = '/data';
+  private nodeJSPrimaryDonutChartData = '/primary-population:';
+  private nodeJSDormantDonutChartData = '/dormant-population:';
+  private vm3NodeJSEndpoint = environment.nodeJs.vm3;
+  private localNodeJSEndpoint = environment.nodeJs.local;
 
 
   getAllFiles(): Observable<any> {

@@ -75,10 +75,13 @@ export class HomeComponent implements OnInit {
   //   {key: 'box77', data: [  'Hello World', 'Box 49']}
   // ];
 
+  // Output Variables
   @Output() primaryPopulation: any = "PRIMARYPOPULATION";
   @Output() dormantPopulation: any =   "DORMANTPOPULATION";
   @Output() primaryOrganization: any = "PRIMARYORGANIZATION";
   @Output() dormantOrganization: any = "DORMANTORGANIZATION";
+
+  // Local Variables
   advantages = [{title: '', subtitle: '', rune: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
     {title: 'Passion', subtitle: 'You connect with emotion', rune: Runes.passion},
@@ -87,7 +90,6 @@ export class HomeComponent implements OnInit {
     {title: 'Trust', subtitle: 'You build loyalty with consistency', rune: Runes.trust},
     {title: 'Mystique', subtitle: 'You communicate with substance', rune: Runes.mystique},
     {title: 'Alert', subtitle: 'You prevent problems with care', rune: Runes.alert}];
-
   archetypes = [
     {key: 'innovation', value: 1},
     {key: 'passion', value: 2},
@@ -97,9 +99,7 @@ export class HomeComponent implements OnInit {
     {key: 'mystique', value: 6},
     {key: 'alert', value: 7}
   ];
-
   indexedData = [];
-
   genderData: any;
   archetypesData: any;
   dynamicData: any;
@@ -107,20 +107,24 @@ export class HomeComponent implements OnInit {
   drillDownSelected = false;
   cacheQuery1: Subscription;
   gender: String;
-
-  // This is all the data needed for each tile
+  /** This is all the data needed for each tile */
   allData: Subscription;
   responseData: any;
   filteredBoxData: any;
+
+
+  //Constructor loading in the Node and IBE API Service
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
     });
   }
 
+  //On Initialize 
   ngOnInit() {
     let filterKey;
     let commonArchetypes = [];
     const newArr = [];
+    //Matrix Data
     this._nodeApi.getAllFiles().subscribe((data) => {
       console.log(data);
       for (let i = 1 ; i <= 7 ; i++ ) {
@@ -143,17 +147,16 @@ export class HomeComponent implements OnInit {
       this.addToService(newArr);
       this._nodeApi.allData.next(data);
     });
-
+    //Primary Donut Data
     this._nodeApi.getPrimaryDonutChartData('aa').subscribe((data)=>{
       this._nodeApi.primaryDonutChartData.next(data);
     });
-    
+    //Dormant Donut Data
     this._nodeApi.getDormantDonutChartData('aa').subscribe((data)=>{
       this._nodeApi.dormantDonutChartData.next(data);
     });
     
-   
-  
+    //Constants for IBE Services
     const parameters: Parameter[] = [];
     const xdc: String = '439';
     const xdcQueryName: String = 'Genders';
@@ -162,7 +165,7 @@ export class HomeComponent implements OnInit {
         this.cacheQuery1.unsubscribe();
       }
       this.cacheQuery1 = this._IBE.cacheQuery(xdcQueryName, xdc, parameters).subscribe(data => {
-
+        //Local data
         const tmpData = JSON.parse(data);
         if (typeof tmpData['ErrorMessage'] !== 'undefined') {
           // this._IBE.Toast(tmpData['ErrorMessage']);
@@ -172,12 +175,9 @@ export class HomeComponent implements OnInit {
             // console.log('here is the data', tmpData);
         }
       });
-
-
   }
 
-
-// Method to filter the data
+// Method to get all grid tile data
 addToService(arr: any) {
  this._nodeApi.gridTileData.next(arr);
 }

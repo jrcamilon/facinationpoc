@@ -12,17 +12,26 @@ import { NodejsApiService } from '../../../../../services/nodejs-api.service';
 })
 export class DonutComponent implements OnInit {
 
+  //Input Variables
   @Input() type: any;
+
+  //Output Variables
   @Output() selected: EventEmitter<any> = new EventEmitter();
+
+  //Local Variables
   data: any;
   title: any;
  
+  //Constructor loading the Node API Service
   constructor(private node: NodejsApiService) {
 
   }
+
+  //On Initialize
   ngOnInit() {
     console.log(this.type);
     
+    //Start swtich on the type of donut this is
     switch(this.type){
       case "PRIMARYORGANIZATION":
       this.node.primaryDonutChartData.subscribe(data => {
