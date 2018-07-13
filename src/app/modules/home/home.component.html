@@ -1,12 +1,12 @@
-<div class="row mb-4 mt-4 mr-2 ml-2 bg-white" >
-    <app-donut class="col-lg-6" [type]='primaryPopulation'> </app-donut>
-    <app-donut class="col-lg-6" [type]='primaryOrganization'> </app-donut>
-    <app-donut class="col-lg-6" [type]='dormantPopulation'> </app-donut>
-    <app-donut class="col-lg-6" [type]='dormantOrganization'> </app-donut>
+<div class="row mb-4 mt-4 mr-2 ml-2" >
+    <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>
+    <app-donut class="col-lg-3" [type]='primaryOrganization'> </app-donut>
+    <app-donut class="col-lg-3" [type]='dormantPopulation'> </app-donut>
+    <app-donut class="col-lg-3" [type]='dormantOrganization'> </app-donut>
 
 </div>
 
-<div class="container-fluid" [@listAnimation]="advantages.length" >
+<div class="container-fluid"  [@listAnimation]="advantages.length">
         <div class="row gridLabelTop" >SECONDARY</div>
         <div class=" row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
             

@@ -5,6 +5,8 @@ import * as _ from 'lodash';
 import { Key } from 'protractor';
 import { IbeService } from '../../services/ibe.service';
 import { Runes } from './components/grid/colrow-header/models/runes.model';
+import { listAnimation } from './components/animations/listAnimate';
+
 
 
 class Parameter {
@@ -15,7 +17,8 @@ class Parameter {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [ listAnimation ]
 })
 export class HomeComponent implements OnInit {
   /*
@@ -76,10 +79,10 @@ export class HomeComponent implements OnInit {
   // ];
 
   // Output Variables
-  @Output() primaryPopulation: any = "PRIMARYPOPULATION";
-  @Output() dormantPopulation: any =   "DORMANTPOPULATION";
-  @Output() primaryOrganization: any = "PRIMARYORGANIZATION";
-  @Output() dormantOrganization: any = "DORMANTORGANIZATION";
+  primaryPopulation: any = 'PRIMARYPOPULATION';
+  dormantPopulation: any =   'DORMANTPOPULATION';
+  primaryOrganization: any = 'PRIMARYORGANIZATION';
+  dormantOrganization: any = 'DORMANTORGANIZATION';
 
   // Local Variables
   advantages = [{title: '', subtitle: '', rune: ''},
@@ -113,18 +116,18 @@ export class HomeComponent implements OnInit {
   filteredBoxData: any;
 
 
-  //Constructor loading in the Node and IBE API Service
+  // Constructor loading in the Node and IBE API Service
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
     });
   }
 
-  //On Initialize 
+  // On Initialize 
   ngOnInit() {
     let filterKey;
     let commonArchetypes = [];
     const newArr = [];
-    //Matrix Data
+    // Matrix Data
     this._nodeApi.getAllFiles().subscribe((data) => {
       console.log(data);
       for (let i = 1 ; i <= 7 ; i++ ) {
@@ -147,16 +150,16 @@ export class HomeComponent implements OnInit {
       this.addToService(newArr);
       this._nodeApi.allData.next(data);
     });
-    //Primary Donut Data
-    this._nodeApi.getPrimaryDonutChartData('aa').subscribe((data)=>{
+    // Primary Donut Data
+    this._nodeApi.getPrimaryDonutChartData('aa').subscribe((data) => {
       this._nodeApi.primaryDonutChartData.next(data);
     });
-    //Dormant Donut Data
-    this._nodeApi.getDormantDonutChartData('aa').subscribe((data)=>{
+    // Dormant Donut Data
+    this._nodeApi.getDormantDonutChartData('aa').subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
     });
-    
-    //Constants for IBE Services
+
+    // Constants for IBE Services
     const parameters: Parameter[] = [];
     const xdc: String = '439';
     const xdcQueryName: String = 'Genders';
@@ -165,7 +168,7 @@ export class HomeComponent implements OnInit {
         this.cacheQuery1.unsubscribe();
       }
       this.cacheQuery1 = this._IBE.cacheQuery(xdcQueryName, xdc, parameters).subscribe(data => {
-        //Local data
+        // ocal data
         const tmpData = JSON.parse(data);
         if (typeof tmpData['ErrorMessage'] !== 'undefined') {
           // this._IBE.Toast(tmpData['ErrorMessage']);
@@ -383,8 +386,8 @@ addToService(arr: any) {
   // }
 
   boxClicked(x: Number, y: Number) {
-    const message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
-    alert(message);
+    // const message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
+    // alert(message);
     console.log('clicked', x, y);
   }
 
