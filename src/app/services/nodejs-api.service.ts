@@ -21,6 +21,7 @@ export class NodejsApiService {
   private nodeJSDormantDonutChartData = '/dormant-population:';
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
+  public orgFilter = "Accenture";
 
 
   getAllFiles(): Observable<any> {
@@ -28,11 +29,13 @@ export class NodejsApiService {
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint);
   }
   getPrimaryDonutChartData(org: any): Observable<any> {
-    console.log(org);
+    console.log(this.orgFilter);
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData+org);
   }
   getDormantDonutChartData(org: any): Observable<any> {
     console.log(org);
+    console.log(this.orgFilter);
+
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData+org);
   }
   constructor(private http: HttpClient) { }
