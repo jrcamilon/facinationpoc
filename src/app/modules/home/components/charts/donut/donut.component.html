@@ -1,4 +1,5 @@
-<kendo-chart (seriesClick)="itemClicked($event)">
+<kendo-chart (seriesClick)="itemClicked($event)" >
+    <kendo-chart-title [text]="title">{{title}}</kendo-chart-title>
     <kendo-chart-tooltip>
       </kendo-chart-tooltip>
     <kendo-chart-area background="transparent" [margin]="2">
@@ -6,7 +7,7 @@
     <kendo-chart-series >
       <kendo-chart-series-item 
           type="donut" [data]="data"
-          categoryField="kind" field="share" [size]=120>
+          categoryField="Advantage" field="Total" [size]=120>
         <kendo-chart-series-item-labels
           [content]="labelContent"
           color="#fff" background="transparent"  >
@@ -15,32 +16,4 @@
     </kendo-chart-series>
     <kendo-chart-legend [visible]="false"></kendo-chart-legend>
   </kendo-chart>
-  <!-- <kendo-chart class="chart" style="border:none! important">
-      <kendo-chart-tooltip>
-      </kendo-chart-tooltip>
-    <kendo-chart-area background="transparent" [margin]="6">
-    </kendo-chart-area>
-    <ng-template kendoChartDonutCenterTemplate>
-      <h3 *ngIf="donutTotal">{{donutTotal}}</h3>
-      <h3 *ngIf="!donutTotal">N/A</h3>
-    </ng-template>
-    <kendo-chart-series>
-      <kendo-chart-series-item
-      type="donut"
-      [data]="legendsData"
-      categoryField="type"
-      field="value"
-      [padding]=-20
-      [margin]=100
-      [size]=30>
-      <kendo-chart-series-item-tooltip>
-          <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
-              <div> {{ category }} {{ value }} </div>
-          </ng-template>
-        </kendo-chart-series-item-tooltip>
-      </kendo-chart-series-item>
-    </kendo-chart-series>
-    <kendo-chart-legend
-    [visible]="false"
-    position="top"></kendo-chart-legend>
-  </kendo-chart> -->
+  

@@ -1,14 +1,14 @@
-<div class="row mb-4 mt-4 mr-2 ml-2" >
-    <app-radar  class="col-md-4"  [isPrimary]="1"></app-radar>
-    <app-rangebar  [data]= "rangeBarData" class="col-md-4"></app-rangebar>
-    <app-radar class="col-md-4"  [isPrimary]="2"></app-radar>
+<div class="row mb-4 mt-4 mr-2 ml-2 bg-white" >
+    <app-donut class="col-lg-6" [type]='primaryPopulation'> </app-donut>
+    <app-donut class="col-lg-6" [type]='primaryOrganization'> </app-donut>
+    <app-donut class="col-lg-6" [type]='dormantPopulation'> </app-donut>
+    <app-donut class="col-lg-6" [type]='dormantOrganization'> </app-donut>
+
 </div>
-<div class="container-fluid ">
-        <div class="row gridLabelTop mr-2 ml-2">SECONDARY</div>
-        <div class="row mr-2 ml-2" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
+
 <div class="container-fluid" [@listAnimation]="advantages.length" >
         <div class="row gridLabelTop" >SECONDARY</div>
-        <div class="row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
+        <div class=" row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
             
             <div class="col box-container" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'"  (click)="boxClicked(x, y)" >
                 <div class="box" [attr.id]="'box' + x + y" >

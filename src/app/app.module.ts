@@ -21,6 +21,7 @@ import { ColrowHeaderComponent } from './modules/home/components/grid/colrow-hea
 import { GridTileComponent } from './modules/home/components/grid/grid-tile/grid-tile.component';
 import { RadarComponent } from './modules/home/components/charts/radar/radar.component';
 import { RangebarComponent } from './modules/home/components/charts/rangebar/rangebar.component';
+import { MutlidonutComponent } from './modules/home/components/charts/mutlidonut/mutlidonut.component';
 
 
 
@@ -40,7 +41,8 @@ import { RangebarComponent } from './modules/home/components/charts/rangebar/ran
     ColrowHeaderComponent,
     GridTileComponent,
     RadarComponent,
-    RangebarComponent
+    RangebarComponent,
+    MutlidonutComponent
   ],
   imports: [
     BrowserModule,

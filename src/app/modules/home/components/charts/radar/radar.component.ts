@@ -27,16 +27,7 @@ export class RadarComponent implements OnInit {
 
 
   constructor(private _nodeApi: NodejsApiService) {
-    console.log(this.isPrimary);
-    if(this.isPrimary==1){
-      this._nodeApi.primaryCountData.subscribe(data => {
-        this.data = data;
-      });
-    }else{
-      this._nodeApi.secondaryCountData.subscribe(data => {
-        this.data = data;
-      });
-    }
+  
     
   }
   ngOnInit(){   

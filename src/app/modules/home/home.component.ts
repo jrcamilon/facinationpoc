@@ -75,6 +75,10 @@ export class HomeComponent implements OnInit {
   //   {key: 'box77', data: [  'Hello World', 'Box 49']}
   // ];
 
+  @Output() primaryPopulation: any = "PRIMARYPOPULATION";
+  @Output() dormantPopulation: any =   "DORMANTPOPULATION";
+  @Output() primaryOrganization: any = "PRIMARYORGANIZATION";
+  @Output() dormantOrganization: any = "DORMANTORGANIZATION";
   advantages = [{title: '', subtitle: '', rune: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
     {title: 'Passion', subtitle: 'You connect with emotion', rune: Runes.passion},
@@ -140,20 +144,15 @@ export class HomeComponent implements OnInit {
       this._nodeApi.allData.next(data);
     });
 
-    //First Radar Chart: Primary Advantage Count
-    this._nodeApi.getAllPrimaryCountData().subscribe((data)=>{
-      this._nodeApi.primaryCountData.next(data);
+    this._nodeApi.getPrimaryDonutChartData('aa').subscribe((data)=>{
+      this._nodeApi.primaryDonutChartData.next(data);
     });
-    //Second Radar Chart: Secondary Advantage Count
-
-    this._nodeApi.getAllSecondaryCountData().subscribe((data)=>{
-      this._nodeApi.secondaryCountData.next(data);
-
+    
+    this._nodeApi.getDormantDonutChartData('aa').subscribe((data)=>{
+      this._nodeApi.dormantDonutChartData.next(data);
     });
-
-    this._nodeApi.getAllRangeBarData().subscribe((data)=>{
-      // this.rangeBarData = data;
-    });
+    
+   
   
     const parameters: Parameter[] = [];
     const xdc: String = '439';
@@ -180,71 +179,72 @@ export class HomeComponent implements OnInit {
 
 // Method to filter the data
 addToService(arr: any) {
- this._nodeApi.gridTileData.next(arr) ;
+ this._nodeApi.gridTileData.next(arr);
 }
-  processAllTheDatad(data: any) {
-    // this.groupByGender(data);
-    // this.groupByArchetype(data);
-    // this.groupByPrimary(data);
 
-    // console.log('I am here');
-   this.indexedData =  data.map(row => {
-      // console.log('The Primary for this record:', row.primary);
-      // console.log('The Secondary for this record:',row.secondary);
-      // Assign Primary Index to the data
-      switch (row.primary) {
-        case 'innovation':
-        row.primaryIndex = 1;
-        break;
-        case 'passion':
-        row.primaryIndex = 2;
-        break;
-        case 'power':
-        row.primaryIndex = 3;
-        break;
-        case 'prestig':
-        row.primaryIndex = 4;
-        break;
-        case 'trust':
-        row.primaryIndex = 5;
-        break;
-        case 'mystique':
-        row.primaryIndex = 6;
-        break;
-        case 'alert':
-        row.primaryIndex = 7;
-        break;
-      }
 
-      // Assign Secondary Index to the data
-      // Assign Primary Index to the data
-      switch (row.secondary) {
-        case 'innovation':
-        row.secondaryIndex = 1;
-        break;
-        case 'passion':
-        row.secondaryIndex = 2;
-        break;
-        case 'power':
-        row.secondaryIndex = 3;
-        break;
-        case 'prestige':
-        row.secondaryIndex = 4;
-        break;
-        case 'trust':
-        row.secondaryIndex = 5;
-        break;
-        case 'mystique':
-        row.secondaryIndex = 6;
-        break;
-        case 'alert':
-        row.secondaryIndex = 7;
-        break;
-      }
-      return row;
-    });
+  //   // this.groupByGender(data);
+  //   // this.groupByArchetype(data);
+  //   // this.groupByPrimary(data);
 
-  }
+  //   // console.log('I am here');
+  //  this.indexedData =  data.map(row => {
+  //     // console.log('The Primary for this record:', row.primary);
+  //     // console.log('The Secondary for this record:',row.secondary);
+  //     // Assign Primary Index to the data
+  //     switch (row.primary) {
+  //       case 'innovation':
+  //       row.primaryIndex = 1;
+  //       break;
+  //       case 'passion':
+  //       row.primaryIndex = 2;
+  //       break;
+  //       case 'power':
+  //       row.primaryIndex = 3;
+  //       break;
+  //       case 'prestig':
+  //       row.primaryIndex = 4;
+  //       break;
+  //       case 'trust':
+  //       row.primaryIndex = 5;
+  //       break;
+  //       case 'mystique':
+  //       row.primaryIndex = 6;
+  //       break;
+  //       case 'alert':
+  //       row.primaryIndex = 7;
+  //       break;
+  //     }
+
+  //     // Assign Secondary Index to the data
+  //     // Assign Primary Index to the data
+  //     switch (row.secondary) {
+  //       case 'innovation':
+  //       row.secondaryIndex = 1;
+  //       break;
+  //       case 'passion':
+  //       row.secondaryIndex = 2;
+  //       break;
+  //       case 'power':
+  //       row.secondaryIndex = 3;
+  //       break;
+  //       case 'prestige':
+  //       row.secondaryIndex = 4;
+  //       break;
+  //       case 'trust':
+  //       row.secondaryIndex = 5;
+  //       break;
+  //       case 'mystique':
+  //       row.secondaryIndex = 6;
+  //       break;
+  //       case 'alert':
+  //       row.secondaryIndex = 7;
+  //       break;
+  //     }
+  //     return row;
+  //   });
+
+  // }
 
   // groupByGender(data: any) {
 

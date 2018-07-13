@@ -11,28 +11,29 @@ export class NodejsApiService {
 
   public allData = new Subject<any>();
   public gridTileData = new Subject<any>();
-  public primaryCountData = new Subject<any>();
-  public secondaryCountData = new Subject<any>();
-  nodeJSAllDataEndpoint = 'http://localhost:8012/data';
-  nodeJSRangeBarDataEndpoint = 'http://localhost:8012/rangebar-data';
-  nodeJsPrimaryCountData = 'http://localhost:8012/primary-counts';
-  nodeJsSecondaryCountData = 'http://localhost:8012/secondary-counts';
+ 
+  public primaryDonutChartData = new Subject<any>();
+  public dormantDonutChartData = new Subject<any>();
 
-  nodeJSEndpoint = environment.nodeJs.vm3;
+  nodeJSAllDataEndpoint = '/data';
+  nodeJSPrimaryDonutChartData = '/primary-population:';
+  nodeJSDormantDonutChartData = '/dormant-population:';
+
+  vm3NodeJSEndpoint = environment.nodeJs.vm3;
+  localNodeJSEndpoint = environment.nodeJs.local;
+
 
   getAllFiles(): Observable<any> {
     return this.http.get(this.nodeJSAllDataEndpoint);
   }
-  getAllRangeBarData(): Observable<any> {
-    return this.http.get(this.nodeJSRangeBarDataEndpoint); 
+  getPrimaryDonutChartData(org: any): Observable<any> {
+    console.log(org);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData+org);
   }
-  getAllPrimaryCountData(): Observable<any> {
-    return this.http.get(this.nodeJsPrimaryCountData)
+  getDormantDonutChartData(org: any): Observable<any> {
+    console.log(org);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData+org);
   }
-  getAllSecondaryCountData(): Observable<any> {
-    return this.http.get(this.nodeJsSecondaryCountData)
-  }
-
   constructor(private http: HttpClient) { }
 
 }
