@@ -22,6 +22,9 @@ import { GridTileComponent } from './modules/home/components/grid/grid-tile/grid
 import { RadarComponent } from './modules/home/components/charts/radar/radar.component';
 import { RangebarComponent } from './modules/home/components/charts/rangebar/rangebar.component';
 import { MutlidonutComponent } from './modules/home/components/charts/mutlidonut/mutlidonut.component';
+import { ModalComponent } from './modules/home/components/modal/modal.component';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ButtonGroupModule } from '@progress/kendo-angular-buttons';
 
 
 @NgModule({
@@ -39,14 +42,17 @@ import { MutlidonutComponent } from './modules/home/components/charts/mutlidonut
     GridTileComponent,
     RadarComponent,
     RangebarComponent,
-    MutlidonutComponent
+    MutlidonutComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ChartsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DialogsModule,
+    ButtonGroupModule
   ],
   providers: [IbeService],
   bootstrap: [AppComponent]

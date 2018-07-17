@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NodejsApiService } from '../../../../../services/nodejs-api.service';
-import { archetypes } from './models/archetypes';
+
 
 
 
@@ -23,14 +23,14 @@ export class GridTileComponent implements OnInit {
   // @Input() data: any;
   @Input() x: any;
   @Input() y: any;
-  @Output() openClose: EventEmitter<any> = new EventEmitter();
+  @Output() modalOpen: EventEmitter<any> = new EventEmitter();
 
   boxNumber: string;
   boxId: string;
   dataLocal: any;
   archetype: string;
 
-  showBack =  false;
+  // showBack =  false;
 
   constructor(private node: NodejsApiService) {
     this.node.gridTileData.subscribe(data => {
@@ -47,9 +47,11 @@ export class GridTileComponent implements OnInit {
     this.boxId = 'box' + this.boxNumber;
   }
 
-  public onBoxClick() {
-    console.log('clicked open back');
-    this.showBack = !this.showBack;
-  }
+  // public onBoxClick() {
+  //   console.log('clicked open back');
+  //   this.showBack = !this.showBack;
+  // }
+
+
 
 }

@@ -9,13 +9,13 @@ import { environment } from '../../environments/environment';
 })
 export class NodejsApiService {
 
-  //public variables
+  // public variables
   public allData = new Subject<any>();
   public gridTileData = new Subject<any>();
   public primaryDonutChartData = new Subject<any>();
   public dormantDonutChartData = new Subject<any>();
 
-  //local variables
+  // local variables
   private nodeJSAllDataEndpoint = '/data';
   private nodeJSPrimaryDonutChartData = '/primary-population:';
   private nodeJSDormantDonutChartData = '/dormant-population:';
@@ -25,18 +25,17 @@ export class NodejsApiService {
 
 
   getAllFiles(): Observable<any> {
-
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint);
   }
   getPrimaryDonutChartData(org: any): Observable<any> {
     console.log(this.orgFilter);
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData+org);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + org);
   }
   getDormantDonutChartData(org: any): Observable<any> {
     console.log(org);
     console.log(this.orgFilter);
 
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData+org);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + org);
   }
   constructor(private http: HttpClient) { }
 

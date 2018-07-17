@@ -6,6 +6,7 @@ import { Key } from 'protractor';
 import { IbeService } from '../../services/ibe.service';
 import { Runes } from './components/grid/colrow-header/models/runes.model';
 import { listAnimation } from './components/animations/listAnimate';
+import { ThrowStmt } from '../../../../node_modules/@angular/compiler';
 
 
 
@@ -21,62 +22,6 @@ class Parameter {
   animations: [ listAnimation ]
 })
 export class HomeComponent implements OnInit {
-  /*
-    this is the key and data. data can be anything we set to.
-    we pass this down to service  and check with key
-    to determine which data for which box.
-  */
-  // gridTileData = [
-  //   {key: 'box11', data: [  'Hello World', 'Box 1']},
-  //   {key: 'box12', data: [  'Hello World', 'Box 2']} ,
-  //   {key: 'box13', data: [  'Hello World', 'Box 3']} ,
-  //   {key: 'box14', data: [  'Hello World', 'Box 4']} ,
-  //   {key: 'box15', data: [  'Hello World', 'Box 5']} ,
-  //   {key: 'box16', data: [  'Hello World', 'Box 6']} ,
-  //   {key: 'box17', data: [  'Hello World', 'Box 7']} ,
-  //   {key: 'box21', data: [  'Hello World', 'Box 8']} ,
-  //   {key: 'box22', data: [  'Hello World', 'Box 9']} ,
-  //   {key: 'box23', data: [  'Hello World', 'Box 10']} ,
-  //   {key: 'box24', data: [  'Hello World', 'Box 11']} ,
-  //   {key: 'box25', data: [  'Hello World', 'Box 12']} ,
-  //   {key: 'box26', data: [  'Hello World', 'Box 13']} ,
-  //   {key: 'box27', data: [  'Hello World', 'Box 14']} ,
-  //   {key: 'box31', data: [  'Hello World', 'Box 15']} ,
-  //   {key: 'box32', data: [  'Hello World', 'Box 16']} ,
-  //   {key: 'box33', data: [  'Hello World', 'Box 17']} ,
-  //   {key: 'box34', data: [  'Hello World', 'Box 18']} ,
-  //   {key: 'box35', data: [  'Hello World', 'Box 19']} ,
-  //   {key: 'box36', data: [  'Hello World', 'Box 20']} ,
-  //   {key: 'box37', data: [  'Hello World', 'Box 21']} ,
-  //   {key: 'box41', data: [  'Hello World', 'Box 22']} ,
-  //   {key: 'box42', data: [  'Hello World', 'Box 23']} ,
-  //   {key: 'box43', data: [  'Hello World', 'Box 24']} ,
-  //   {key: 'box44', data: [  'Hello World', 'Box 25']} ,
-  //   {key: 'box45', data: [  'Hello World', 'Box 26']} ,
-  //   {key: 'box46', data: [  'Hello World', 'Box 27']} ,
-  //   {key: 'box47', data: [  'Hello World', 'Box 28']} ,
-  //   {key: 'box51', data: [  'Hello World', 'Box 29']} ,
-  //   {key: 'box52', data: [  'Hello World', 'Box 30']} ,
-  //   {key: 'box53', data: [  'Hello World', 'Box 31']} ,
-  //   {key: 'box54', data: [  'Hello World', 'Box 32']} ,
-  //   {key: 'box55', data: [  'Hello World', 'Box 33']} ,
-  //   {key: 'box56', data: [  'Hello World', 'Box 34']} ,
-  //   {key: 'box57', data: [  'Hello World', 'Box 35']} ,
-  //   {key: 'box61', data: [  'Hello World', 'Box 36']} ,
-  //   {key: 'box62', data: [  'Hello World', 'Box 37']} ,
-  //   {key: 'box63', data: [  'Hello World', 'Box 38']} ,
-  //   {key: 'box64', data: [  'Hello World', 'Box 39']} ,
-  //   {key: 'box65', data: [  'Hello World', 'Box 40']} ,
-  //   {key: 'box66', data: [  'Hello World', 'Box 41']} ,
-  //   {key: 'box67', data: [  'Hello World', 'Box 42']} ,
-  //   {key: 'box71', data: [  'Hello World', 'Box 43']} ,
-  //   {key: 'box72', data: [  'Hello World', 'Box 44']} ,
-  //   {key: 'box73', data: [  'Hello World', 'Box 45']} ,
-  //   {key: 'box74', data: [  'Hello World', 'Box 46']} ,
-  //   {key: 'box75', data: [  'Hello World', 'Box 47']} ,
-  //   {key: 'box76', data: [  'Hello World', 'Box 48']} ,
-  //   {key: 'box77', data: [  'Hello World', 'Box 49']}
-  // ];
 
   // Output Variables
   primaryPopulation: any = 'PRIMARYPOPULATION';
@@ -115,6 +60,11 @@ export class HomeComponent implements OnInit {
   responseData: any;
   filteredBoxData: any;
 
+  // modal boxes
+  modalOpen = false;
+  modalIndex: Number;
+  gridTileData: any;
+  modalData: any;
 
   // Constructor loading in the Node and IBE API Service
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
@@ -122,16 +72,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // On Initialize 
+  // On Initialize
   ngOnInit() {
     let filterKey;
     let commonArchetypes = [];
     const newArr = [];
     // Matrix Data
     this._nodeApi.getAllFiles().subscribe((data) => {
-      console.log(data);
-      for (let i = 1 ; i <= 7 ; i++ ) {
-        for (let j = 1; j <= 7 ; j++) {
+      // console.log(data);
+      for (let i = 1 ; i <= this.advantages.length - 1 ; i++ ) {
+        for (let j = 1; j <= this.advantages.length -1 ; j++) {
           filterKey  = `${i}${j}`;
           commonArchetypes = [];
 
@@ -182,6 +132,7 @@ export class HomeComponent implements OnInit {
 
 // Method to get all grid tile data
 addToService(arr: any) {
+ this.gridTileData = arr;
  this._nodeApi.gridTileData.next(arr);
 }
 
@@ -386,9 +337,31 @@ addToService(arr: any) {
   // }
 
   boxClicked(x: Number, y: Number) {
-    // const message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
-    // alert(message);
-    console.log('clicked', x, y);
+    const index = x.toString() + y.toString();
+
+    const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50' ];
+
+    const i = this.gridTileData.findIndex(ele => ele.key === index);
+    if (this.gridTileData[i]['data'].length !== 0) {
+      if (!boxExcludeList.includes(index)) {
+        this.onModalOpen(index);
+      }
+    }
+
+
+  }
+
+  onModalOpen(index: any) {
+
+    this.modalOpen = true;
+    this.modalIndex = index;
+    const i = this.gridTileData.findIndex(x => x.key === index);
+    this.modalData = this.gridTileData[i]['data'] === undefined ? [] : this.gridTileData[i]['data'];
+
+  }
+
+  onModalClose(event: any) {
+    this.modalOpen = false;
   }
 
 }

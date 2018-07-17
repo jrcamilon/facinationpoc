@@ -1,4 +1,4 @@
-export const archetypes = [
+export const archetypesList = [
     { key: '11', type: 'anrachy', subtext: '', color: '' },
     { key: '12', type: 'rockstar', subtext: '', color: '' },
     { key: '13', type: 'maverick leader', subtext: '', color: '' },

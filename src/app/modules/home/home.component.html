@@ -6,6 +6,8 @@
 
 </div>
 
+<app-modal *ngIf="modalOpen" (modalClose)="onModalClose($event)" [index]="modalIndex" [data]="modalData"></app-modal>
+
 <div class="container-fluid"  [@listAnimation]="advantages.length">
         <div class="row gridLabelTop" >SECONDARY</div>
         <div class=" row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
@@ -21,7 +23,7 @@
                     </div>
 
                     <div *ngIf="x === 1 && y === y && y !== 0" >
-                        <app-grid-tile  c [x]="x" [y]="y" ></app-grid-tile>
+                        <app-grid-tile  c [x]="x" [y]="y"></app-grid-tile>
                     </div>
 
                     <div *ngIf="x === 2 && y === y && y !== 0" >
