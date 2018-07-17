@@ -338,6 +338,7 @@ addToService(arr: any) {
 
   boxClicked(x: Number, y: Number) {
     const index = x.toString() + y.toString();
+    console.log(index);
 
     const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50' ];
 
