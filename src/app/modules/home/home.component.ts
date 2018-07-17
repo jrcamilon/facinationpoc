@@ -389,6 +389,7 @@ addToService(arr: any) {
     // const message = 'Hello from BOX: [' + x.toString() + ',' + y.toString() + ']';
     // alert(message);
     console.log('clicked', x, y);
+    this._nodeApi.getPrimaryDonutChartData(`${x}${y}`)
   }
 
 }
