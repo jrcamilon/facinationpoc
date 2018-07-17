@@ -14,6 +14,8 @@ export class ModalComponent implements OnInit {
   @Input() data;
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
 
+  clients: string[];
+
   title: string;
 
 
@@ -26,14 +28,11 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data);
-
     this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
-
   }
 
 
   public close(status) {
-    // console.log(`Dialog result: ${status}`);
     this.modalClose.emit();
   }
 
