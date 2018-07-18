@@ -52,28 +52,30 @@ export class DonutComponent implements OnInit {
       this.node.primaryDonutChartData.subscribe(data => {
         this.data = data.organizatinal[0];
           this.addToData(this.data);
-          this.title = 'RESULTS FROM MASTERS FOR THE FASCINATION ADVANTAGE® ';
+        this.title = `${NodejsApiService.orgFilter} Primary Advantage`;
+
       });
       break;
       case  'DORMANTPOPULATION':
       this.node.dormantDonutChartData.subscribe(data => {
         this.data = data.population[0];
           this.addToData(this.data);
-          this.title = 'DORMANT ADVANTAGE RESULTS FROM THE GENERAL POPULATION FOR THE FASCINATION \nADVANTAGE® ';
+          this.title = 'General Population Dormant Advantage';
       });
       break;
       case 'PRIMARYPOPULATION':
       this.node.primaryDonutChartData.subscribe(data => {
         this.data = data.population[0];
           this.addToData(this.data);
-        this.title = 'RESULTS FROM THE GENERAL POPULATION FOR THE FASCINATION\n ADVANTAGE® ';
+          this.title = 'General Population Primary Advantage ';
+
       });
       break;
       case 'DORMANTORGANIZATION':
       this.node.dormantDonutChartData.subscribe(data => {
         this.data = data.organizatinal[0];
           this.addToData(this.data);
-          this.title = 'DORMANT ADVANTAGE RESULTS FROM ARCHANGEL MASTERS FOR THE FASCINATION\n ADVANTAGE® ';
+          this.title = `${NodejsApiService.orgFilter} Dormant Advantage`;
       });
       break;
     }

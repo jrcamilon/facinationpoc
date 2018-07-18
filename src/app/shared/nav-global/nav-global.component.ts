@@ -24,12 +24,12 @@ export class NavGlobalComponent implements OnInit {
       }
     }
     // console.log( this.searchContent);
-    // this._nodeApi.orgFilter=this.searchContent;
-    this._nodeApi.getPrimaryDonutChartData(this.searchContent).subscribe((data)=>{
+    NodejsApiService.orgFilter = this.searchContent;
+    this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
       this._nodeApi.primaryDonutChartData.next(data);
     })
     // Dormant Donut Data
-    this._nodeApi.getDormantDonutChartData(this.searchContent).subscribe((data) => {
+    this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
     });
   }

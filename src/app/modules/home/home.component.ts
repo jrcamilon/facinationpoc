@@ -103,11 +103,11 @@ export class HomeComponent implements OnInit {
       this._nodeApi.allData.next(data);
     });
     // Primary Donut Data
-    this._nodeApi.getPrimaryDonutChartData('aa').subscribe((data) => {
+    this._nodeApi.getPrimaryDonutChartData().subscribe((data) => {
       this._nodeApi.primaryDonutChartData.next(data);
     });
     // Dormant Donut Data
-    this._nodeApi.getDormantDonutChartData('aa').subscribe((data) => {
+    this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
     });
 

@@ -21,7 +21,7 @@ export class NodejsApiService {
   private nodeJSDormantDonutChartData = '/dormant-population:';
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
-  public orgFilter = "Accenture";
+  static orgFilter = "Accenture";
 
   static boxPrimaryData = [
     { key: 1, primary: "Innovation",languageOf: "Creativity", adjectives: "Creative, Entrepreneurial, Visionary", overview: "Push companies to innovate with creativity.", communication: "Tweak traditional conversation.", fascination:"Get creative.",otherLeaders:"Madonna, Albert Einstein, Amelia Earhart, Frank Lloyd Wright, Betty White" },
@@ -88,15 +88,12 @@ export class NodejsApiService {
   getAllFiles(): Observable<any> {
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint);
   }
-  getPrimaryDonutChartData(org: any): Observable<any> {
-    console.log(this.orgFilter);
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + org);
+  getPrimaryDonutChartData(): Observable<any> {
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter);
   }
-  getDormantDonutChartData(org: any): Observable<any> {
-    console.log(org);
-    console.log(this.orgFilter);
+  getDormantDonutChartData(): Observable<any> {
 
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + org);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter);
   }
   constructor(private http: HttpClient) { }
 
