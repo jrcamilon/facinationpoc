@@ -71,26 +71,34 @@
                 <kendo-splitter-pane [resizable]="false" size="350px">
                   <div class="pane-content">
                     <kendo-tabstrip (tabSelect)="onTabSelect($event)">
-                        <kendo-tabstrip-tab [title]="'Primary Overview Scores'" [selected]="true">
+                        <kendo-tabstrip-tab [title]="'Primary Individual Scores'" [selected]="true">
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
-                                <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
+          
+
+                                <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
+                                  <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
                           </ng-template>
                         </kendo-tabstrip-tab>
-                        <kendo-tabstrip-tab [title]="'Primary Individual Scores'">
+                        <kendo-tabstrip-tab [title]="'Primary Overview Scores'">
                             <ng-template kendoTabContent>
                                   <!-- Tab Content -->
-                                  <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
-                                  <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
+                                  <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
+                                  
                             </ng-template>
                           </kendo-tabstrip-tab>
                         <kendo-tabstrip-tab [title]="'Gender Distribution'">
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
                                 <!-- <app-bar [categories]="genderCateogires" [data]="genderData" [title]="genderTital"></app-bar> -->
-                                <app-pie [males] ="totalMales" [type]="pieTypes.archetype" [females]="totalFemales"></app-pie>
+                                <!-- <app-pie [males] ="totalMales" [type]="pieTypes.archetype" [females]="totalFemales"></app-pie>
 
-                                <app-pie [males] ="totalMales" [type]="pieTypes.pop" [females]="totalFemales"></app-pie>
+                                <app-pie [males] ="totalMales" [type]="pieTypes.pop" [females]="totalFemales"></app-pie> -->
+
+                                <div class="row">
+                                  <div class="col-6"><app-pie [males] ="totalMales" [type]="'archetype'" [females]="totalFemales" [title]="'Gender by Archetype'"></app-pie></div>
+                                  <div class="col-6"><app-pie [males] ="totalMales" [type]="'pop'" [females]="totalFemales" [title]="'Gender by Population'"></app-pie> </div>
+                                </div>
                           </ng-template>
                         </kendo-tabstrip-tab>
 

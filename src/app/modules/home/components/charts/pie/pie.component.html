@@ -1,11 +1,25 @@
-<kendo-chart [seriesColors]="['orange', '#ffe']">
+<kendo-chart [seriesColors]="['blue', 'pink']" >
     <!-- <kendo-chart-legend position="top"></kendo-chart-legend> -->
+    <kendo-chart-area [height]="270"></kendo-chart-area>
+        <kendo-chart-title text="{{title}}"></kendo-chart-title>
     <kendo-chart-series>
+        <kendo-chart-tooltip>
+          </kendo-chart-tooltip>
       <kendo-chart-series-item type="pie"
         [data]="pieData"
         field="value"
         categoryField="category"
+        [padding]="20"
+        [size]=100
+        
         >
+
+        <kendo-chart-series-item-tooltip>
+          <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
+              <div> {{ category }} {{ value }} </div>
+          </ng-template>
+        </kendo-chart-series-item-tooltip>
+
       </kendo-chart-series-item>
     </kendo-chart-series>
   </kendo-chart>
