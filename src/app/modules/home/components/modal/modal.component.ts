@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NodejsApiService } from 'src/app/services/nodejs-api.service';
 import * as _ from 'lodash';
+import { arch } from 'os';
 
 
 @Component({
@@ -25,6 +26,11 @@ export class ModalComponent implements OnInit {
 
 
 
+  languageOf: string;
+  communication: any;
+  fasicnation: any;
+  otherLeaders: any;
+  overview: any;
   public opened = true;
 
 
@@ -56,6 +62,21 @@ export class ModalComponent implements OnInit {
 
     this.primaryCategories = _advantages;
     this.primaryData = data;
+
+    console.log(this.data);
+    console.log(this.index[0]);
+    this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] + " - " : 'No Data';
+    const archIndex = _.findIndex(NodejsApiService.archetypeData, (a) => a.boxkey === this.index)
+    this.title += NodejsApiService.archetypeData[archIndex].adjectives;
+
+    const dataIndex = _.findIndex(NodejsApiService.boxPrimaryData, (a) => a.key === this.index[0])
+    const primaryData =  NodejsApiService.boxPrimaryData[dataIndex];
+
+    this.languageOf = primaryData.languageOf;
+    this.communication = primaryData.communication;
+    this.fasicnation = primaryData.fascination;
+    this.otherLeaders = primaryData.otherLeaders;
+    this.overview = primaryData.overview;
 
   }
 
