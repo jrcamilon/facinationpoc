@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output } from '@angular/core';
 
 @Component({
   selector: 'app-bar',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarComponent implements OnInit {
 
-  constructor() { }
+  @Input() data: any;
+  @Output() barData: any;
+  constructor() {
+
+   }
 
   ngOnInit() {
+    console.log(this.data);
+    this.barData  =this.data;
   }
 
 }
