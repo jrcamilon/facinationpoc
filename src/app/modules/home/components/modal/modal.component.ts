@@ -33,6 +33,10 @@ export class ModalComponent implements OnInit {
   primaryData: any[];
   primaryTitle = 'Primary Advantages Total Scores';
 
+  primaryIndividualCategories: string[];
+  primaryIndividualData: any[];
+  primaryIndividualTitle: string;
+
   genderCateogires: string[];
   genderData: any[];
   genderTital = 'Gender Distribution';
@@ -57,7 +61,7 @@ export class ModalComponent implements OnInit {
 
 
   constructor( ) {
- 
+
   }
 
   ngOnInit() {
@@ -141,7 +145,7 @@ export class ModalComponent implements OnInit {
   }
 
   public onTabSelect(e) {
-    console.log(e);
+    // console.log(e);
   }
 
   private loadItems(): void {
@@ -157,6 +161,23 @@ export class ModalComponent implements OnInit {
 
     // Optionally, clear the selection when paging
     // this.mySelection = [];
+  }
+
+  public selected(event: Selection) {
+    const index = event['index'];
+    const userSpecificData = this.data[index];
+    console.log(userSpecificData);
+
+    const _advantages = ['innovation', 'passion', 'power', 'prestige', 'trust', 'mystique', 'alert'];
+    const total = {};
+    const dataWithColors = _advantages.map(ele => {
+      return new Object({value: userSpecificData[ele], color: this.getColor(ele)});
+    });
+
+    this.primaryIndividualCategories = _advantages;
+    this.primaryIndividualData = dataWithColors;
+    this.primaryIndividualTitle = userSpecificData['fUserId'] + ' Scores';
+
   }
 
 

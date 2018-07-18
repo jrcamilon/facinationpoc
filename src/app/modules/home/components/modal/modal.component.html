@@ -27,8 +27,7 @@
                         <h3>Inner splitter / left pane</h3>
                         <p>Resizable and collapsible.</p>
                       </div>
-                    </kendo-splitter-pane>
-         -->
+                    </kendo-splitter-pane> -->
                     <kendo-splitter-pane>
                       <div class="pane-content">
                         <kendo-grid
@@ -37,11 +36,12 @@
                         [skip]="skip"
                         [pageable]="true"
                         (pageChange)="pageChange($event)"
-                        [height]="260"
+                        [height]="314"
                         [selectable]="true"
+                        (selectionChange)="selected($event)"
                         >
                         <!-- <kendo-grid-checkbox-column showSelectAll="true"></kendo-grid-checkbox-column> -->
-                        <kendo-grid-column field="fUserId" title="User ID" [width]="300"></kendo-grid-column>
+                        <kendo-grid-column field="fUserId" title="User ID" [width]="150"></kendo-grid-column>
                         <kendo-grid-column field="organization" title="Organization"></kendo-grid-column>
                         <!-- <kendo-grid-column field="UnitsOnOrder" title="Units On Order"></kendo-grid-column>
                         <kendo-grid-column field="ReorderLevel" title="Reorder Level"></kendo-grid-column> -->
@@ -68,7 +68,7 @@
                   </div>
                 </kendo-splitter-pane> -->
         
-                <kendo-splitter-pane [resizable]="false" size="400px">
+                <kendo-splitter-pane [resizable]="false" size="350px">
                   <div class="pane-content">
                     <kendo-tabstrip (tabSelect)="onTabSelect($event)">
                         <kendo-tabstrip-tab [title]="'Primary Overview Scores'" [selected]="true">
@@ -80,7 +80,8 @@
                         <kendo-tabstrip-tab [title]="'Primary Individual Scores'">
                             <ng-template kendoTabContent>
                                   <!-- Tab Content -->
-                                  <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
+                                  <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
+                                  <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
                             </ng-template>
                           </kendo-tabstrip-tab>
                         <kendo-tabstrip-tab [title]="'Gender Distribution'">
