@@ -24,6 +24,7 @@ class Parameter {
 export class HomeComponent implements OnInit {
 
   // Output Variables
+  @Output() x: any;
   primaryPopulation: any = 'PRIMARYPOPULATION';
   dormantPopulation: any =   'DORMANTPOPULATION';
   primaryOrganization: any = 'PRIMARYORGANIZATION';
@@ -70,6 +71,7 @@ export class HomeComponent implements OnInit {
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
     });
+    
   }
 
   // On Initialize
@@ -339,6 +341,7 @@ addToService(arr: any) {
   boxClicked(x: Number, y: Number) {
     const index = x.toString() + y.toString();
     console.log(index);
+    this.x = x;
 
     const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50' ];
 

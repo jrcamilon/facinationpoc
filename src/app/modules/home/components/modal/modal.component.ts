@@ -14,13 +14,17 @@ export class ModalComponent implements OnInit {
 
   @Input() index;
   @Input() data;
+
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
 
   clients: string[];
 
   title: string;
-
-
+  languageOf: string
+  communication: any;
+  fasicnation: any;
+  otherLeaders: any;
+  overview: any;
   public opened = true;
 
 
@@ -30,10 +34,22 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data);
+    console.log(this.index[0]);
     this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] + " - " : 'No Data';
     let archIndex = _.findIndex(NodejsApiService.archetypeData,(a) => { return a.boxkey == this.index})
     this.title +=NodejsApiService.archetypeData[archIndex].adjectives;
-    console.log(this.title);
+
+    let dataIndex = _.findIndex(NodejsApiService.boxPrimaryData,(a) => { return a.key==this.index[0]})
+    let primaryData =  NodejsApiService.boxPrimaryData[dataIndex];
+
+    this.languageOf = primaryData.languageOf;
+    this.communication = primaryData.communication;
+     this.fasicnation= primaryData.fascination;
+    this.otherLeaders = primaryData.otherLeaders;
+     this.overview= primaryData.overview 
+     
+
+   
   }
 
 
