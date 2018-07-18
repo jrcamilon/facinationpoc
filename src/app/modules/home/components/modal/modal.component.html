@@ -2,7 +2,7 @@
     <!-- <button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button> -->
     <kendo-dialog *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="1024" [height]="768" >
             <kendo-dialog-titlebar color="red" style="background-color: rebeccapurple"><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
-           
+<!--            
             <p><label><b>The Language of: </b></label> {{languageOf}} </p>
             <p><label><b>Overview: </b></label> {{overview}} </p>
             <p><label><b>Communcation: </b></label> {{communication}} </p>
@@ -13,8 +13,88 @@
                     <div class="col-6">     <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar></div>
                     <div class="col-6">
                         <app-bar [categories]="genderCateogires" [data]="genderData" [title]="genderTital"></app-bar>
-                        <!-- <app-donut></app-donut> -->
+                  
                     </div>
-            </div>
+            </div> -->
+
+            <kendo-splitter orientation="vertical" style="height: 668px;">
+
+                <kendo-splitter-pane>
+                  <kendo-splitter>
+        
+                    <!-- <kendo-splitter-pane [collapsible]="true" size="30%">
+                      <div class="pane-content">
+                        <h3>Inner splitter / left pane</h3>
+                        <p>Resizable and collapsible.</p>
+                      </div>
+                    </kendo-splitter-pane>
+         -->
+                    <kendo-splitter-pane>
+                      <div class="pane-content">
+                        <kendo-grid
+                        [data]="gridView"
+                        [pageSize]="pageSize"
+                        [skip]="skip"
+                        [pageable]="true"
+                        (pageChange)="pageChange($event)"
+                        [height]="260"
+                        [selectable]="true"
+                        >
+                        <!-- <kendo-grid-checkbox-column showSelectAll="true"></kendo-grid-checkbox-column> -->
+                        <kendo-grid-column field="fUserId" title="User ID" [width]="300"></kendo-grid-column>
+                        <kendo-grid-column field="organization" title="Organization"></kendo-grid-column>
+                        <!-- <kendo-grid-column field="UnitsOnOrder" title="Units On Order"></kendo-grid-column>
+                        <kendo-grid-column field="ReorderLevel" title="Reorder Level"></kendo-grid-column> -->
+                    </kendo-grid>
+                      </div>
+                    </kendo-splitter-pane>
+        
+                    <kendo-splitter-pane [collapsible]="true" size="50%">
+                      <div class="pane-content">
+                        <p><label><b>The Language of: </b></label> {{languageOf}} </p>
+                        <p><label><b>Overview: </b></label> {{overview}} </p>
+                        <p><label><b>Communcation: </b></label> {{communication}} </p>
+                        <p><label><b>Other Leaders: </b></label> {{otherLeaders}} </p>
+                      </div>
+                    </kendo-splitter-pane>
+        
+                  </kendo-splitter>
+                </kendo-splitter-pane>
+        
+                <!-- <kendo-splitter-pane size="100px">
+                  <div class="pane-content">
+                    <h3>Outer splitter / Middle pane</h3>
+                    <p>Resizable only.</p>
+                  </div>
+                </kendo-splitter-pane> -->
+        
+                <kendo-splitter-pane [resizable]="false" size="400px">
+                  <div class="pane-content">
+                    <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+                        <kendo-tabstrip-tab [title]="'Primary Overview Scores'" [selected]="true">
+                          <ng-template kendoTabContent>
+                                <!-- Tab Content -->
+                                <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
+                          </ng-template>
+                        </kendo-tabstrip-tab>
+                        <kendo-tabstrip-tab [title]="'Primary Individual Scores'">
+                            <ng-template kendoTabContent>
+                                  <!-- Tab Content -->
+                                  <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
+                            </ng-template>
+                          </kendo-tabstrip-tab>
+                        <kendo-tabstrip-tab [title]="'Gender Distribution'">
+                          <ng-template kendoTabContent>
+                                <!-- Tab Content -->
+                                <app-bar [categories]="genderCateogires" [data]="genderData" [title]="genderTital"></app-bar>
+                          </ng-template>
+                        </kendo-tabstrip-tab>
+
+                      </kendo-tabstrip>
+                  </div>
+                </kendo-splitter-pane>
+
+            </kendo-splitter>
+
     </kendo-dialog>
 </div>

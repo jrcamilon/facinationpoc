@@ -2,7 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NodejsApiService } from 'src/app/services/nodejs-api.service';
 import * as _ from 'lodash';
 import { arch } from 'os';
-
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { products } from './products';
+import { process, orderBy, filterBy, /* etc...*/ } from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +12,13 @@ import { arch } from 'os';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+
+  // Grid View
+  public gridView: GridDataResult;
+  public items: any[] = products;
+  public mySelection: number[] = [];
+  public pageSize = 10;
+  public skip = 0;
 
 
   @Input() index;
@@ -48,13 +57,14 @@ export class ModalComponent implements OnInit {
 
 
   constructor( ) {
-
+ 
   }
 
   ngOnInit() {
-    // console.log(this.data);
+     console.log(this.data);
     this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
     this.organizeChartData();
+    this.loadItems();
   }
 
   public organizeChartData() {
@@ -129,5 +139,25 @@ export class ModalComponent implements OnInit {
   public open() {
     this.opened = true;
   }
+
+  public onTabSelect(e) {
+    console.log(e);
+  }
+
+  private loadItems(): void {
+    this.gridView = {
+        data: this.data.slice(this.skip, this.skip + this.pageSize),
+        total: this.data.length
+    };
+  }
+
+  public pageChange(event: PageChangeEvent): void {
+    this.skip = event.skip;
+    this.loadItems();
+
+    // Optionally, clear the selection when paging
+    // this.mySelection = [];
+  }
+
 
 }

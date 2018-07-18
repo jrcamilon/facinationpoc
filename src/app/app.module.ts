@@ -25,6 +25,11 @@ import { MutlidonutComponent } from './modules/home/components/charts/mutlidonut
 import { ModalComponent } from './modules/home/components/modal/modal.component';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { ButtonGroupModule } from '@progress/kendo-angular-buttons';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { DateInputModule } from '@progress/kendo-angular-dateinputs';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 
 @NgModule({
@@ -52,7 +57,12 @@ import { ButtonGroupModule } from '@progress/kendo-angular-buttons';
     HttpClientModule,
     BrowserAnimationsModule,
     DialogsModule,
-    ButtonGroupModule
+    ButtonGroupModule,
+    LayoutModule,
+    GridModule,
+    DateInputModule,
+    ExcelExportModule,
+    DropDownsModule
   ],
   providers: [IbeService],
   bootstrap: [AppComponent]
