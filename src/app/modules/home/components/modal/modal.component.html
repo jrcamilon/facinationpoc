@@ -8,7 +8,13 @@
             <p><label><b>Communcation: </b></label> {{communication}} </p>
             <p><label><b>Other Leaders: </b></label> {{otherLeaders}} </p>
 
-            <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
 
+            <div class="row">
+                    <div class="col-6">     <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar></div>
+                    <div class="col-6">
+                        <app-bar [categories]="genderCateogires" [data]="genderData" [title]="genderTital"></app-bar>
+                        <!-- <app-donut></app-donut> -->
+                    </div>
+            </div>
     </kendo-dialog>
 </div>
