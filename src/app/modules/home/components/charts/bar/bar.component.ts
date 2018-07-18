@@ -8,14 +8,12 @@ import { Component, OnInit,Input,Output } from '@angular/core';
 export class BarComponent implements OnInit {
 
   @Input() data: any;
-  @Output() barData: any;
   constructor() {
 
    }
 
   ngOnInit() {
     console.log(this.data);
-    this.barData  =this.data;
   }
 
 }

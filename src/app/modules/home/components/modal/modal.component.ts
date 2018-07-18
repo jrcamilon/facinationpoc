@@ -14,7 +14,6 @@ export class ModalComponent implements OnInit {
 
   @Input() index;
   @Input() data;
-  @Output() barData: any = [];
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
 
   clients: string[];
@@ -48,23 +47,10 @@ export class ModalComponent implements OnInit {
     this.otherLeaders = primaryData.otherLeaders;
      this.overview= primaryData.overview 
      
-    this.createBoxBarChartData()
 
    
   }
 
-  createBoxBarChartData(){
-    let innovation = _.sumBy(this.data,(a)=>{return a.innovation});
-    let passion = _.sumBy(this.data,(a)=>{return a.passion});
-    let power = _.sumBy(this.data,(a)=>{return a.power});
-    let prestige = _.sumBy(this.data,(a)=>{return a.prestige});
-    let trust = _.sumBy(this.data,(a)=>{return a.trust});
-    let mystique = _.sumBy(this.data,(a)=>{return a.mystique});
-    let alert = _.sumBy(this.data,(a)=>{return a.alert});
-    this.barData.push(innovation,passion,power,prestige,trust,mystique,alert);
-
-
-  }
 
   public close(status) {
     this.modalClose.emit();
