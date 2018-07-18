@@ -25,11 +25,16 @@ export class HomeComponent implements OnInit {
 
   // Output Variables
   @Output() x: any;
+  
   primaryPopulation: any = 'PRIMARYPOPULATION';
   dormantPopulation: any =   'DORMANTPOPULATION';
+  secondaryPopulation: any = 'SECONDARYPOPULATION';
+  secondaryOrganization: any='SECONDARYORGANIZATION';
   primaryOrganization: any = 'PRIMARYORGANIZATION';
   dormantOrganization: any = 'DORMANTORGANIZATION';
-
+  checkBoxText: any = "Dormant";
+  dormant: any= true;
+  secondary: any = false;
   // Local Variables
   advantages = [{title: '', subtitle: '', rune: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
@@ -106,6 +111,11 @@ export class HomeComponent implements OnInit {
     this._nodeApi.getPrimaryDonutChartData().subscribe((data) => {
       this._nodeApi.primaryDonutChartData.next(data);
     });
+     // Dormant Donut Data
+     this._nodeApi.getSecondaryDonutChartData().subscribe((data) => {
+      this._nodeApi.secondaryDonutChartData.next(data);
+    });
+
     // Dormant Donut Data
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
@@ -138,6 +148,18 @@ addToService(arr: any) {
  this._nodeApi.gridTileData.next(arr);
 }
 
+ changeDonut(event:any){
+  // console.log(event.target.checked);
+  
+  this.checkBoxText = (event.target.checked==false) ? "Dormant" : "Secondary";
+  this.dormant =(event.target.checked==false) ? true : false;
+  // console.log(this.dormant);
+  this.secondary  = (event.target.checked==false) ? false : true;
+  this.ngOnInit();
+
+  
+
+}
 
   //   // this.groupByGender(data);
   //   // this.groupByArchetype(data);

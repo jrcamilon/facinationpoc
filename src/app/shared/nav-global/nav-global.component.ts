@@ -32,6 +32,10 @@ export class NavGlobalComponent implements OnInit {
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
     });
+    // console.log( this.searchContent);
+    this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
+      this._nodeApi.secondaryDonutChartData.next(data);
+    })
   }
   
 }

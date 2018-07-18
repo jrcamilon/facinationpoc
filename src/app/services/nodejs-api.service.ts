@@ -13,11 +13,13 @@ export class NodejsApiService {
   public allData = new Subject<any>();
   public gridTileData = new Subject<any>();
   public primaryDonutChartData = new Subject<any>();
+  public secondaryDonutChartData = new Subject<any>();
   public dormantDonutChartData = new Subject<any>();
 
   // local variables
   private nodeJSAllDataEndpoint = '/data';
   private nodeJSPrimaryDonutChartData = '/primary-population:';
+  private nodeJSSecondaryDonutChartData = '/secondary-population:';
   private nodeJSDormantDonutChartData = '/dormant-population:';
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
@@ -90,6 +92,10 @@ export class NodejsApiService {
   }
   getPrimaryDonutChartData(): Observable<any> {
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter);
+  }
+
+  getSecondaryDonutChartData(): Observable<any> {
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter);
   }
   getDormantDonutChartData(): Observable<any> {
 

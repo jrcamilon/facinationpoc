@@ -1,8 +1,15 @@
 <div class="row mb-4 mt-4 mr-2 ml-2" >
+    <div class= "col-lg-12 ">
+            <input type="checkbox" (click)="changeDonut($event)" ng-model="checkDonutType.value2"
+           ng-true-value="'Dormant'" ng-false-value="'Secondary'">
+           <label for="">{{checkBoxText}}</label>
+    </div>
     <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>
     <app-donut class="col-lg-3" [type]='primaryOrganization'> </app-donut>
-    <app-donut class="col-lg-3" [type]='dormantPopulation'> </app-donut>
-    <app-donut class="col-lg-3" [type]='dormantOrganization'> </app-donut>
+    <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantPopulation'> </app-donut>
+    <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantOrganization'> </app-donut>
+    <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryPopulation'> </app-donut>
+    <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryOrganization'> </app-donut>
 
 </div>
 

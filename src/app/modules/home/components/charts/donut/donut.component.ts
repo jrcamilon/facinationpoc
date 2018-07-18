@@ -44,7 +44,7 @@ export class DonutComponent implements OnInit {
 
   // On Initialize
   ngOnInit() {
-    console.log(this.type);
+    // console.log(this.type);
 
     // Start swtich on the type of donut this is
     switch (this.type) {
@@ -76,6 +76,21 @@ export class DonutComponent implements OnInit {
         this.data = data.organizatinal[0];
           this.addToData(this.data);
           this.title = `${NodejsApiService.orgFilter} Dormant Advantage`;
+      });
+      break;
+      case 'SECONDARYORGANIZATION':
+      this.node.secondaryDonutChartData.subscribe(data => {
+        this.data = data.organizatinal[0];
+          this.addToData(this.data);
+          this.title = `${NodejsApiService.orgFilter} Secondary Advantage`;
+      });
+      break;
+      case 'SECONDARYPOPULATION':
+      this.node.secondaryDonutChartData.subscribe(data => {
+        this.data = data.population[0];
+          this.addToData(this.data);
+          this.title = 'General Population Secondary Advantage ';
+
       });
       break;
     }
