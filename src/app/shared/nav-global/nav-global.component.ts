@@ -16,7 +16,7 @@ export class NavGlobalComponent implements OnInit {
     // this.searchContent = "Accenture";
   }
 
-  changeOrganization(event: any){
+  changeOrganization(event: any) {
     for(let i = 0; i< event.target.length;i++){
       let row = event.target[i];
       if(row.selected){
@@ -32,10 +32,11 @@ export class NavGlobalComponent implements OnInit {
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
     });
-    // console.log( this.searchContent);
+    // console.log(this.searchContent);
     this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
       this._nodeApi.secondaryDonutChartData.next(data);
     })
   }
+
   
 }

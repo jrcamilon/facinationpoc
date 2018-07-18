@@ -24,6 +24,7 @@ export class NodejsApiService {
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
   static orgFilter = "Accenture";
+  static conFilter = ""
   static totalMales = 136;
   static totalFemales= 353;
   static boxPrimaryData = [

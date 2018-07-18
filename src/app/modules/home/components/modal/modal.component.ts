@@ -38,7 +38,7 @@ export class ModalComponent implements OnInit {
   primaryIndividualCategories: string[];
   primaryIndividualData: any[];
   primaryIndividualTitle: string;
-
+  pieTypes: any = {archetype:"archetype",pop:"population"}
   genderCateogires: string[];
   genderData: any[];
   genderTital = 'Gender Distribution';

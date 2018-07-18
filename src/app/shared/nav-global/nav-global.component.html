@@ -23,8 +23,8 @@
       <button class="btn btn-outline-success my-2 my-sm-0"(click)="searchOrganization()" type="">Search</button>
     </div> -->
 
-    <div class="form-group" style="padding-right: 40px;">
-      <select class="form-control"   (change)="changeOrganization($event)"id="power" required>
+    <div class="form-group row " style="padding-right: 40px;">
+      <select class="form-control col-6"   (change)="changeOrganization($event)"id="power" required>
         <option  [value]="pow">Accenture</option>
         <option  [value]="pow">BAH</option>
         <option  [value]="pow">CSAA</option>
@@ -36,6 +36,10 @@
         <option  [value]="pow">Yahoo</option>
         <option  [value]="pow">VMWare</option>
       </select>
+      <select class="form-control col-6"   id="power" required>
+          <option  [value]="acm">ACMP 2018</option>
+          <option  [value]="icon" > ICON 2015</option>
+        </select>
     </div>
 
     <div>
