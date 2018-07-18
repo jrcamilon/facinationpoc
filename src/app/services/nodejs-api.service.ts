@@ -31,7 +31,6 @@ export class NodejsApiService {
     { primary: "Trust",languageOf: "Stability", adjectives: "Stable, Dependable, Familiar", overview: "Earn loyalty as a constent and familiar presence.", communication: "Bring even-keeled consistency.", fascination:"Build loyalty.",otherLeaders:"Walt Disney, Sam Walton, Dr. Oz, Clint Eastwood, Mother Theresa" },
     { primary: "Mystique",languageOf: "Listening", adjectives: "Observant, Independent, Logical", overview: "Impress with analytical skills and thoughtful communication.", communication: "Listen carefully and observe.", fascination:"Listen with care. ",otherLeaders:"Tina Fey, Johnny Depp, Malcolm Gladwell, Stephen Hawking, Michael Crichton" },
     { primary: "Alert",languageOf: "Details", adjectives: "Detailed, Organized, Proactive", overview: "Keep people and projects on track by managing the details.", communication: "Focus on the task at hand.", fascination:"Protect the details.",otherLeaders:"Ralph Nader, Mary Poppins, Chuck Norris, James Cameron, Upton Sinclair" },
-
   ]
 
   getAllFiles(): Observable<any> {

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NodejsApiService } from 'src/app/services/nodejs-api.service';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -18,6 +19,11 @@ export class ModalComponent implements OnInit {
 
   title: string;
 
+  primaryCategories: string[];
+  primaryData: any[];
+  primaryTitle = 'Primary Advantages Total Scores';
+
+
 
   public opened = true;
 
@@ -27,8 +33,30 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
+    this.organizeChartData();
+  }
+
+  public organizeChartData() {
+
+    /* Get the total of all the advantages for each object in the modal data*/
+    const _advantages = ['innovation', 'passion', 'power', 'prestige', 'trust', 'mystique', 'alert'];
+    const total = {};
+    _.each(this.data, function (item) { _.each(_advantages, function (adv) {
+        total[adv] = (total[adv] || 0) + item[adv];
+      });
+    });
+
+    const data = [total['innovation'], total['passion'], total['power'],
+    total['prestige'], total['trust'], total['mystique'], total['alert'] ];
+
+    console.log(_advantages);
+    console.log(data);
+
+    this.primaryCategories = _advantages;
+    this.primaryData = data;
+
   }
 
 

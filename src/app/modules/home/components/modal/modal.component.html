@@ -2,6 +2,6 @@
     <!-- <button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button> -->
     <kendo-dialog *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="1024" [height]="768" >
             <kendo-dialog-titlebar color="red" style="background-color: rebeccapurple"><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
-
+            <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
     </kendo-dialog>
 </div>
