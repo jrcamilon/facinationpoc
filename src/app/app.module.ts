@@ -30,6 +30,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DateInputModule } from '@progress/kendo-angular-dateinputs';
 import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { PieComponent } from './modules/home/components/charts/pie/pie.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     RadarComponent,
     RangebarComponent,
     MutlidonutComponent,
-    ModalComponent
+    ModalComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,

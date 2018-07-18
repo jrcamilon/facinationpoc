@@ -24,7 +24,8 @@ export class NodejsApiService {
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
   static orgFilter = "Accenture";
-
+  static totalMales = 136;
+  static totalFemales= 353;
   static boxPrimaryData = [
     { key: 1, primary: "Innovation",languageOf: "Creativity", adjectives: "Creative, Entrepreneurial, Visionary", overview: "Push companies to innovate with creativity.", communication: "Tweak traditional conversation.", fascination:"Get creative.",otherLeaders:"Madonna, Albert Einstein, Amelia Earhart, Frank Lloyd Wright, Betty White" },
     { key: 2, primary: "Passion",languageOf: "Relationship", adjectives: "Engaging, Expressive, Intuitive", overview: "Build connections with warmth and enthusiam.", communication: "Immediately create an emotional connection.", fascination:"Connect with emotion.",otherLeaders:"Leonardo Da Vinci, Ronald Regan, Audrey Hepburn, Oprah Winfrey, George Lucas" },

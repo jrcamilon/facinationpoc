@@ -87,7 +87,8 @@
                         <kendo-tabstrip-tab [title]="'Gender Distribution'">
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
-                                <app-bar [categories]="genderCateogires" [data]="genderData" [title]="genderTital"></app-bar>
+                                <!-- <app-bar [categories]="genderCateogires" [data]="genderData" [title]="genderTital"></app-bar> -->
+                                <app-pie [males] ="totalMales" [females]="totalFemales"></app-pie>
                           </ng-template>
                         </kendo-tabstrip-tab>
 

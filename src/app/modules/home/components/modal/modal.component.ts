@@ -20,6 +20,8 @@ export class ModalComponent implements OnInit {
   public pageSize = 10;
   public skip = 0;
 
+  public totalMales : any;
+  public totalFemales: any;
 
   @Input() index;
   @Input() data;
@@ -126,8 +128,12 @@ export class ModalComponent implements OnInit {
       return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
     });
 
+    
     this.genderCateogires = group;
     this.genderData = organizedByGender;
+    console.log(this.genderData);
+    this.totalMales = this.genderData[1].value;
+    this.totalFemales = this.genderData[0].value;
   }
 
   public getColor(_advantage: String) {
