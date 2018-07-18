@@ -23,7 +23,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0"(click)="searchOrganization()" type="">Search</button>
     </div> -->
 
-    <div class="form-group">
+    <div class="form-group" style="padding-right: 40px;">
       <select class="form-control"   (change)="changeOrganization($event)"id="power" required>
         <option  [value]="pow">Accenture</option>
         <option  [value]="pow">BAH</option>
@@ -36,6 +36,12 @@
         <option  [value]="pow">Yahoo</option>
         <option  [value]="pow">VMWare</option>
       </select>
+    </div>
+
+    <div>
+        <a class="navbar-brand" href="#">
+            <img id="InfoSolLogo" src="../../../assets/images/infosol-logo.svg">
+          </a>
     </div>
   </div>
 </nav>
