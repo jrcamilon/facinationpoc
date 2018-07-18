@@ -74,10 +74,19 @@
                         <kendo-tabstrip-tab [title]="'Primary Individual Scores'" [selected]="true">
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
-          
+        
+                               
 
-                                <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
-                                  <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
+                                <div class="row">
+                                  <div class="col-6">
+                                      <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
+                                      <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
+                                  </div>
+                                  <div class="col-6">
+                                      <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
+                                      <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
+                                  </div>
+                                </div>
                           </ng-template>
                         </kendo-tabstrip-tab>
                         <kendo-tabstrip-tab [title]="'Primary Overview Scores'">

@@ -20,7 +20,7 @@ export class ModalComponent implements OnInit {
   public pageSize = 10;
   public skip = 0;
 
-  public totalMales : any;
+  public totalMales: any;
   public totalFemales: any;
 
   @Input() index;
@@ -38,7 +38,9 @@ export class ModalComponent implements OnInit {
   primaryIndividualCategories: string[];
   primaryIndividualData: any[];
   primaryIndividualTitle: string;
-  pieTypes: any = {archetype:"archetype",pop:"population"}
+
+  archetype: string;
+
   genderCateogires: string[];
   genderData: any[];
   genderTital = 'Gender Distribution';
@@ -69,6 +71,7 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
      console.log(this.data);
     this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
+    this.archetype = this.title;
     this.organizeChartData();
     this.loadItems();
   }
@@ -128,7 +131,7 @@ export class ModalComponent implements OnInit {
       return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
     });
 
-    
+
     this.genderCateogires = group;
     this.genderData = organizedByGender;
     console.log(this.genderData);
