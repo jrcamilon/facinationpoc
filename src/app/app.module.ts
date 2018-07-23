@@ -9,7 +9,7 @@ import { DonutComponent } from './modules/home/components/charts/donut/donut.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { HttpClientModule } from '@angular/common/http';
-
+import {enableProdMode} from 'angular2/core';
 import 'hammerjs';
 import { ShufflerComponent } from './modules/home/components/shuffler/shuffler.component';
 import { FunnelComponent } from './modules/home/components/charts/funnel/funnel.component';

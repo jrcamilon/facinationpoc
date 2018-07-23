@@ -86,6 +86,7 @@ export class ModalComponent implements OnInit {
     this.getTitleHeaderColor();
   }
 
+
   public organizeChartData() {
 
     /* Get the total of all the advantages for each object in the modal data*/
@@ -130,6 +131,7 @@ export class ModalComponent implements OnInit {
     const genderGrouped = _.groupBy(this.data, function(item) { return  item.gender; });
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
 
+    
     const genderObjectsArray = [];
     const group = Object.keys(genderGrouped);
 
@@ -140,14 +142,20 @@ export class ModalComponent implements OnInit {
     const organizedByGender = genderObjectsArray.map(ele => {
       return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
     });
+    console.log(organizedByGender);
 
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
     // console.log(this.genderData);
-    this.totalMales = this.genderData[1].value;
+    if(this.genderData[1] != undefined){
+      this.totalMales = this.genderData[1].value;
+
+    }
+     if(this.genderData[0] != undefined){
     this.totalFemales = this.genderData[0].value;
   }
+}
 
   public getColor(_advantage: String) {
     const index = this.advantageColors.findIndex(x => x.advantage === _advantage);
