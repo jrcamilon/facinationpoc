@@ -31,6 +31,14 @@ export class ModalComponent implements OnInit {
 
   title: string;
 
+ public innovation: any = false;
+ public passion: any = false;
+ public power: any = false;
+ public prestige: any = false;
+ public trust: any = false;
+  public mystique: any = false;
+  public alert: any = false;
+
   primaryCategories: string[];
   primaryData: any[];
   primaryTitle = 'Primary Advantages Total Scores';
@@ -69,11 +77,13 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit() {
-     console.log(this.data);
+    //  console.log(this.data);
     this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
     this.archetype = this.title;
     this.organizeChartData();
     this.loadItems();
+    //Method to set the header type
+    this.getTitleHeaderColor();
   }
 
   public organizeChartData() {
@@ -134,7 +144,7 @@ export class ModalComponent implements OnInit {
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
-    console.log(this.genderData);
+    // console.log(this.genderData);
     this.totalMales = this.genderData[1].value;
     this.totalFemales = this.genderData[0].value;
   }
@@ -145,6 +155,33 @@ export class ModalComponent implements OnInit {
   }
 
 
+  private getTitleHeaderColor () {
+    // console.log("switching",this.index[0])
+    switch(this.index[0]){
+      case '1':
+      this.innovation = true;
+      console.log("Innovation is true");
+      break;
+      case '2':
+      this.passion = true;
+      break;
+      case '3':
+      this.power = true;
+      break;
+      case '4':
+      this.prestige = true;
+      break;
+      case '5':
+      this.trust = true;
+      break;
+      case '6':
+      this.mystique = true;
+      break;
+      case '7':
+      this.alert = true;
+      break;
+    }
+  }
   public close(status) {
     this.modalClose.emit();
   }

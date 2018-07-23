@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   // Output Variables
   @Output() x: any;
   
+  
   primaryPopulation: any = 'PRIMARYPOPULATION';
   dormantPopulation: any =   'DORMANTPOPULATION';
   secondaryPopulation: any = 'SECONDARYPOPULATION';

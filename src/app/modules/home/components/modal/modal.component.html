@@ -1,7 +1,14 @@
 <div class="example-wrapper">
     <!-- <button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button> -->
     <kendo-dialog *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="1024" [height]="768" >
-            <kendo-dialog-titlebar color="red" style="background-color: rebeccapurple"><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="innovation" id="box11" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="passion" id="box21" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="power" id="box31" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="prestige" id="box41" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="trust" id="box51" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="mystique" id="box61" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+            <kendo-dialog-titlebar *ngIf="alert" id="box71" color="red" ><h3 style="font-size: 136%;">{{title}}</h3></kendo-dialog-titlebar>
+
 <!--            
             <p><label><b>The Language of: </b></label> {{languageOf}} </p>
             <p><label><b>Overview: </b></label> {{overview}} </p>
