@@ -24,7 +24,7 @@ class Parameter {
 export class HomeComponent implements OnInit {
 
   // Output Variables
-  @Output() x: any;
+  // @Output() x: any;
   
   
   primaryPopulation: any = 'PRIMARYPOPULATION';
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
     {title: 'Passion', subtitle: 'You connect with emotion', rune: Runes.passion},
     {title: 'Power', subtitle: 'You lead with command', rune: Runes.power},
-    {title: 'Prestigue', subtitle: 'You earn respect with higher standards', rune: Runes.prestigue},
+    {title: 'Prestige', subtitle: 'You earn respect with higher standards', rune: Runes.prestigue},
     {title: 'Trust', subtitle: 'You build loyalty with consistency', rune: Runes.trust},
     {title: 'Mystique', subtitle: 'You communicate with substance', rune: Runes.mystique},
     {title: 'Alert', subtitle: 'You prevent problems with care', rune: Runes.alert}];
@@ -149,7 +149,7 @@ addToService(arr: any) {
  this._nodeApi.gridTileData.next(arr);
 }
 
- changeDonut(event:any){
+ changeDonut(event: any) {
   // console.log(event.target.checked);
   
   this.checkBoxText = (event.target.checked==false) ? "Dormant" : "Secondary";
@@ -164,22 +164,37 @@ addToService(arr: any) {
 
 boxClicked(x: Number, y: Number) {
     const index = x.toString() + y.toString();
-    // console.log(index);
-    this.x = x;
+    console.log(index);
+    // this.x = x;
 
-    const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50' ];
-
+    const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50', '60', '70' ];
+    const primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
     const i = this.gridTileData.findIndex(ele => ele.key === index);
-    if (this.gridTileData[i]['data'].length !== 0) {
-      if (!boxExcludeList.includes(index)) {
-        this.onModalOpen(index);
-      }
+
+    // if (this.gridTileData[i]['data'].length !== 0) {
+    //   if (!boxExcludeList.includes(index)) {
+    //     this.onModalOpen(index);
+    //   }
+    // }
+    // console.log(this.gridTileData[i].length);
+
+    if (!boxExcludeList.includes(index) && this.gridTileData[i]['data'].length !== 0) {
+      this.onModalOpen(index);
+    } else if (primaryBoxesForVideo.includes(index)) {
+      console.log(index);
+      this.videoModalOpen(index);
     }
 
 
   }
 
-  onModalOpen(index: any) {
+  public videoModalOpen(index: any) {
+    this.modalOpen = true;
+    this.modalIndex = index;
+    this.modalData = [];
+  }
+
+  public onModalOpen(index: any) {
 
     this.modalOpen = true;
     this.modalIndex = index;

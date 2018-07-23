@@ -54,13 +54,13 @@ export class ModalComponent implements OnInit {
   genderTital = 'Gender Distribution';
 
   advantageColors = [
-    { advantage: 'innovation', color: '#EDA716'},
-    { advantage: 'passion', color: '#B74A2A' },
-    { advantage: 'power', color: '#82181B' },
-    { advantage: 'prestige', color: '#472656'},
-    { advantage: 'trust', color: '#223D6E'},
-    { advantage: 'mystique', color: '#005B5D'},
-    { advantage: 'alert', color: '#285A17'}
+    { advantage: 'innovation', color: '#EDA716', videoBox: '10'},
+    { advantage: 'passion', color: '#B74A2A', videoBox: '20'},
+    { advantage: 'power', color: '#82181B', videoBox: '30'},
+    { advantage: 'prestige', color: '#472656', videoBox: '40'},
+    { advantage: 'trust', color: '#223D6E', videoBox: '50'},
+    { advantage: 'mystique', color: '#005B5D', videoBox: '60'},
+    { advantage: 'alert', color: '#285A17', videoBox: '70'}
   ];
 
 
@@ -72,18 +72,32 @@ export class ModalComponent implements OnInit {
   public opened = true;
 
 
+  public videoBox = false;
+  primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
+  videoBoxTitle: string;
+
   constructor( ) {
 
   }
 
   ngOnInit() {
     //  console.log(this.data);
-    this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
-    this.archetype = this.title;
-    this.organizeChartData();
-    this.loadItems();
-    //Method to set the header type
-    this.getTitleHeaderColor();
+    console.log(this.index);
+    if (this.primaryBoxesForVideo.includes(this.index)) {
+      console.log('video box');
+      this.videoBox = true;
+      const i = this.advantageColors.findIndex(ele => ele.videoBox === this.index);
+      this.videoBoxTitle = this.advantageColors[i]['advantage'];
+      console.log(this.videoBoxTitle);
+
+    } else {
+      this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
+      this.archetype = this.title;
+      this.organizeChartData();
+      this.loadItems();
+      // Method to set the header type
+      this.getTitleHeaderColor();
+    }
   }
 
 

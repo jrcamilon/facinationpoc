@@ -125,4 +125,21 @@
             </kendo-splitter>
 
     </kendo-dialog>
+
+    <kendo-dialog *ngIf="videoBox" (close)="close('cancel')" [minWidth]="250" [width]="1024" [height]="768">
+     <kendo-dialog-titlebar  
+     [class.box11]="videoBoxTitle === 'innovation'"
+     [class.box21]="videoBoxTitle === 'passion'"
+     [class.box31]="videoBoxTitle === 'power'"
+     [class.box41]="videoBoxTitle === 'prestige'"
+     [class.box51]="videoBoxTitle === 'trust'"
+     [class.box61]="videoBoxTitle === 'mystique'"
+     [class.box71]="videoBoxTitle === 'alert'">
+     
+     <h3>{{videoBoxTitle | titlecase}}</h3></kendo-dialog-titlebar>
+
+
+     
+      <iframe width="700" height="500" src="https://www.youtube.com/embed/PYrMsb8m8r8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </kendo-dialog>
 </div>
