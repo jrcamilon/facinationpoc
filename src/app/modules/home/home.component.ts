@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
     {title: 'Passion', subtitle: 'You connect with emotion', rune: Runes.passion},
     {title: 'Power', subtitle: 'You lead with command', rune: Runes.power},
-    {title: 'Prestigue', subtitle: 'You earn respect with higher standards', rune: Runes.prestigue},
+    {title: 'Prestige', subtitle: 'You earn respect with higher standards', rune: Runes.prestigue},
     {title: 'Trust', subtitle: 'You build loyalty with consistency', rune: Runes.trust},
     {title: 'Mystique', subtitle: 'You communicate with substance', rune: Runes.mystique},
     {title: 'Alert', subtitle: 'You prevent problems with care', rune: Runes.alert}];

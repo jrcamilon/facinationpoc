@@ -19,7 +19,6 @@ export class ModalComponent implements OnInit {
   public mySelection: number[] = [];
   public pageSize = 10;
   public skip = 0;
-
   public totalMales: any;
   public totalFemales: any;
 
@@ -28,7 +27,6 @@ export class ModalComponent implements OnInit {
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
 
   clients: string[];
-
   title: string;
 
  public innovation: any = false;
@@ -42,7 +40,6 @@ export class ModalComponent implements OnInit {
   primaryCategories: string[];
   primaryData: any[];
   primaryTitle = 'Primary Advantages Total Scores';
-
   primaryIndividualCategories: string[];
   primaryIndividualData: any[];
   primaryIndividualTitle: string;
