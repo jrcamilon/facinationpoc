@@ -23,15 +23,44 @@ export class PieComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.males);
-    console.log(this.females);
     console.log(this.type);
-    if (this.type === 'archetype') {
-      this.pieData[0].value = ( this.males / (this.males + this.females)) * 100
-      this.pieData[1].value = ( this.females / (this.males + this.females))* 100;
+    if (this.type === 'archetype') {  
+      if(this.males!=undefined){
+        console.log(this.males);
+        this.pieData[0].value = ( this.males / (this.males + this.females)) * 100
+
+      }
+      else{
+        this.pieData[0].value = 0;
+      }
+      if(this.females !=undefined){
+        this.pieData[1].value = ( this.females / (this.males + this.females))* 100;
+        console.log(this.females);
+
+      }
+      else{
+        this.pieData[1].value = 0;
+      }
     } else {
+      if(this.males!=undefined){
+    console.log(this.males);
+
       this.pieData[0].value = (this.males / (NodejsApiService.totalMales)) * 100;
-      this.pieData[1].value = (this.females / (NodejsApiService.totalFemales))* 100 ;
+      
+
+      }
+      else{
+        this.pieData[0].value = 0;
+      }
+      if(this.females !=undefined){
+        this.pieData[1].value = (this.females / (NodejsApiService.totalFemales))* 100 ;
+        console.log(this.females);
+
+      }
+      else{
+        this.pieData[1].value = 0;
+      }
+     
     }
 
   }
