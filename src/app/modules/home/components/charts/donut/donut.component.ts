@@ -14,7 +14,7 @@ import { access } from 'fs';
 })
 export class DonutComponent implements OnInit {
 
-  total: String;
+  total: any;
 
   advantageColors = [
     { advantage: 'innovation', color: '#EDA716'},
@@ -49,17 +49,23 @@ export class DonutComponent implements OnInit {
     // Start swtich on the type of donut this is
     switch (this.type) {
       case 'PRIMARYORGANIZATION':
-      this.node.primaryDonutChartData.subscribe(data => {
-        this.data = data.organizatinal[0];
+        this.node.primaryDonutChartData.subscribe(data => {
+          this.data = data.organizatinal[0];
           this.addToData(this.data);
-        this.title = `${NodejsApiService.orgFilter} Primary Advantage`;
-
+          this.data = this.calculatePercentage(this.data);
+          this.assignColors(this.data);
+         
+          this.title = `${NodejsApiService.orgFilter} Primary Advantage`;
+          
       });
       break;
       case  'DORMANTPOPULATION':
       this.node.dormantDonutChartData.subscribe(data => {
-        this.data = data.population[0];
+          this.data = data.population[0];
           this.addToData(this.data);
+          this.data = this.calculatePercentage(this.data);
+          this.assignColors(this.data);
+
           this.title = 'General Population Dormant Advantage';
       });
       break;
@@ -67,6 +73,9 @@ export class DonutComponent implements OnInit {
       this.node.primaryDonutChartData.subscribe(data => {
         this.data = data.population[0];
           this.addToData(this.data);
+          this.data = this.calculatePercentage(this.data);
+          this.assignColors(this.data);
+
           this.title = 'General Population Primary Advantage ';
 
       });
@@ -75,6 +84,9 @@ export class DonutComponent implements OnInit {
       this.node.dormantDonutChartData.subscribe(data => {
         this.data = data.organizatinal[0];
           this.addToData(this.data);
+          this.data = this.calculatePercentage(this.data);
+          this.assignColors(this.data);
+
           this.title = `${NodejsApiService.orgFilter} Dormant Advantage`;
       });
       break;
@@ -82,6 +94,9 @@ export class DonutComponent implements OnInit {
       this.node.secondaryDonutChartData.subscribe(data => {
         this.data = data.organizatinal[0];
           this.addToData(this.data);
+          this.data = this.calculatePercentage(this.data);
+          this.assignColors(this.data);
+
           this.title = `${NodejsApiService.orgFilter} Secondary Advantage`;
       });
       break;
@@ -89,6 +104,8 @@ export class DonutComponent implements OnInit {
       this.node.secondaryDonutChartData.subscribe(data => {
         this.data = data.population[0];
           this.addToData(this.data);
+          this.data = this.calculatePercentage(this.data);
+          this.assignColors(this.data);
           this.title = 'General Population Secondary Advantage ';
 
       });
@@ -97,17 +114,32 @@ export class DonutComponent implements OnInit {
 
   }
 
+  calculatePercentage(arr: any){
+    // console.log(this.total);
+    let newData  = arr.map(row=>{
+      let obj =  {
+        Advantage: row.Advantage,
+        Total: (row.Total/ this.total) * 100;
+
+      }
+      console.log(obj);
+      return obj;
+    })
+    return newData;
+  }
   public addToData(arr: any) {
     // getTotal
     this.getTotal(arr);
 
-    // before assigning the this.data create add a color attribute
-    const newArr = arr.map(ele => {
-      return new Object({Advantage: ele.Advantage, Total: ele.Total, color: this.getColor(ele.Advantage)});
-    });
-    this.data = newArr;
+    
   }
-
+public assignColors(arr:any){
+  // before assigning the this.data create add a color attribute
+  const newArr = arr.map(ele => {
+    return new Object({Advantage: ele.Advantage, Total: ele.Total, color: this.getColor(ele.Advantage)});
+  });
+  this.data = newArr;
+}
   public getTotal(arr: any) {
     const sumTotals = arr.map(ele => {
       return ele.Total;
