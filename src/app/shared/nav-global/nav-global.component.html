@@ -24,6 +24,10 @@
     </div> -->
 
     <div class="form-group row " style="padding-right: 40px;">
+        <select class="form-control col-6"   id="power" required>
+            <option  [value]="acm">ACMP 2018</option>
+            <option  [value]="icon" > ICON 2015</option>
+          </select>
       <select class="form-control col-6"   (change)="changeOrganization($event)"id="power" required>
         <option  [value]="pow">Accenture</option>
         <option  [value]="pow">BAH</option>
@@ -36,10 +40,7 @@
         <option  [value]="pow">Yahoo</option>
         <option  [value]="pow">VMWare</option>
       </select>
-      <select class="form-control col-6"   id="power" required>
-          <option  [value]="acm">ACMP 2018</option>
-          <option  [value]="icon" > ICON 2015</option>
-        </select>
+      
     </div>
 
     <div>

@@ -19,7 +19,6 @@ export class ModalComponent implements OnInit {
   public mySelection: number[] = [];
   public pageSize = 10;
   public skip = 0;
-
   public totalMales: any;
   public totalFemales: any;
 
@@ -28,7 +27,6 @@ export class ModalComponent implements OnInit {
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
 
   clients: string[];
-
   title: string;
 
  public innovation: any = false;
@@ -42,7 +40,6 @@ export class ModalComponent implements OnInit {
   primaryCategories: string[];
   primaryData: any[];
   primaryTitle = 'Primary Advantages Total Scores';
-
   primaryIndividualCategories: string[];
   primaryIndividualData: any[];
   primaryIndividualTitle: string;
@@ -156,18 +153,24 @@ export class ModalComponent implements OnInit {
     const organizedByGender = genderObjectsArray.map(ele => {
       return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
     });
-    console.log(organizedByGender);
+    // console.log(organizedByGender);
 
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
-    // console.log(this.genderData);
+    console.log(this.genderData);
     if(this.genderData[1] != undefined){
       this.totalMales = this.genderData[1].value;
 
     }
+    else{
+      this.totalMales = 0;
+    }
      if(this.genderData[0] != undefined){
     this.totalFemales = this.genderData[0].value;
+  }
+  else{
+    this.totalFemales = 0;
   }
 }
 
