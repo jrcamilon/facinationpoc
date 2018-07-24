@@ -151,7 +151,7 @@ addToService(arr: any) {
 
  changeDonut(event: any) {
   // console.log(event.target.checked);
-  
+
   this.checkBoxText = (event.target.checked==false) ? "Dormant" : "Secondary";
   this.dormant =(event.target.checked==false) ? true : false;
   // console.log(this.dormant);
