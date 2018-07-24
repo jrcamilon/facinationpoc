@@ -116,24 +116,24 @@ export class DonutComponent implements OnInit {
 
   calculatePercentage(arr: any){
     // console.log(this.total);
-    let newData  = arr.map(row=>{
-      let obj =  {
+    const newData  = arr.map(row => {
+      const obj =  new Object({
         Advantage: row.Advantage,
         Total: (row.Total/ this.total) * 100
 
-      }
       // console.log(obj);
+      });
+      console.log(obj);
       return obj;
-    })
+    });
     return newData;
   }
   public addToData(arr: any) {
     // getTotal
     this.getTotal(arr);
 
-    
   }
-public assignColors(arr:any){
+public assignColors(arr: any) {
   // before assigning the this.data create add a color attribute
   const newArr = arr.map(ele => {
     return new Object({Advantage: ele.Advantage, Total: ele.Total, color: this.getColor(ele.Advantage)});

@@ -90,8 +90,10 @@
                                       <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
                                   </div>
                                   <div class="col-6">
-                                      <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
-                                      <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
+                                      <!-- <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
+                                      <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar> -->
+                                      <app-stacked-bar  *ngIf="primaryAndSecondaryScoresArray" [dataIn]="primaryAndSecondaryScoresArray" [primaryPercentage]="primaryPercentage"
+                                      [secondaryPercentage]="secondaryPercentage"></app-stacked-bar>
                                   </div>
                                 </div>
                           </ng-template>

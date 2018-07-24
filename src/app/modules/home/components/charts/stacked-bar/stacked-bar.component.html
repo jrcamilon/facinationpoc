@@ -1,0 +1,26 @@
+<div>
+  <div class="row">
+    <div class="col"><div  style="float: left;"><p>Primary Advantage: <b>{{primary | titlecase}}</b><h4>{{primaryPercentage |percent  }}</h4></div></div>
+    <div class="col"><div  style="float: right;"><p>Secondary Advantage: <b>{{secondary | titlecase}}</b><h4 style="float: right;">{{secondaryPercentage | percent }}</h4></div></div>
+  </div>
+</div>
+<kendo-chart class="no-border">
+  <kendo-chart-area background="transparent" [margin]="0" [height]=90></kendo-chart-area>
+  <kendo-chart-series >
+    <kendo-chart-series-item  *ngFor="let data of dataIn" type="bar" [stack]="{ type: '100%' }" [data]="[{type: data.type, value: data.value , color: data.color}]">
+    </kendo-chart-series-item>
+
+    <kendo-chart-series-item-tooltip>
+      <ng-template kendoChartSharedTooltipTemplate let-type="type" let-value="value">
+        <div> {{ type }} {{ value }} </div>
+      </ng-template>
+    </kendo-chart-series-item-tooltip>
+    <kendo-chart-axis-defaults [majorGridLines]="{ visible : false}">
+    </kendo-chart-axis-defaults>
+    <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item [line]="{visible:false}" labels="false">
+      </kendo-chart-value-axis-item>
+    </kendo-chart-value-axis>
+  </kendo-chart-series>
+</kendo-chart>
+

@@ -31,7 +31,7 @@ export class NavGlobalComponent implements OnInit {
         this.conference = row.label;
       }
     }
-    NodejsApiService.conFilter = this.conference;
+    NodejsApiService.conFilter = this.conference=="View All"? "all":  this.conference ;
     NodejsApiService.orgFilter = (NodejsApiService.conFilter=="ACMP18"? "71andchange": "aarp");
     console.log(NodejsApiService.orgFilter);
 

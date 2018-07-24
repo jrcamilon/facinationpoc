@@ -25,6 +25,7 @@
 
     <div class="form-group row " style="padding-right: 40px;">
         <select class="form-control col-6"   (change)="changeConference($event)" id="power" required>
+            <option  [value]="all">View All</option>
             <option  [value]="acm">ACMP18</option>
             <option  [value]="icon" > ICON2015</option>
           </select>

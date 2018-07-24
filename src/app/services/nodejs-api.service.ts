@@ -25,8 +25,8 @@ export class NodejsApiService {
   private nodeJSConferenceOrganizations = '/organizations/:';
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
-  static orgFilter = "71andchange";
-  static conFilter = "ACMP18"
+  static orgFilter = "accenture";
+  static conFilter = "all"
   static totalMales = 136;
   static totalFemales= 353;
   static boxPrimaryData = [
