@@ -30,6 +30,7 @@ import { DateInputModule } from '@progress/kendo-angular-dateinputs';
 import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { PieComponent } from './modules/home/components/charts/pie/pie.component';
+import { StackedBarComponent} from './modules/home/components/charts/stacked-bar/stacked-bar.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PieComponent } from './modules/home/components/charts/pie/pie.component
     RangebarComponent,
     MutlidonutComponent,
     ModalComponent,
-    PieComponent
+    PieComponent,
+    StackedBarComponent
   ],
   imports: [
     BrowserModule,

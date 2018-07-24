@@ -73,6 +73,11 @@ export class ModalComponent implements OnInit {
   primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
   videoBoxTitle: string;
 
+  // Indiviudal Scores
+  primaryAndSecondaryScoresArray: any[];
+  primaryPercentage: Number;
+  secondaryPercentage: Number;
+
   constructor( ) {
 
   }
@@ -142,7 +147,6 @@ export class ModalComponent implements OnInit {
     const genderGrouped = _.groupBy(this.data, function(item) { return  item.gender; });
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
 
-    
     const genderObjectsArray = [];
     const group = Object.keys(genderGrouped);
 
@@ -158,8 +162,8 @@ export class ModalComponent implements OnInit {
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
-    console.log(this.genderData);
-    if(this.genderData[1] != undefined){
+    // console.log(this.genderData);
+    if (this.genderData[1] !== undefined){
       this.totalMales = this.genderData[1].value;
 
     }
@@ -175,6 +179,7 @@ export class ModalComponent implements OnInit {
 }
 
   public getColor(_advantage: String) {
+    // console.log('getColor', _advantage);
     const index = this.advantageColors.findIndex(x => x.advantage === _advantage);
     return this.advantageColors[index].color;
   }
@@ -237,13 +242,33 @@ export class ModalComponent implements OnInit {
   public selected(event: Selection) {
     const index = event['index'];
     const userSpecificData = this.data[index];
-    console.log(userSpecificData);
+    // console.log(userSpecificData);
 
     const _advantages = ['innovation', 'passion', 'power', 'prestige', 'trust', 'mystique', 'alert'];
     const total = {};
     const dataWithColors = _advantages.map(ele => {
       return new Object({value: userSpecificData[ele], color: this.getColor(ele)});
     });
+
+    const primaryAdvantage = userSpecificData['primaryAdvantage'];
+    const secondaryAdvantage = userSpecificData['secondaryAdvantage'];
+    const pScore = userSpecificData[primaryAdvantage];
+    const sScore = userSpecificData[secondaryAdvantage];
+
+
+    const pObj = new Object({type: primaryAdvantage, value: pScore, color: this.getColor(primaryAdvantage)});
+    const sObj = new Object({type: secondaryAdvantage, value: sScore, color: this.getColor(secondaryAdvantage)});
+
+    const objArray = new Array([pObj, sObj]);
+
+
+    const primaryScore = objArray[0][0]['value'];
+    const secondaryScore = objArray[0][1]['value'];
+    const total2 = primaryScore + secondaryScore;
+
+    this.primaryPercentage = primaryScore / total2;
+    this.secondaryPercentage = secondaryScore / total2;
+    this.primaryAndSecondaryScoresArray = objArray[0];
 
     this.primaryIndividualCategories = _advantages;
     this.primaryIndividualData = dataWithColors;
