@@ -119,10 +119,10 @@ export class DonutComponent implements OnInit {
     let newData  = arr.map(row=>{
       let obj =  {
         Advantage: row.Advantage,
-        Total: (row.Total/ this.total) * 100;
+        Total: (row.Total/ this.total) * 100
 
       }
-      console.log(obj);
+      // console.log(obj);
       return obj;
     })
     return newData;

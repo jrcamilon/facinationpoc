@@ -15,16 +15,18 @@ export class NodejsApiService {
   public primaryDonutChartData = new Subject<any>();
   public secondaryDonutChartData = new Subject<any>();
   public dormantDonutChartData = new Subject<any>();
+  public orgnizationList = new Subject<any>();
 
   // local variables
   private nodeJSAllDataEndpoint = '/data';
-  private nodeJSPrimaryDonutChartData = '/primary-population:';
-  private nodeJSSecondaryDonutChartData = '/secondary-population:';
-  private nodeJSDormantDonutChartData = '/dormant-population:';
+  private nodeJSPrimaryDonutChartData = '/primary-population/:';
+  private nodeJSSecondaryDonutChartData = '/secondary-population/:';
+  private nodeJSDormantDonutChartData = '/dormant-population/:';
+  private nodeJSConferenceOrganizations = '/organizations/:';
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
-  static orgFilter = "Accenture";
-  static conFilter = ""
+  static orgFilter = "71andchange";
+  static conFilter = "ACMP18"
   static totalMales = 136;
   static totalFemales= 353;
   static boxPrimaryData = [
@@ -36,8 +38,7 @@ export class NodejsApiService {
     { key: 6,  primary: "Mystique",languageOf: "Listening", adjectives: "Observant, Independent, Logical", overview: "Impress with analytical skills and thoughtful communication.", communication: "Listen carefully and observe.", fascination:"Listen with care. ",otherLeaders:"Tina Fey, Johnny Depp, Malcolm Gladwell, Stephen Hawking, Michael Crichton" },
     { key: 7, primary: "Alert",languageOf: "Details", adjectives: "Detailed, Organized, Proactive", overview: "Keep people and projects on track by managing the details.", communication: "Focus on the task at hand.", fascination:"Protect the details.",otherLeaders:"Ralph Nader, Mary Poppins, Chuck Norris, James Cameron, Upton Sinclair" }
 
-  ]
-
+  ];
   static archetypeData = [
     { boxkey: 11,adjectives:"Volatile,  Startling, Chaotic" },
     { boxkey: 12,adjectives:"Bold, Artistic, Unorthodox" },
@@ -90,18 +91,23 @@ export class NodejsApiService {
     { boxkey: 77,adjectives:"Compulsive,Driven,Exacting" }    
   ]
   getAllFiles(): Observable<any> {
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint);
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:'+ `${NodejsApiService.conFilter}`+ '/:'+ NodejsApiService.orgFilter);
   }
   getPrimaryDonutChartData(): Observable<any> {
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter);
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
 
   getSecondaryDonutChartData(): Observable<any> {
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter);
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
   getDormantDonutChartData(): Observable<any> {
 
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter);
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
+  }
+  getConferenceOrganizations(): Observable<any>{
+    // console.log(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
+
   }
   constructor(private http: HttpClient) { }
 

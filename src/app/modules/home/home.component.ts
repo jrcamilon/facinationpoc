@@ -77,6 +77,9 @@ export class HomeComponent implements OnInit {
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
     });
+    this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
+      this._nodeApi.orgnizationList.next(data);
+    });
     
   }
 
@@ -121,6 +124,10 @@ export class HomeComponent implements OnInit {
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
     });
+
+    this._nodeApi.gridTileData.subscribe(data=>{
+      this.gridTileData = data;
+    })
 
     // Constants for IBE Services
     const parameters: Parameter[] = [];
