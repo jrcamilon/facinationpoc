@@ -22,6 +22,10 @@ export class NavGlobalComponent implements OnInit {
   
   ngOnInit() {
     // this.searchContent = "Accenture";
+    // this._nodeApi.orgnizationList.subscribe(data=>{
+    //     this.organizations = data;
+
+    //   });
   }
 
   changeConference(event:any){
@@ -31,8 +35,15 @@ export class NavGlobalComponent implements OnInit {
         this.conference = row.label;
       }
     }
-    NodejsApiService.conFilter = this.conference=="View All"? "all":  this.conference ;
-    NodejsApiService.orgFilter = (NodejsApiService.conFilter=="ACMP18"? "71andchange": "aarp");
+    console.log(this.conference);
+    NodejsApiService.conFilter = this.conference=="View All" ? "all" :  this.conference;
+    if(NodejsApiService.conFilter=="ACMP18"){
+      NodejsApiService.orgFilter ="71andchange";
+    }else if(NodejsApiService.conFilter=="ICON2015"){
+      NodejsApiService.orgFilter = "aarp";
+    }
+
+    console.log(NodejsApiService.conFilter);
     console.log(NodejsApiService.orgFilter);
 
     // console.log(NodejsApiService.conFilter);
@@ -40,8 +51,11 @@ export class NavGlobalComponent implements OnInit {
       this._nodeApi.orgnizationList.next(data);
       this._nodeApi.orgnizationList.subscribe(data=>{
         this.organizations = data;
+      console.log(this.organizations);
       });
     });
+
+   
     // console.log(this.organizations);
      // console.log( this.searchContent);
 
@@ -69,14 +83,19 @@ export class NavGlobalComponent implements OnInit {
      });
     //  NodejsApiService.orgFilter = this.searchContent;
      this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
+       console.log(data);
        this._nodeApi.primaryDonutChartData.next(data);
      })
      // Dormant Donut Data
      this._nodeApi.getDormantDonutChartData().subscribe((data) => {
+      console.log(data);
+
        this._nodeApi.dormantDonutChartData.next(data);
      });
      // console.log(this.searchContent);
      this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
+      console.log(data);
+
        this._nodeApi.secondaryDonutChartData.next(data);
      })
 

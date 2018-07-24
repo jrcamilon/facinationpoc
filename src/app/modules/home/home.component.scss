@@ -4,9 +4,22 @@
     background-color:whitesmoke;
     color: white;
 }
+#typeDiv{
+    float: right;
 
+}
 .typeSelector {
     float: right;
+    margin-right: 20px;
+    margin-top:7px;
+  
+}
+.typeLabel {
+    float: right;
+    padding-bottom: 20px;
+    color: white;
+    padding-right: 5px;
+
 }
 .test {
     border: 1px solid #ff0000;
@@ -14,6 +27,7 @@
 }
 .donutType{ 
     float: right;
+    margin-right: 50px;
 }
 
 .titleBox {

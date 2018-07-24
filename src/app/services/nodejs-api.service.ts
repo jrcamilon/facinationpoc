@@ -25,10 +25,12 @@ export class NodejsApiService {
   private nodeJSConferenceOrganizations = '/organizations/:';
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
-  static orgFilter = "accenture";
+
+  static orgFilter = "71andchange";
   static conFilter = "all"
   static totalMales = 136;
   static totalFemales= 353;
+
   static boxPrimaryData = [
     { key: 1, primary: "Innovation",languageOf: "Creativity", adjectives: "Creative, Entrepreneurial, Visionary", overview: "Push companies to innovate with creativity.", communication: "Tweak traditional conversation.", fascination:"Get creative.",otherLeaders:"Madonna, Albert Einstein, Amelia Earhart, Frank Lloyd Wright, Betty White" },
     { key: 2, primary: "Passion",languageOf: "Relationship", adjectives: "Engaging, Expressive, Intuitive", overview: "Build connections with warmth and enthusiam.", communication: "Immediately create an emotional connection.", fascination:"Connect with emotion.",otherLeaders:"Leonardo Da Vinci, Ronald Regan, Audrey Hepburn, Oprah Winfrey, George Lucas" },
@@ -39,6 +41,7 @@ export class NodejsApiService {
     { key: 7, primary: "Alert",languageOf: "Details", adjectives: "Detailed, Organized, Proactive", overview: "Keep people and projects on track by managing the details.", communication: "Focus on the task at hand.", fascination:"Protect the details.",otherLeaders:"Ralph Nader, Mary Poppins, Chuck Norris, James Cameron, Upton Sinclair" }
 
   ];
+
   static archetypeData = [
     { boxkey: 11,adjectives:"Volatile,  Startling, Chaotic" },
     { boxkey: 12,adjectives:"Bold, Artistic, Unorthodox" },
@@ -90,20 +93,26 @@ export class NodejsApiService {
     { boxkey: 76,adjectives:"Clear-Cut,Accurate,Meticulous" },
     { boxkey: 77,adjectives:"Compulsive,Driven,Exacting" }    
   ]
+
   getAllFiles(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:'+ `${NodejsApiService.conFilter}`+ '/:'+ NodejsApiService.orgFilter);
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:'+ `${NodejsApiService.conFilter}`);
   }
+
   getPrimaryDonutChartData(): Observable<any> {
+    console.log(this.localNodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
 
   getSecondaryDonutChartData(): Observable<any> {
+    console.log(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
-  getDormantDonutChartData(): Observable<any> {
 
+  getDormantDonutChartData(): Observable<any> {
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
   }
+
   getConferenceOrganizations(): Observable<any>{
     // console.log(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);

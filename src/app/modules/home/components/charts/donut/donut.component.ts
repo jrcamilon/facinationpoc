@@ -123,7 +123,7 @@ export class DonutComponent implements OnInit {
 
       // console.log(obj);
       });
-      console.log(obj);
+      // console.log(obj);
       return obj;
     });
     return newData;

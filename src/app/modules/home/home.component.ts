@@ -76,6 +76,7 @@ export class HomeComponent implements OnInit {
   // Constructor loading in the Node and IBE API Service
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
     this._nodeApi.allData.subscribe((data) => {
+      
     });
     this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
       this._nodeApi.orgnizationList.next(data);
@@ -90,7 +91,7 @@ export class HomeComponent implements OnInit {
     const newArr = [];
     // Matrix Data
     this._nodeApi.getAllFiles().subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       for (let i = 1 ; i <= this.advantages.length - 1 ; i++ ) {
         for (let j = 1; j <= this.advantages.length -1 ; j++) {
           filterKey  = `${i}${j}`;
@@ -113,15 +114,20 @@ export class HomeComponent implements OnInit {
     });
     // Primary Donut Data
     this._nodeApi.getPrimaryDonutChartData().subscribe((data) => {
+      console.log("primaryData",data);
       this._nodeApi.primaryDonutChartData.next(data);
     });
      // Dormant Donut Data
      this._nodeApi.getSecondaryDonutChartData().subscribe((data) => {
+      console.log("secondaryData",data);
+
       this._nodeApi.secondaryDonutChartData.next(data);
     });
 
     // Dormant Donut Data
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
+      console.log("dormantData",data);
+
       this._nodeApi.dormantDonutChartData.next(data);
     });
 
