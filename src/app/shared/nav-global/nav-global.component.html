@@ -30,6 +30,7 @@
             <option  [value]="icon" > ICON2015</option>
           </select>
       <select class="form-control col-6"    (change)="changeOrganization($event)"id="power" required>
+        <option>View All</option>
         <option   *ngFor = "let organization of organizations" >{{organization.organization}}</option>
         <!-- <option  [value]="pow">BAH</option>
         <option  [value]="pow">CSAA</option> -->

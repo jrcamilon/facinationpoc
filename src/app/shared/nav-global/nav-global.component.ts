@@ -112,6 +112,30 @@ addToService(arr: any) {
         this.searchContent = row.label;
       }
     }
+
+    NodejsApiService.orgFilter = this.searchContent=="View All" ? "all" :  this.searchContent;
+    this._nodeApi.getAllFiles().subscribe((data)=>{
+      let newArr: any = [];
+     for (let i = 1 ; i <= 7 ; i++ ) {
+       for (let j = 1; j <= 7 ; j++) {
+          let filterKey  = `${i}${j}`;
+         let commonArchetypes = [];
+
+         for (let a = 0; a < data.length; a++) {
+           const row = data[a];
+
+           if ( `${row.boxKey}` === filterKey ) {
+             commonArchetypes.push(row);
+           }
+         }
+         const newParsedBoxData = {key: filterKey , data: commonArchetypes};
+         newArr.push(newParsedBoxData);
+
+       }
+     }
+     this.addToService(newArr);
+      this._nodeApi.allData.next(data);
+    });
     // console.log( this.searchContent);
     NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{

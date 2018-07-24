@@ -26,7 +26,7 @@ export class NodejsApiService {
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
 
-  static orgFilter = "71andchange";
+  static orgFilter = "all";
   static conFilter = "all"
   static totalMales = 136;
   static totalFemales= 353;
@@ -110,6 +110,7 @@ export class NodejsApiService {
   }
 
   getDormantDonutChartData(): Observable<any> {
+    console.log(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
   }
 
