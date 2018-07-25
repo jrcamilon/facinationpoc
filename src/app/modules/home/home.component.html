@@ -19,7 +19,18 @@
 <app-modal *ngIf="modalOpen"  (modalClose)="onModalClose($event)"  [index]="modalIndex" [data]="modalData"></app-modal>
 
 <div class="container-fluid"  [@listAnimation]="advantages.length">
-        <div class="row gridLabelTop" >SECONDARY</div>
+        <div class="row gridLabelTop" >
+                <div class="col-lg-2">SECONDARY</div>
+                <!-- <div class="col-lg-8">
+                        <div class="switchContainer ">
+                                <label class="switchLabel ">Conference</label>
+                                <kendo-switch  (valueChange)="changeDonut($event)" [checked]="true" id="switch" [onLabel]="'C'" [offLabel]="'O'"></kendo-switch>
+                                <label class="switchLabel ">Organization</label>
+                        </div>
+                </div> -->
+                
+                
+        </div>
         <div class=" row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
             
             <div class="col box-container" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'"  (click)="boxClicked(x, y)" >

@@ -62,28 +62,7 @@ export class NavGlobalComponent implements OnInit {
     // console.log(this.organizations);
      // console.log( this.searchContent);
 
-     this._nodeApi.getAllFiles().subscribe((data)=>{
-       let newArr: any = [];
-      for (let i = 1 ; i <= 7 ; i++ ) {
-        for (let j = 1; j <= 7 ; j++) {
-           let filterKey  = `${i}${j}`;
-          let commonArchetypes = [];
-
-          for (let a = 0; a < data.length; a++) {
-            const row = data[a];
-
-            if ( `${row.boxKey}` === filterKey ) {
-              commonArchetypes.push(row);
-            }
-          }
-          const newParsedBoxData = {key: filterKey , data: commonArchetypes};
-          newArr.push(newParsedBoxData);
-
-        }
-      }
-      this.addToService(newArr);
-       this._nodeApi.allData.next(data);
-     });
+     this.getAllFiles();
     //  NodejsApiService.orgFilter = this.searchContent;
      this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
        console.log(data);
@@ -103,6 +82,30 @@ export class NavGlobalComponent implements OnInit {
      })
 
     //  this.ngOnInit();
+  }
+  getAllFiles(){
+    this._nodeApi.getAllFiles().subscribe((data)=>{
+      let newArr: any = [];
+     for (let i = 1 ; i <= 7 ; i++ ) {
+       for (let j = 1; j <= 7 ; j++) {
+          let filterKey  = `${i}${j}`;
+         let commonArchetypes = [];
+
+         for (let a = 0; a < data.length; a++) {
+           const row = data[a];
+
+           if ( `${row.boxKey}` === filterKey ) {
+             commonArchetypes.push(row);
+           }
+         }
+         const newParsedBoxData = {key: filterKey , data: commonArchetypes};
+         newArr.push(newParsedBoxData);
+
+       }
+     }
+     this.addToService(newArr);
+      this._nodeApi.allData.next(data);
+    });
   }
   // Method to get all grid tile data
 addToService(arr: any) {
@@ -128,28 +131,7 @@ addToService(arr: any) {
     this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
       this._nodeApi.secondaryDonutChartData.next(data);
     })
-    // this._nodeApi.getAllFiles().subscribe((data)=>{
-    //   let newArr: any = [];
-    //  for (let i = 1 ; i <= 6 ; i++ ) {
-    //    for (let j = 1; j <= 6 ; j++) {
-    //       let filterKey  = `${i}${j}`;
-    //      let commonArchetypes = [];
-
-    //      for (let a = 0; a < data.length; a++) {
-    //        const row = data[a];
-
-    //        if ( `${row.boxKey}` === filterKey ) {
-    //          commonArchetypes.push(row);
-    //        }
-    //      }
-    //      const newParsedBoxData = {key: filterKey , data: commonArchetypes};
-    //      newArr.push(newParsedBoxData);
-
-    //    }
-    //  }
-    //  this.addToService(newArr);
-    //   this._nodeApi.allData.next(data);
-    // });
+    this.getAllFiles();
   }
 
   

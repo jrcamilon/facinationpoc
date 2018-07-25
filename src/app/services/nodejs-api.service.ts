@@ -95,7 +95,7 @@ export class NodejsApiService {
   ]
 
   getAllFiles(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:'+ `${NodejsApiService.conFilter}`);
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
   }
 
   getPrimaryDonutChartData(): Observable<any> {
