@@ -5,6 +5,7 @@ import { arch } from 'os';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { products } from './products';
 import { process, orderBy, filterBy, /* etc...*/ } from '@progress/kendo-data-query';
+import { RowArgs } from '@progress/kendo-angular-grid';
 
 @Component({
   selector: 'app-modal',
@@ -16,7 +17,7 @@ export class ModalComponent implements OnInit {
   // Grid View
   public gridView: GridDataResult;
   public items: any[] = products;
-  public mySelection: number[] = [];
+  private mySelection: number[] = [0];
   public pageSize = 10;
   public skip = 0;
   public totalMales: any;
@@ -39,7 +40,7 @@ export class ModalComponent implements OnInit {
 
   primaryCategories: string[];
   primaryData: any[];
-  primaryTitle = 'Primary Advantages Total Scores';
+  primaryTitle = 'Advantages Total Scores';
   primaryIndividualCategories: string[];
   primaryIndividualData: any[];
   primaryIndividualTitle: string;
@@ -59,6 +60,7 @@ export class ModalComponent implements OnInit {
     { advantage: 'mystique', color: '#005B5D', videoBox: '60'},
     { advantage: 'alert', color: '#285A17', videoBox: '70'}
   ];
+
 
 
   languageOf: string;
@@ -238,7 +240,7 @@ export class ModalComponent implements OnInit {
     // Optionally, clear the selection when paging
     // this.mySelection = [];
   }
-
+  // public isRowSelected = (e: RowArgs) => this.mySelection.indexOf(e.dataItem['index']) == 0;
   public selected(event: Selection) {
     const index = event['index'];
     const userSpecificData = this.data[index];

@@ -46,6 +46,7 @@
                         [height]="314"
                         [selectable]="true"
                         (selectionChange)="selected($event)"
+                        
                         >
                         <!-- <kendo-grid-checkbox-column showSelectAll="true"></kendo-grid-checkbox-column> -->
                         <kendo-grid-column field="fUserId" title="User ID" [width]="150"></kendo-grid-column>
@@ -78,7 +79,15 @@
                 <kendo-splitter-pane [resizable]="false" size="350px">
                   <div class="pane-content">
                     <kendo-tabstrip (tabSelect)="onTabSelect($event)">
-                        <kendo-tabstrip-tab [title]="'Primary Individual Scores'" [selected]="true">
+
+                        <kendo-tabstrip-tab [title]="'Advantage Overview Scores'"[selected]="true">
+                            <ng-template kendoTabContent>
+                                  <!-- Tab Content -->
+                                  <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
+                                  
+                            </ng-template>
+                          </kendo-tabstrip-tab>
+                        <kendo-tabstrip-tab [title]="'Indvidual Advantage Scores'" >
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
         
@@ -98,13 +107,7 @@
                                 </div>
                           </ng-template>
                         </kendo-tabstrip-tab>
-                        <kendo-tabstrip-tab [title]="'Primary Overview Scores'">
-                            <ng-template kendoTabContent>
-                                  <!-- Tab Content -->
-                                  <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
-                                  
-                            </ng-template>
-                          </kendo-tabstrip-tab>
+                        
                         <kendo-tabstrip-tab [title]="'Gender Distribution'">
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
@@ -114,8 +117,8 @@
                                 <app-pie [males] ="totalMales" [type]="pieTypes.pop" [females]="totalFemales"></app-pie> -->
 
                                 <div class="row">
-                                  <div class="col-6"><app-pie [males] ="totalMales" [type]="'archetype'" [females]="totalFemales" [title]="'Gender by Archetype'"></app-pie></div>
-                                  <div class="col-6"><app-pie [males] ="totalMales" [type]="'pop'" [females]="totalFemales" [title]="'Gender by Population'"></app-pie> </div>
+                                  <div class="col-12"><app-pie [males] ="totalMales" [type]="'archetype'" [females]="totalFemales" [title]="'Gender by Archetype'"></app-pie></div>
+                                  <!-- <div class="col-6"><app-pie [males] ="totalMales" [type]="'pop'" [females]="totalFemales" [title]="'Gender by Population'"></app-pie> </div> -->
                                 </div>
                           </ng-template>
                         </kendo-tabstrip-tab>

@@ -1,7 +1,7 @@
 <div class="row mb-4 mt-4 mr-2 ml-2" >
     <div  id="typeDiv" class= " typeDiv col-lg-12 ">
             <input class = "typeSelector" type="checkbox" (click)="changeDonut($event)" ng-model="checkDonutType.value2"
-           ng-true-value="'Dormant'" ng-false-value="'Secondary'">
+           ng-true-value="'Secondary'" ng-false-value="'Dormant'">
            <label class = "typeLabel" for="">{{checkBoxText}}</label>
     </div>
     <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>

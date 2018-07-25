@@ -16,7 +16,8 @@
 
         <kendo-chart-series-item-tooltip>
           <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
-              <div> {{ category }} {{ value }} </div>
+              <div> {{ category }} <span>{{ value | number:'1.2-2' }} %</span> </div>
+
           </ng-template>
         </kendo-chart-series-item-tooltip>
 

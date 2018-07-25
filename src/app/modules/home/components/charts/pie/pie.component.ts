@@ -41,27 +41,28 @@ export class PieComponent implements OnInit {
       else{
         this.pieData[1].value = 0;
       }
-    } else {
-      if(this.males!=undefined){
-    console.log(this.males);
+    }
+    // } else {
+    //   if(this.males!=undefined){
+    // console.log(this.males);
 
-      this.pieData[0].value = (this.males / (NodejsApiService.totalMales)) * 100;
+    //   this.pieData[0].value = (this.males / (NodejsApiService.totalMales)) * 100;
       
 
-      }
-      else{
-        this.pieData[0].value = 0;
-      }
-      if(this.females !=undefined){
-        this.pieData[1].value = (this.females / (NodejsApiService.totalFemales))* 100 ;
-        console.log(this.females);
+    //   }
+    //   else{
+    //     this.pieData[0].value = 0;
+    //   }
+    //   if(this.females !=undefined){
+    //     this.pieData[1].value = (this.females / (NodejsApiService.totalFemales))* 100 ;
+    //     console.log(this.females);
 
-      }
-      else{
-        this.pieData[1].value = 0;
-      }
+    //   }
+    //   else{
+    //     this.pieData[1].value = 0;
+    //   }
      
-    }
+    // }
 
   }
 }
