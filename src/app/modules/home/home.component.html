@@ -1,79 +1,85 @@
-<div class="row mb-4 mt-4 mr-2 ml-2" >
-    <div  id="typeDiv" class= " typeDiv col-lg-12 ">
-        <div id="switchContainer">
-                <label class="switchLabel ">Secondary</label>
-                <kendo-switch  (valueChange)="changeDonut($event)" [checked]="true" id="switch" [onLabel]="'S'" [offLabel]="'D'"></kendo-switch>
-                <label class="switchLabel ">Dormant</label>
-        </div>
-        
-    </div>
-    <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>
-    <app-donut class="col-lg-3" [type]='primaryOrganization'> </app-donut>
-    <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantPopulation'> </app-donut>
-    <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantOrganization'> </app-donut>
-    <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryPopulation'> </app-donut>
-    <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryOrganization'> </app-donut>
 
-</div>
-
-<app-modal *ngIf="modalOpen"  (modalClose)="onModalClose($event)"  [index]="modalIndex" [data]="modalData"></app-modal>
-
-<div class="container-fluid"  [@listAnimation]="advantages.length">
-        <div class="row gridLabelTop" >
-                <div class="col-lg-2">SECONDARY</div>
-                <!-- <div class="col-lg-8">
-                        <div class="switchContainer ">
-                                <label class="switchLabel ">Conference</label>
-                                <kendo-switch  (valueChange)="changeDonut($event)" [checked]="true" id="switch" [onLabel]="'C'" [offLabel]="'O'"></kendo-switch>
-                                <label class="switchLabel ">Organization</label>
-                        </div>
-                </div> -->
-                
-                
-        </div>
-        <div class=" row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
-            
-            <div class="col box-container" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'"  (click)="boxClicked(x, y)" >
-                <div class="box" [attr.id]="'box' + x + y" >
-                    
-                    <div *ngIf="x === 0 && y !== 0">
-                        <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle" [rune]="item2.rune" ></app-colrow-header>
-                    </div>
-                    <div *ngIf="y === 0 && x !== 0" >
-                        <app-colrow-header [title]="item.title" [subtitle]="item.subtitle" [rune]="item.rune" ></app-colrow-header>
-                    </div>
-
-                    <div *ngIf="x === 1 && y === y && y !== 0" >
-                        <app-grid-tile  c [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-
-                    <div *ngIf="x === 2 && y === y && y !== 0" >
-                        <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-
-                    <div *ngIf="x === 3 && y === y && y !== 0" >
-                        <app-grid-tile  [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-
-                    <div *ngIf="x === 4 && y === y && y !== 0" >
-                        <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-
-                    <div *ngIf="x === 5 && y === y && y !== 0" >
-                        <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-
-                    <div *ngIf="x === 6 && y === y && y !== 0" >
-                        <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-    
-                    <div *ngIf="x === 7 && y === y && y !== 0" >
-                        <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
-                    </div>
-                    
-                </div>            
-            </div>
-        </div>
-</div>
      
-    
+
+
+<kendo-panelbar (stateChange)="ngOnInit()" >
+            <!-- Donuts -->
+            <kendo-panelbar-item [title]="'Dashboard'" >
+                <ng-template kendoPanelBarContent >
+                        <div class="row " id="donuts" >
+                                <div  id="typeDiv" class= " typeDiv col-lg-12 ">
+                                    <div id="switchContainer" style="margin-top: 20px; margin-bottom: 20px;">
+                                            <label class="switchLabel ">Secondary</label>
+                                            <kendo-switch  (valueChange)="changeDonut($event)" [checked]="true" id="switch" [onLabel]="'S'" [offLabel]="'D'"></kendo-switch>
+                                            <label class="switchLabel ">Dormant</label>
+                                    </div>
+                                    
+                                </div>
+                                <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>
+                                <app-donut class="col-lg-3" [type]='primaryOrganization'> </app-donut>
+                                <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantPopulation'> </app-donut>
+                                <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantOrganization'> </app-donut>
+                                <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryPopulation'> </app-donut>
+                                <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryOrganization'> </app-donut>
+                            
+                            </div>                          
+                </ng-template>
+            </kendo-panelbar-item>
+
+            <!-- The Grid -->
+            <kendo-panelbar-item [title]="'The 49 Fascinations Personality Archetypes'" expanded="true" [selected]="true">
+                <ng-template kendoPanelBarContent>
+                    
+                    <app-modal *ngIf="modalOpen"  (modalClose)="onModalClose($event)"  [index]="modalIndex" [data]="modalData"></app-modal>
+
+                    <div class="container-fluid"  [@listAnimation]="advantages.length" >
+                            <!-- <div class="row gridLabelTop" >SECONDARY</div> -->
+                            <div class=" row" *ngFor="let item of advantages; let x = index" [attr.id]="'boxRow' + x" >
+                                
+                                <div class="col box-container" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'"  (click)="boxClicked(x, y)" >
+                                    <div class="box" [attr.id]="'box' + x + y" >
+                                        
+                                        <div *ngIf="x === 0 && y !== 0">
+                                            <app-colrow-header [title]="item2.title" [subtitle]="item2.subtitle" [rune]="item2.rune" ></app-colrow-header>
+                                        </div>
+                                        <div *ngIf="y === 0 && x !== 0" >
+                                            <app-colrow-header [title]="item.title" [subtitle]="item.subtitle" [rune]="item.rune" ></app-colrow-header>
+                                        </div>
+
+                                        <div *ngIf="x === 1 && y === y && y !== 0" >
+                                            <app-grid-tile  c [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+
+                                        <div *ngIf="x === 2 && y === y && y !== 0" >
+                                            <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+
+                                        <div *ngIf="x === 3 && y === y && y !== 0" >
+                                            <app-grid-tile  [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+
+                                        <div *ngIf="x === 4 && y === y && y !== 0" >
+                                            <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+
+                                        <div *ngIf="x === 5 && y === y && y !== 0" >
+                                            <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+
+                                        <div *ngIf="x === 6 && y === y && y !== 0" >
+                                            <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+                        
+                                        <div *ngIf="x === 7 && y === y && y !== 0" >
+                                            <app-grid-tile [x]="x" [y]="y"></app-grid-tile>
+                                        </div>
+                                        
+                                    </div>            
+                                </div>
+                            </div>
+                    </div>
+                </ng-template>
+            </kendo-panelbar-item>
+            
+</kendo-panelbar>
+

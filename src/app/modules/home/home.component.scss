@@ -35,8 +35,13 @@
     border: 1px solidrgb(209, 103, 103);
     background-color: rgb(209, 103, 103);
     color: white;
+    width: auto;
 }
 
+#donuts {
+    background-color: rgb(104, 104, 104);
+    padding-bottom: 40px;
+}
 
 
 #box00, #box01, #box02, #box03, #box04, #box05, #box06, #box07, #box08,
@@ -95,4 +100,41 @@
     background-color: lightgray;
     // transition: all 0.8s ease;
     // transform-style: preserve-3d;
+}
+
+// Testing for accordion
+.teamMate:after {
+    // content: ".";
+    // display: block;
+    // height: 0;
+    // line-height: 0;
+    // clear: both;
+    // visibility: hidden;
+}
+.teamMate h2 {
+    // font-size: 1.3em;
+    // font-weight: normal;
+    // padding-top: 17px;
+    // margin: 0;
+}
+.teamMate p {
+    // margin: 0;
+    // font-size: .8em;
+}
+.teamMate img {
+    // display: inline-block;
+    // vertical-align: top;
+    // width: 50px;
+    // height: 50px;
+    // margin: 10px;
+    // border: 1px solid #ccc;
+    // border-radius: 50%;
+}
+.mate-info {
+    // display: inline-block;
+    // vertical-align: top;
+}
+
+.k-content {
+    background-color: red !important;
 }
