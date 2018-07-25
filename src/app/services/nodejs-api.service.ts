@@ -26,7 +26,7 @@ export class NodejsApiService {
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
 
-  static orgFilter = "71andchange";
+  static orgFilter = "gmail";
   static conFilter = "all"
   static totalMales = 136;
   static totalFemales= 353;
@@ -114,7 +114,7 @@ export class NodejsApiService {
   }
 
   getConferenceOrganizations(): Observable<any>{
-    // console.log(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    console.log(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
 
   }

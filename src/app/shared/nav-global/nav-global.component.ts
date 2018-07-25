@@ -38,11 +38,11 @@ export class NavGlobalComponent implements OnInit {
     console.log(this.conference);
     NodejsApiService.conFilter = this.conference=="View All" ? "all" :  this.conference;
     if(NodejsApiService.conFilter=="ACMP18"){
-      NodejsApiService.orgFilter ="71andchange";
+      NodejsApiService.orgFilter ="gmail";
     } else if(NodejsApiService.conFilter =="all"){
-      NodejsApiService.orgFilter = "71andchange"
+      NodejsApiService.orgFilter = "gmail"
     }else if(NodejsApiService.conFilter=="ICON2015"){
-      NodejsApiService.orgFilter = "aarp";
+      NodejsApiService.orgFilter = "gmail";
     }
     
 
