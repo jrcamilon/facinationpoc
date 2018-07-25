@@ -31,6 +31,8 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { PieComponent } from './modules/home/components/charts/pie/pie.component';
 import { StackedBarComponent} from './modules/home/components/charts/stacked-bar/stacked-bar.component';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 
 
 @NgModule({
@@ -65,7 +67,8 @@ import { StackedBarComponent} from './modules/home/components/charts/stacked-bar
     GridModule,
     DateInputModule,
     ExcelExportModule,
-    DropDownsModule
+    DropDownsModule,
+    InputsModule
   ],
   providers: [IbeService],
   bootstrap: [AppComponent]

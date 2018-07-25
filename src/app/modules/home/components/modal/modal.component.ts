@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit {
   // Grid View
   public gridView: GridDataResult;
   public items: any[] = products;
-  private mySelection: number[] = [0];
+  // public mySelection: number[] = [];
   public pageSize = 10;
   public skip = 0;
   public totalMales: any;

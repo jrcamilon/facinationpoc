@@ -1,5 +1,9 @@
 <div class="row mb-4 mt-4 mr-2 ml-2" >
     <div  id="typeDiv" class= " typeDiv col-lg-12 ">
+        <label for="">Secondary</label>
+        <kendo-switch  [checked]="true" id="switch" [onLabel]="'S'" [offLabel]="'D'"></kendo-switch>
+        <label for="">Dormant</label>
+
             <input class = "typeSelector" type="checkbox" (click)="changeDonut($event)" ng-model="checkDonutType.value2"
            ng-true-value="'Secondary'" ng-false-value="'Dormant'">
            <label class = "typeLabel" for="">{{checkBoxText}}</label>
