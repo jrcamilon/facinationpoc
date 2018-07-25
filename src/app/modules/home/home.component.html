@@ -1,28 +1,28 @@
 
      
 
-<kendo-panelbar (stateChange)="ngOnInit()">
+
+<kendo-panelbar (stateChange)="ngOnInit()" >
             <!-- Donuts -->
             <kendo-panelbar-item [title]="'Dashboard'" >
                 <ng-template kendoPanelBarContent >
-                        <div class="row mb-4 mt-4 mr-2 ml-2" >
-                            <div  id="typeDiv" class= " typeDiv col-lg-12 ">
-                                    <label for="">Secondary</label>
-                                    <kendo-switch  [checked]="true" id="switch" [onLabel]="'S'" [offLabel]="'D'"></kendo-switch>
-                                    <label for="">Dormant</label>
+                        <div class="row " id="donuts" >
+                                <div  id="typeDiv" class= " typeDiv col-lg-12 ">
+                                    <div id="switchContainer">
+                                            <label class="switchLabel ">Secondary</label>
+                                            <kendo-switch  (valueChange)="changeDonut($event)" [checked]="true" id="switch" [onLabel]="'S'" [offLabel]="'D'"></kendo-switch>
+                                            <label class="switchLabel ">Dormant</label>
+                                    </div>
+                                    
+                                </div>
+                                <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>
+                                <app-donut class="col-lg-3" [type]='primaryOrganization'> </app-donut>
+                                <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantPopulation'> </app-donut>
+                                <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantOrganization'> </app-donut>
+                                <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryPopulation'> </app-donut>
+                                <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryOrganization'> </app-donut>
                             
-                                        <input class = "typeSelector" type="checkbox" (click)="changeDonut($event)" ng-model="checkDonutType.value2"
-                                       ng-true-value="'Secondary'" ng-false-value="'Dormant'">
-                                       <label class = "typeLabel" for="">{{checkBoxText}}</label>
-                            </div>
-                            <app-donut class="col-lg-3" [type]='primaryPopulation'> </app-donut>
-                            <app-donut class="col-lg-3" [type]='primaryOrganization'> </app-donut>
-                            <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantPopulation'> </app-donut>
-                            <app-donut *ngIf="dormant" class="col-lg-3" [type]='dormantOrganization'> </app-donut>
-                            <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryPopulation'> </app-donut>
-                            <app-donut *ngIf="secondary" class="col-lg-3" [type]='secondaryOrganization'> </app-donut>
-                            
-                        </div>                            
+                            </div>                          
                 </ng-template>
             </kendo-panelbar-item>
 

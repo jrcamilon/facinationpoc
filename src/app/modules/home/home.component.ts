@@ -33,9 +33,9 @@ export class HomeComponent implements OnInit {
   secondaryOrganization: any='SECONDARYORGANIZATION';
   primaryOrganization: any = 'PRIMARYORGANIZATION';
   dormantOrganization: any = 'DORMANTORGANIZATION';
-  checkBoxText: any = "Secondary";
   dormant: any= false;
   secondary: any = true;
+ 
   // Local Variables
   advantages = [{title: '', subtitle: '', rune: ''},
     {title: 'Innovation', subtitle: 'You change the game with creativity', rune: Runes.innovation},
@@ -163,16 +163,10 @@ addToService(arr: any) {
 }
 
  changeDonut(event: any) {
-  // console.log(event.target.checked);
 
-  this.checkBoxText = (event.target.checked==false) ? "Secondary" : "Dormant";
-  this.dormant =(event.target.checked==false) ? false : true;
-  // console.log(this.dormant);
-  this.secondary  = (event.target.checked==false) ? true : false;
+  this.dormant =(event==false) ? true : false;
+  this.secondary  = (event==false) ? false : true;
   this.ngOnInit();
-
-  
-
 }
 
 boxClicked(x: Number, y: Number) {

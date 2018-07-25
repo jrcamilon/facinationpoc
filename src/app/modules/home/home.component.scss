@@ -1,5 +1,13 @@
 @import "../../../assets/sass/_variables";
-
+#switch{
+    color: white;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.switchLabel{
+    color:white; 
+    padding: 5px, 5px, 5px, 5px;
+}
 .main {
     background-color:whitesmoke;
     color: white;
@@ -8,18 +16,10 @@
     float: right;
 
 }
-.typeSelector {
-    float: right;
-    margin-right: 20px;
-    margin-top:7px;
-  
-}
-.typeLabel {
-    float: right;
-    padding-bottom: 20px;
-    color: white;
-    padding-right: 5px;
 
+#switchContainer{
+    float:right;
+    margin-right: 20px;
 }
 .test {
     border: 1px solid #ff0000;
@@ -35,8 +35,12 @@
     border: 1px solidrgb(209, 103, 103);
     background-color: rgb(209, 103, 103);
     color: white;
+    width: auto;
 }
 
+#donuts {
+    background-color: rgb(104, 104, 104);
+}
 
 
 #box00, #box01, #box02, #box03, #box04, #box05, #box06, #box07, #box08,
@@ -128,4 +132,8 @@
 .mate-info {
     // display: inline-block;
     // vertical-align: top;
+}
+
+.k-content {
+    background-color: red !important;
 }
