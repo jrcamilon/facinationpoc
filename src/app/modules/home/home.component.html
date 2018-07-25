@@ -8,7 +8,7 @@
                 <ng-template kendoPanelBarContent >
                         <div class="row " id="donuts" >
                                 <div  id="typeDiv" class= " typeDiv col-lg-12 ">
-                                    <div id="switchContainer">
+                                    <div id="switchContainer" style="margin-top: 20px; margin-bottom: 20px;">
                                             <label class="switchLabel ">Secondary</label>
                                             <kendo-switch  (valueChange)="changeDonut($event)" [checked]="true" id="switch" [onLabel]="'S'" [offLabel]="'D'"></kendo-switch>
                                             <label class="switchLabel ">Dormant</label>
@@ -27,7 +27,7 @@
             </kendo-panelbar-item>
 
             <!-- The Grid -->
-            <kendo-panelbar-item [title]="'The 49 Fascinations Personality Archetypes'" expanded="true">
+            <kendo-panelbar-item [title]="'The 49 Fascinations Personality Archetypes'" expanded="true" [selected]="true">
                 <ng-template kendoPanelBarContent>
                     
                     <app-modal *ngIf="modalOpen"  (modalClose)="onModalClose($event)"  [index]="modalIndex" [data]="modalData"></app-modal>
