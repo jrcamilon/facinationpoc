@@ -23,7 +23,7 @@ export class ModalComponent implements OnInit {
   // Grid View
   public gridView: GridDataResult;
   public items: any[] = products;
-  // public mySelection: number[] = [];
+  public mySelection: number[] = [];
   public pageSize = 10;
   public skip = 0;
   public totalMales: any;
@@ -73,6 +73,8 @@ export class ModalComponent implements OnInit {
   secondaryPercentage: Number;
 
   constructor( ) {  }
+
+
 
   ngOnInit() {
     if (this.primaryBoxesForVideo.includes(this.index)) {
@@ -227,19 +229,16 @@ export class ModalComponent implements OnInit {
         data: this.data.slice(this.skip, this.skip + this.pageSize),
         total: this.data.length
     };
+
+    this.loadSelectedUser(0);
   }
 
-  public pageChange(event: PageChangeEvent): void {
-    this.skip = event.skip;
-    this.loadItems();
+  public loadSelectedUser(row: any) {
 
-    // Optionally, clear the selection when paging
-    // this.mySelection = [];
-  }
+    // const index = row;
+    const userSpecificData = this.data[row];
+    // const userSpecificData = this.data[0];
 
-  public selected(event: Selection) {
-    const index = event['index'];
-    const userSpecificData = this.data[index];
     const _advantages = ['innovation', 'passion', 'power', 'prestige', 'trust', 'mystique', 'alert'];
     const total = {};
 
@@ -267,6 +266,18 @@ export class ModalComponent implements OnInit {
 
     this.primaryIndividualCategories = _advantages;
     this.primaryIndividualData = dataWithColors;
-    this.primaryIndividualTitle = userSpecificData['fuserid'] + ' Scores';
+    this.primaryIndividualTitle = userSpecificData['fUserId'] + ' Scores';
+  }
+
+  public pageChange(event: PageChangeEvent): void {
+    this.skip = event.skip;
+    this.loadItems();
+
+  }
+
+  public selected(event: Selection) {
+
+    this.loadSelectedUser(event['index']);
+
   }
 }
