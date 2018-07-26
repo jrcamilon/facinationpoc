@@ -7,32 +7,25 @@ import {NodejsApiService} from '../../services/nodejs-api.service';
 })
 export class NavGlobalComponent implements OnInit {
 
-  constructor(private _nodeApi: NodejsApiService ) { 
-    this._nodeApi.orgnizationList.subscribe(data=>{
-
-      this.organizations = data;
-      // console.log(this.organizations);
-    });
-
-  }
   @ViewChild("selectCon", {read: ElementRef}) selectCon: ElementRef;
   @ViewChild("selectOrg", {read: ElementRef}) selectOrg: ElementRef;
 
   @Output() searchContent : any;
   @Output() conference: any;
   public organizations: any;
-  
-  ngOnInit() {
-    // this.searchContent = "Accenture";
-    // this._nodeApi.orgnizationList.subscribe(data=>{
-    //     this.organizations = data;
 
-    //   });
+  constructor(private _nodeApi: NodejsApiService ) { 
+    this._nodeApi.orgnizationList.subscribe(data=>{
+      this.organizations = data;
+    });
+  }
+
+  ngOnInit() {
     this.getAllFiles();
-   
   }
 
   changeConference(event:any){
+
     for(let i = 0; i< event.target.length;i++){
       let row = event.target[i];
       if(row.selected){
@@ -47,23 +40,14 @@ export class NavGlobalComponent implements OnInit {
     }else if(NodejsApiService.conFilter=="ICON2015"){
       NodejsApiService.orgFilter = "gmail";
     }
-    
 
- 
-    
-
-   
-    // console.log(this.organizations);
-     // console.log( this.searchContent);
     this.getOrganizationList();
-     this.getAllFiles();
-     this.getDonutChartData();
-
-    //  this.ngOnInit();
+    this.getAllFiles();
+    this.getDonutChartData();
   }
 
   getOrganizationList(){
-    // console.log(NodejsApiService.conFilter);
+
     this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
       this._nodeApi.orgnizationList.next(data);
       this._nodeApi.orgnizationList.subscribe(data=>{
@@ -71,7 +55,9 @@ export class NavGlobalComponent implements OnInit {
       });
     });
   }
+
   getDonutChartData(){
+
     //  NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
       this._nodeApi.primaryDonutChartData.next(data);
@@ -87,9 +73,10 @@ export class NavGlobalComponent implements OnInit {
       this._nodeApi.secondaryDonutChartData.next(data);
     })
   }
+
   getAllFiles(){
     this._nodeApi.getAllFiles().subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       let newArr: any = [];
      for (let i = 1 ; i <= 7 ; i++ ) {
        for (let j = 1; j <= 7 ; j++) {
@@ -105,17 +92,19 @@ export class NavGlobalComponent implements OnInit {
          }
          const newParsedBoxData = {key: filterKey , data: commonArchetypes};
          newArr.push(newParsedBoxData);
-
        }
      }
      this.addToService(newArr);
       this._nodeApi.allData.next(data);
     });
   }
+
   // Method to get all grid tile data
   addToService(arr: any) {
-  this._nodeApi.gridTileData.next(arr);
- }
+
+   this._nodeApi.gridTileData.next(arr);
+  }
+
   changeOrganization(event: any) {
     for(let i = 0; i< event.target.length;i++){
       let row = event.target[i];
@@ -140,11 +129,10 @@ export class NavGlobalComponent implements OnInit {
   }
 
   resetMatrix(event: any){
+
     NodejsApiService.orgFilter = "gmail";
     NodejsApiService.conFilter = "all";
-  
     this.selectOrg.nativeElement.value = "gmail";
-    console.log(this.selectCon);
     this.selectCon.nativeElement.selectedIndex = 0;
     this.getAllFiles();
     this.getDonutChartData();
