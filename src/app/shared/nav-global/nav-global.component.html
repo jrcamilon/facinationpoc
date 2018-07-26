@@ -14,41 +14,25 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Dashboard</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Tests</a>
-      </li>
     </ul>
-    <!-- <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" value = "searchContent" type="search" (keyup)="updateInput($event)" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0"(click)="searchOrganization()" type="">Search</button>
-    </div> -->
 
-    <div class="form-group row " style="padding-right: 40px;">
-        <select class="form-control col-6 conferences"  #selectCon (change)="changeConference($event)" id="power" required>
+    
+    <div class="form-inline my-2 my-lg-12 ">
+
+        <select class="form-control  conferences nav-ele"  #selectCon (change)="changeConference($event)" id="power" required>
             <option  [value]="all">View All</option>
             <option  [value]="acm">ACMP18</option>
             <option  [value]="icon" > ICON2015</option>
           </select>
-      <select class="form-control col-6 organizations" #selectOrg   (change)="changeOrganization($event)" id="power" required>
+        <select class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="power" required>
         <option   *ngFor = "let organization of organizations" >{{organization.organization}}</option>
-        <!-- <option  [value]="pow">BAH</option>
-        <option  [value]="pow">CSAA</option> -->
-        <!-- <option  [value]="pow">Edward Jones</option> -->
-        <!-- <option  [value]="pow">Genesys</option>
-        <option  [value]="pow">Gmail</option>
-        <option  [value]="pow">Hotmail</option> -->
-        <!-- <option  [value]="pow">Team Heller</option> -->
-        <!-- <option  [value]="pow">Yahoo</option>
-        <option  [value]="pow">VMWare</option> -->
-      </select>
-      <button kendoButton (click)="resetMatrix($event)">Reset</button>
-      
-    </div>
+        </select>
 
-    <div>
+        <button class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button>
         <a class="navbar-brand" href="#">
             <img id="InfoSolLogo" src="../../../assets/images/infosol-logo.svg">
-          </a>
+        </a>
+
     </div>
   </div>
 </nav>

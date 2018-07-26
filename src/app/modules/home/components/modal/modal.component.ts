@@ -91,7 +91,6 @@ export class ModalComponent implements OnInit {
     }
   }
 
-
   public organizeChartData() {
 
     /* Get the total of all the advantages for each object in the modal data*/
@@ -143,7 +142,7 @@ export class ModalComponent implements OnInit {
     }
     const organizedByGender = genderObjectsArray.map(ele => {
 
-      if(ele.key!="Other"){
+      if(ele.key!= "Other" ){
         return new Object({value: ele.value.length, color: ele.key == 'male' ? '#003F7F' : '#FF017E'});
 
 
@@ -233,6 +232,7 @@ export class ModalComponent implements OnInit {
     this.loadSelectedUser(0);
   }
 
+  /* this is for the user select */
   public loadSelectedUser(row: any) {
 
     // const index = row;
