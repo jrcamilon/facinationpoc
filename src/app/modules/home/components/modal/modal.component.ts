@@ -14,6 +14,11 @@ import { RowArgs } from '@progress/kendo-angular-grid';
 })
 export class ModalComponent implements OnInit {
 
+  
+  @Input() index;
+  @Input() data;
+  @Output() modalClose: EventEmitter<any> = new EventEmitter();
+
   // Grid View
   public gridView: GridDataResult;
   public items: any[] = products;
@@ -22,35 +27,28 @@ export class ModalComponent implements OnInit {
   public skip = 0;
   public totalMales: any;
   public totalFemales: any;
-
-  @Input() index;
-  @Input() data;
-  @Output() modalClose: EventEmitter<any> = new EventEmitter();
+  public innovation: any = false;
+  public passion: any = false;
+  public power: any = false;
+  public prestige: any = false;
+  public trust: any = false;
+  public mystique: any = false;
+  public alert: any = false;
+  public opened = true;
+  public videoBox = false;
 
   clients: string[];
   title: string;
-
- public innovation: any = false;
- public passion: any = false;
- public power: any = false;
- public prestige: any = false;
- public trust: any = false;
-  public mystique: any = false;
-  public alert: any = false;
-
   primaryCategories: string[];
   primaryData: any[];
   primaryTitle = 'Advantages Total Scores';
   primaryIndividualCategories: string[];
   primaryIndividualData: any[];
   primaryIndividualTitle: string;
-
   archetype: string;
-
   genderCateogires: string[];
   genderData: any[];
   genderTital = 'Gender Distribution';
-
   advantageColors = [
     { advantage: 'innovation', color: '#EDA716', videoBox: '10'},
     { advantage: 'passion', color: '#B74A2A', videoBox: '20'},
@@ -60,42 +58,27 @@ export class ModalComponent implements OnInit {
     { advantage: 'mystique', color: '#005B5D', videoBox: '60'},
     { advantage: 'alert', color: '#285A17', videoBox: '70'}
   ];
-
-
-
   languageOf: string;
   communication: any;
   fasicnation: any;
   otherLeaders: any;
   overview: any;
-  public opened = true;
-
-
-  public videoBox = false;
   primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
   videoBoxTitle: string;
-
   // Indiviudal Scores
   primaryAndSecondaryScoresArray: any[];
   primaryPercentage: Number;
   secondaryPercentage: Number;
 
-  constructor( ) {
-
-  }
+  constructor( ) {  }
 
 
 
   ngOnInit() {
-    //  console.log(this.data);
-    console.log(this.index);
     if (this.primaryBoxesForVideo.includes(this.index)) {
-      console.log('video box');
       this.videoBox = true;
       const i = this.advantageColors.findIndex(ele => ele.videoBox === this.index);
       this.videoBoxTitle = this.advantageColors[i]['advantage'];
-      console.log(this.videoBoxTitle);
-
     } else {
       this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] : 'No Data';
       this.archetype = this.title;
@@ -148,49 +131,44 @@ export class ModalComponent implements OnInit {
   }
 
   public organizeByGender() {
+
     const genderGrouped = _.groupBy(this.data, function(item) { return  item.gender; });
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
-
     const genderObjectsArray = [];
     const group = Object.keys(genderGrouped);
 
     for (let i = 0; i < groupGender.length; i++) {
       genderObjectsArray.push(new Object({key: group[i], value: groupGender[i]}));
     }
-
     const organizedByGender = genderObjectsArray.map(ele => {
       return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
     });
-    // console.log(organizedByGender);
-
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
+
     // console.log(this.genderData);
     if (this.genderData[1] !== undefined){
       this.totalMales = this.genderData[1].value;
-
     }
     else{
       this.totalMales = 0;
     }
-     if(this.genderData[0] != undefined){
+    if(this.genderData[0] != undefined){
     this.totalFemales = this.genderData[0].value;
-  }
-  else{
-    this.totalFemales = 0;
-  }
+    }
+    else{
+      this.totalFemales = 0;
+    }
 }
 
   public getColor(_advantage: String) {
-    // console.log('getColor', _advantage);
+
     const index = this.advantageColors.findIndex(x => x.advantage === _advantage);
     return this.advantageColors[index].color;
   }
 
-
   private getTitleHeaderColor () {
-    // console.log("switching",this.index[0])
     switch(this.index[0]){
       case '1':
       this.innovation = true;
@@ -216,6 +194,7 @@ export class ModalComponent implements OnInit {
       break;
     }
   }
+
   public close(status) {
     this.modalClose.emit();
   }
@@ -245,22 +224,21 @@ export class ModalComponent implements OnInit {
 
     const _advantages = ['innovation', 'passion', 'power', 'prestige', 'trust', 'mystique', 'alert'];
     const total = {};
+
     const dataWithColors = _advantages.map(ele => {
       return new Object({value: userSpecificData[ele], color: this.getColor(ele)});
     });
 
     const primaryAdvantage = userSpecificData['primaryAdvantage'];
     const secondaryAdvantage = userSpecificData['secondaryAdvantage'];
+
     const pScore = userSpecificData[primaryAdvantage];
     const sScore = userSpecificData[secondaryAdvantage];
-
 
     const pObj = new Object({type: primaryAdvantage, value: pScore, color: this.getColor(primaryAdvantage)});
     const sObj = new Object({type: secondaryAdvantage, value: sScore, color: this.getColor(secondaryAdvantage)});
 
     const objArray = new Array([pObj, sObj]);
-
-
     const primaryScore = objArray[0][0]['value'];
     const secondaryScore = objArray[0][1]['value'];
     const total2 = primaryScore + secondaryScore;
@@ -277,7 +255,7 @@ export class ModalComponent implements OnInit {
   public pageChange(event: PageChangeEvent): void {
     this.skip = event.skip;
     this.loadItems();
-;
+
   }
 
   public selected(event: Selection) {
@@ -285,6 +263,4 @@ export class ModalComponent implements OnInit {
     this.loadSelectedUser(event['index']);
 
   }
-
-
 }
