@@ -39,7 +39,6 @@ export class NavGlobalComponent implements OnInit {
         this.conference = row.label;
       }
     }
-    console.log(this.conference);
     NodejsApiService.conFilter = this.conference=="View All" ? "all" :  this.conference;
     if(NodejsApiService.conFilter=="ACMP18"){
       NodejsApiService.orgFilter ="gmail";
@@ -50,9 +49,7 @@ export class NavGlobalComponent implements OnInit {
     }
     
 
-    console.log(NodejsApiService.conFilter);
-    console.log(NodejsApiService.orgFilter);
-
+ 
     
 
    
@@ -71,31 +68,28 @@ export class NavGlobalComponent implements OnInit {
       this._nodeApi.orgnizationList.next(data);
       this._nodeApi.orgnizationList.subscribe(data=>{
         this.organizations = data;
-      console.log(this.organizations);
       });
     });
   }
   getDonutChartData(){
     //  NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
-      console.log(data);
       this._nodeApi.primaryDonutChartData.next(data);
     })
     // Dormant Donut Data
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
-    console.log(data);
 
       this._nodeApi.dormantDonutChartData.next(data);
     });
     // console.log(this.searchContent);
     this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
-    console.log(data);
 
       this._nodeApi.secondaryDonutChartData.next(data);
     })
   }
   getAllFiles(){
     this._nodeApi.getAllFiles().subscribe((data)=>{
+      console.log(data);
       let newArr: any = [];
      for (let i = 1 ; i <= 7 ; i++ ) {
        for (let j = 1; j <= 7 ; j++) {
@@ -105,7 +99,7 @@ export class NavGlobalComponent implements OnInit {
          for (let a = 0; a < data.length; a++) {
            const row = data[a];
 
-           if ( `${row.boxKey}` === filterKey ) {
+           if ( `${row.boxkey}` == filterKey ) {
              commonArchetypes.push(row);
            }
          }

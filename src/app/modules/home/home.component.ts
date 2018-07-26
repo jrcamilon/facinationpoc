@@ -99,8 +99,8 @@ export class HomeComponent implements OnInit {
 
           for (let a = 0; a < data.length; a++) {
             const row = data[a];
-
-            if ( `${row.boxKey}` === filterKey ) {
+            // console.log(row.boxkey);
+            if ( `${row.boxkey}` == filterKey ) {
               commonArchetypes.push(row);
             }
           }
@@ -133,6 +133,7 @@ export class HomeComponent implements OnInit {
 
     this._nodeApi.gridTileData.subscribe(data=>{
       this.gridTileData = data;
+      console.log(this.gridTileData);
     })
 
     // Constants for IBE Services
