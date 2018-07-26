@@ -112,6 +112,7 @@ export class NavGlobalComponent implements OnInit {
         this.searchContent = row.label;
       }
     }
+    NodejsApiService.matrixOrgFilter = this.searchContent;
     // console.log( this.searchContent);
     NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
@@ -131,6 +132,7 @@ export class NavGlobalComponent implements OnInit {
   resetMatrix(event: any){
 
     NodejsApiService.orgFilter = "gmail";
+    NodejsApiService.matrixOrgFilter = "all"
     NodejsApiService.conFilter = "all";
     this.selectOrg.nativeElement.value = "gmail";
     this.selectCon.nativeElement.selectedIndex = 0;

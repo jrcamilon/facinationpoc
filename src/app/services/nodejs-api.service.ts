@@ -26,6 +26,7 @@ export class NodejsApiService {
   private localNodeJSEndpoint = environment.nodeJs.local;
   //Static Variables
   static orgFilter = "gmail";
+  static matrixOrgFilter = "all";
   static conFilter = "all";
   static totalMales = 136;
   static totalFemales= 353;
@@ -92,42 +93,19 @@ export class NodejsApiService {
   ]
 
   getAllFiles(): Observable<any> {
-<<<<<<< HEAD
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
-
-=======
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
->>>>>>> 6e4edbb9823fa6be0672e9af7377bc09f90326f1
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter);
   }
   getPrimaryDonutChartData(): Observable<any> {
-<<<<<<< HEAD
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
-
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
-=======
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
->>>>>>> 6e4edbb9823fa6be0672e9af7377bc09f90326f1
   }
   getSecondaryDonutChartData(): Observable<any> {
-<<<<<<< HEAD
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
-=======
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
->>>>>>> 6e4edbb9823fa6be0672e9af7377bc09f90326f1
   }
   getDormantDonutChartData(): Observable<any> {
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
   }
   getConferenceOrganizations(): Observable<any>{
-<<<<<<< HEAD
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
-
-=======
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
->>>>>>> 6e4edbb9823fa6be0672e9af7377bc09f90326f1
   }
   constructor(private http: HttpClient) { }
-
 }

@@ -25,9 +25,9 @@
 
     <div class="form-group row " style="padding-right: 40px;">
         <select class="form-control col-6 conferences"  #selectCon (change)="changeConference($event)" id="power" required>
-            <option  [value]="all">View All</option>
-            <option  [value]="acm">ACMP18</option>
-            <option  [value]="icon" > ICON2015</option>
+            <option >View All</option>
+            <option >ACMP18</option>
+            <option   > ICON2015</option>
           </select>
       <select class="form-control col-6 organizations" #selectOrg   (change)="changeOrganization($event)" id="power" required>
         <option   *ngFor = "let organization of organizations" >{{organization.organization}}</option>
