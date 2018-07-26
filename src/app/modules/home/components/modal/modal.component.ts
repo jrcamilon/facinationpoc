@@ -6,6 +6,7 @@ import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { products } from './products';
 import { process, orderBy, filterBy, /* etc...*/ } from '@progress/kendo-data-query';
 import { RowArgs } from '@progress/kendo-angular-grid';
+import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/src/platform_providers';
 
 @Component({
   selector: 'app-modal',
@@ -27,6 +28,7 @@ export class ModalComponent implements OnInit {
   public skip = 0;
   public totalMales: any;
   public totalFemales: any;
+  public totalOthers: any;
   public innovation: any = false;
   public passion: any = false;
   public power: any = false;
@@ -134,18 +136,27 @@ export class ModalComponent implements OnInit {
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
     const genderObjectsArray = [];
     const group = Object.keys(genderGrouped);
-
     for (let i = 0; i < groupGender.length; i++) {
       genderObjectsArray.push(new Object({key: group[i], value: groupGender[i]}));
     }
     const organizedByGender = genderObjectsArray.map(ele => {
-      return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
+
+      if(ele.key!="Other"){
+        return new Object({value: ele.value.length, color: ele.key == 'male' ? '#003F7F' : '#FF017E'});
+
+
+      } else {
+
+      return new Object({value: ele.value.length, color:'green' });
+
+
+      }
     });
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
-    // console.log(this.genderData);
+    console.log(this.genderData);
     if (this.genderData[1] !== undefined){
       this.totalMales = this.genderData[1].value;
     }
@@ -157,6 +168,12 @@ export class ModalComponent implements OnInit {
     }
     else{
       this.totalFemales = 0;
+    }
+    if(this.genderData[2] != undefined){
+      this.totalOthers = this.genderData[2].value;
+    } 
+    else {
+      this.totalOthers = 0;
     }
 }
 
