@@ -71,6 +71,7 @@ export class ModalComponent implements OnInit {
   primaryAndSecondaryScoresArray: any[];
   primaryPercentage: Number;
   secondaryPercentage: Number;
+  dormantAdvantage: String;
 
   constructor( ) {  }
 
@@ -142,7 +143,7 @@ export class ModalComponent implements OnInit {
     }
     const organizedByGender = genderObjectsArray.map(ele => {
 
-      if(ele.key!= "Other" ){
+      if (ele.key!= "Other" ) {
         return new Object({value: ele.value.length, color: ele.key == 'male' ? '#003F7F' : '#FF017E'});
 
 
@@ -266,7 +267,8 @@ export class ModalComponent implements OnInit {
 
     this.primaryIndividualCategories = _advantages;
     this.primaryIndividualData = dataWithColors;
-    this.primaryIndividualTitle = userSpecificData['fUserId'] + ' Scores';
+    this.primaryIndividualTitle = userSpecificData['fuserid'] + ' Scores';
+    this.dormantAdvantage = userSpecificData['dormantAdvantage'];
   }
 
   public pageChange(event: PageChangeEvent): void {
