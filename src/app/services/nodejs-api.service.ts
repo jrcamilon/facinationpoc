@@ -95,28 +95,28 @@ export class NodejsApiService {
   ]
 
   getAllFiles(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
 
   }
 
   getPrimaryDonutChartData(): Observable<any> {
     console.log(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
 
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
 
   getSecondaryDonutChartData(): Observable<any> {
     console.log(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
 
   getDormantDonutChartData(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
   }
 
   getConferenceOrganizations(): Observable<any>{
     console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
 
   }
   constructor(private http: HttpClient) { }

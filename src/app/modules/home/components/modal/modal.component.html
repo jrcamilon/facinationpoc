@@ -45,8 +45,7 @@
                         (pageChange)="pageChange($event)"
                         [height]="314"
                         [selectable]="true"
-                        (selectionChange)="selected($event)"
-                        
+                        (selectionChange)="selected($event)"          
                         >
                         <!-- <kendo-grid-checkbox-column showSelectAll="true"></kendo-grid-checkbox-column> -->
                         <kendo-grid-column field="fUserId" title="User ID" [width]="150"></kendo-grid-column>
@@ -78,16 +77,16 @@
         
                 <kendo-splitter-pane [resizable]="false" size="350px">
                   <div class="pane-content">
-                    <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+                    <kendo-tabstrip (tabSelect)="onTabSelect($event)" >
 
-                        <kendo-tabstrip-tab [title]="'Advantage Overview Scores'"[selected]="true">
+                        <kendo-tabstrip-tab [title]="'Advantage Overview Scores'">
                             <ng-template kendoTabContent>
                                   <!-- Tab Content -->
                                   <app-bar [categories]="primaryCategories" [data]="primaryData" [title]="primaryTitle"></app-bar>
                                   
                             </ng-template>
                           </kendo-tabstrip-tab>
-                        <kendo-tabstrip-tab [title]="'Indvidual Advantage Scores'" >
+                        <kendo-tabstrip-tab [title]="'Indvidual Advantage Scores'" [selected]="true">
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
         
