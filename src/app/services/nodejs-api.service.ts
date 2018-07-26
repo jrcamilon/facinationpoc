@@ -26,6 +26,7 @@ export class NodejsApiService {
   private localNodeJSEndpoint = environment.nodeJs.local;
   //Static Variables
   static orgFilter = "gmail";
+  static matrixOrgFilter = "all";
   static conFilter = "all";
   static totalMales = 136;
   static totalFemales= 353;
@@ -113,5 +114,4 @@ export class NodejsApiService {
 
   }
   constructor(private http: HttpClient) { }
-
 }
