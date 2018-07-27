@@ -1,4 +1,4 @@
-import { Component, OnInit,Output } from '@angular/core';
+import { Component, OnInit,Output,ViewChild,ElementRef } from '@angular/core';
 import { NodejsApiService } from '../../services/nodejs-api.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
@@ -154,6 +154,39 @@ export class HomeComponent implements OnInit {
   this._nodeApi.gridTileData.next(arr);
   }
 
+  getAllFiles(){
+    this._nodeApi.getAllFiles().subscribe((data)=>{
+      // console.log(data);
+      let newArr: any = [];
+     for (let i = 1 ; i <= 7 ; i++ ) {
+       for (let j = 1; j <= 7 ; j++) {
+          let filterKey  = `${i}${j}`;
+         let commonArchetypes = [];
+
+         for (let a = 0; a < data.length; a++) {
+           const row = data[a];
+
+           if ( `${row.boxkey}` == filterKey ) {
+             commonArchetypes.push(row);
+           }
+         }
+         const newParsedBoxData = {key: filterKey , data: commonArchetypes};
+         newArr.push(newParsedBoxData);
+       }
+     }
+     this.addToService(newArr);
+      this._nodeApi.allData.next(data);
+    });
+  }
+  resetMatrix() {
+    // NodejsApiService.orgFilter = "gmail";
+    NodejsApiService.matrixOrgFilter = "all"
+    NodejsApiService.conFilter = "all";
+
+    this.getAllFiles();
+    
+    this.ngOnInit();
+  }
   changeDonut(event: any) {
 
     this.dormant =(event==false) ? true : false;
@@ -164,20 +197,27 @@ export class HomeComponent implements OnInit {
   boxClicked(x: Number, y: Number) {
 
       const index = x.toString() + y.toString();
-      NodejsApiService.boxFilter = index;
-      this._nodeApi.getGenderCounts().subscribe((data)=>{
-        this._nodeApi.genderCounts.next(data);
-      })
-      const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50', '60', '70' ];
-      const primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
-      const i = this.gridTileData.findIndex(ele => ele.key === index);
-
-      if (!boxExcludeList.includes(index) && this.gridTileData[i]['data'].length !== 0) {
-        this.onModalOpen(index);
-      } else if (primaryBoxesForVideo.includes(index)) {
-        console.log(index);
-        this.videoModalOpen(index);
+      if(index=='00'){
+        console.log('reset');
+        this.resetMatrix();
+      } else{
+        NodejsApiService.boxFilter = index;
+        this._nodeApi.getGenderCounts().subscribe((data)=>{
+          this._nodeApi.genderCounts.next(data);
+        })
+        const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50', '60', '70' ];
+        const primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
+        const i = this.gridTileData.findIndex(ele => ele.key === index);
+  
+        if (!boxExcludeList.includes(index) && this.gridTileData[i]['data'].length !== 0) {
+          this.onModalOpen(index);
+        } else if (primaryBoxesForVideo.includes(index)) {
+          console.log(index);
+          this.videoModalOpen(index);
+        }
       }
+
+     
   }
 
   public videoModalOpen(index: any) {

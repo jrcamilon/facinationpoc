@@ -96,7 +96,8 @@ export class NodejsApiService {
   ]
 
   getAllFiles(): Observable<any> {
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
+    console.log(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter)
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter);
 
   }
   getPrimaryDonutChartData(): Observable<any> {
@@ -117,7 +118,7 @@ export class NodejsApiService {
 
   }
   getGenderCounts(): Observable<any>{
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSGenderCountData + NodejsApiService.conFilter + '/:'+ NodejsApiService.matrixOrgFilter + '/:'+ NodejsApiService.boxFilter);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSGenderCountData + NodejsApiService.conFilter + '/:'+ NodejsApiService.matrixOrgFilter + '/:'+ NodejsApiService.boxFilter);
 
   }
   constructor(private http: HttpClient) { }

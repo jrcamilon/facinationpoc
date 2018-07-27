@@ -55,7 +55,7 @@ export class DonutComponent implements OnInit {
           this.data = this.calculatePercentage(this.data);
           this.assignColors(this.data);
          
-          this.title = `${NodejsApiService.orgFilter} Primary Advantage`;
+          this.title = `${NodejsApiService.orgFilter} ${NodejsApiService.conFilter} Primary Advantage`;
           
       });
       break;
@@ -87,7 +87,7 @@ export class DonutComponent implements OnInit {
           this.data = this.calculatePercentage(this.data);
           this.assignColors(this.data);
 
-          this.title = `${NodejsApiService.orgFilter} Dormant Advantage`;
+          this.title = `${NodejsApiService.orgFilter} ${NodejsApiService.conFilter} Dormant Advantage`;
       });
       break;
       case 'SECONDARYORGANIZATION':
@@ -97,7 +97,7 @@ export class DonutComponent implements OnInit {
           this.data = this.calculatePercentage(this.data);
           this.assignColors(this.data);
 
-          this.title = `${NodejsApiService.orgFilter} Secondary Advantage`;
+          this.title = `${NodejsApiService.orgFilter}  ${NodejsApiService.conFilter} Secondary Advantage`;
       });
       break;
       case 'SECONDARYPOPULATION':

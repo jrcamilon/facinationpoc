@@ -32,14 +32,12 @@ export class NavGlobalComponent implements OnInit {
         this.conference = row.label;
       }
     }
+
+    
     NodejsApiService.conFilter = this.conference=="View All" ? "all" :  this.conference;
-    if(NodejsApiService.conFilter=="ACMP18"){
-      NodejsApiService.orgFilter ="gmail";
-    } else if(NodejsApiService.conFilter =="all"){
-      NodejsApiService.orgFilter = "gmail"
-    }else if(NodejsApiService.conFilter=="ICON2015"){
-      NodejsApiService.orgFilter = "gmail";
-    }
+    NodejsApiService.orgFilter = "gmail";
+    NodejsApiService.matrixOrgFilter = "gmail";
+   
 
     this.getOrganizationList();
     this.getAllFiles();
@@ -76,7 +74,7 @@ export class NavGlobalComponent implements OnInit {
 
   getAllFiles(){
     this._nodeApi.getAllFiles().subscribe((data)=>{
-      // console.log(data);
+      console.log(data);
       let newArr: any = [];
      for (let i = 1 ; i <= 7 ; i++ ) {
        for (let j = 1; j <= 7 ; j++) {
@@ -113,6 +111,7 @@ export class NavGlobalComponent implements OnInit {
       }
     }
     NodejsApiService.matrixOrgFilter = this.searchContent;
+    
     // console.log( this.searchContent);
     NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
