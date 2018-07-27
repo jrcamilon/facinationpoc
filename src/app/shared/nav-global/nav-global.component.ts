@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import {NodejsApiService} from '../../services/nodejs-api.service';
 @Component({
   selector: 'app-nav-global',
@@ -14,7 +14,7 @@ export class NavGlobalComponent implements OnInit {
   @Output() conference: any;
   public organizations: any;
 
-  constructor(private _nodeApi: NodejsApiService ) { 
+  constructor(private _nodeApi: NodejsApiService ) {
     this._nodeApi.orgnizationList.subscribe(data=>{
       this.organizations = data;
     });
@@ -61,7 +61,7 @@ export class NavGlobalComponent implements OnInit {
     //  NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
       this._nodeApi.primaryDonutChartData.next(data);
-    })
+    });
     // Dormant Donut Data
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
 
@@ -71,7 +71,7 @@ export class NavGlobalComponent implements OnInit {
     this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
 
       this._nodeApi.secondaryDonutChartData.next(data);
-    })
+    });
   }
 
   getAllFiles(){
@@ -117,7 +117,7 @@ export class NavGlobalComponent implements OnInit {
     NodejsApiService.orgFilter = this.searchContent;
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
       this._nodeApi.primaryDonutChartData.next(data);
-    })
+    });
     // Dormant Donut Data
     this._nodeApi.getDormantDonutChartData().subscribe((data) => {
       this._nodeApi.dormantDonutChartData.next(data);
@@ -125,12 +125,11 @@ export class NavGlobalComponent implements OnInit {
     // console.log(this.searchContent);
     this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
       this._nodeApi.secondaryDonutChartData.next(data);
-    })
+    });
     this.getAllFiles();
   }
 
-  resetMatrix(event: any){
-
+  resetMatrix(event: any) {
     NodejsApiService.orgFilter = "gmail";
     NodejsApiService.matrixOrgFilter = "all"
     NodejsApiService.conFilter = "all";

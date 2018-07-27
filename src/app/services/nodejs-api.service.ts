@@ -96,19 +96,25 @@ export class NodejsApiService {
   ]
 
   getAllFiles(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.orgFilter);
+
   }
   getPrimaryDonutChartData(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    console.log(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
   getSecondaryDonutChartData(): Observable<any> {
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    console.log(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
   getDormantDonutChartData(): Observable<any> {
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
   }
   getConferenceOrganizations(): Observable<any>{
-    return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
+    console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
+
   }
   getGenderCounts(): Observable<any>{
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSGenderCountData + NodejsApiService.conFilter + '/:'+ NodejsApiService.matrixOrgFilter + '/:'+ NodejsApiService.boxFilter);

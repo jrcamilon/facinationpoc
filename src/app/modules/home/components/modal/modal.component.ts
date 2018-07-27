@@ -80,6 +80,7 @@ export class ModalComponent implements OnInit {
   primaryAndSecondaryScoresArray: any[];
   primaryPercentage: Number;
   secondaryPercentage: Number;
+  dormantAdvantage: String;
 
   constructor( _nodeApi: NodejsApiService ) {
     _nodeApi.genderCounts.subscribe(data=>{
@@ -187,7 +188,6 @@ export class ModalComponent implements OnInit {
     
   }
 
-
   public organizeChartData() {
 
     /* Get the total of all the advantages for each object in the modal data*/
@@ -239,7 +239,7 @@ export class ModalComponent implements OnInit {
     }
     const organizedByGender = genderObjectsArray.map(ele => {
 
-      if(ele.key!="Other"){
+      if (ele.key!= "Other" ) {
         return new Object({value: ele.value.length, color: ele.key == 'male' ? '#003F7F' : '#FF017E'});
       } else {
 
@@ -325,6 +325,7 @@ export class ModalComponent implements OnInit {
     this.loadSelectedUser(0);
   }
 
+  /* this is for the user select */
   public loadSelectedUser(row: any) {
 
     // const index = row;
@@ -359,6 +360,7 @@ export class ModalComponent implements OnInit {
     this.primaryIndividualCategories = _advantages;
     this.primaryIndividualData = dataWithColors;
     this.primaryIndividualTitle = userSpecificData['fuserid'] + ' Scores';
+    this.dormantAdvantage = userSpecificData['dormantAdvantage'];
   }
 
   public pageChange(event: PageChangeEvent): void {

@@ -10,22 +10,22 @@ export class StackedBarComponent implements OnInit {
   @Input() dataIn: any;
   primary: string;
   secondary: string;
+  @Input() dormant: any;
 
   @Input() primaryPercentage: Number;
   @Input() secondaryPercentage: Number;
 
-  mockData = [
-    {type: 'trust', value: 10, color: 'blue'},
-    {type: 'innovation', value: 11, color: 'red'}
-  ];
+  // mockData = [
+  //   {type: 'trust', value: 10, color: 'blue'},
+  //   {type: 'innovation', value: 11, color: 'red'}
+  // ];
 
-  constructor( ) {
-
-  }
+  constructor( ) { }
 
   ngOnInit() {
     this.primary = this.dataIn[0]['type'];
     this.secondary = this.dataIn[1]['type'];
+    console.log(this.dataIn);
   }
 
 

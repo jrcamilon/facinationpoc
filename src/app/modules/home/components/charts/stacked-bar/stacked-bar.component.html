@@ -1,7 +1,7 @@
-<div>
+<div style="padding-top: 12px;" class="container-fluid">
   <div class="row">
-    <div class="col"><div  style="float: left;"><p>Primary Advantage: <b>{{primary | titlecase}}</b><h4>{{primaryPercentage |percent  }}</h4></div></div>
-    <div class="col"><div  style="float: right;"><p>Secondary Advantage: <b>{{secondary | titlecase}}</b><h4 style="float: right;">{{secondaryPercentage | percent }}</h4></div></div>
+    <div class="col"><div  style="float: left;"><p>Primary : <b>{{primary | titlecase}}</b><h4>{{primaryPercentage | percent  }}</h4></div></div>
+    <div class="col"><div  style="float: right;"><p>Secondary : <b>{{secondary | titlecase}}</b><h4 style="float: right;">{{secondaryPercentage | percent }}</h4></div></div>
   </div>
 </div>
 <kendo-chart class="no-border">
@@ -23,4 +23,8 @@
     </kendo-chart-value-axis>
   </kendo-chart-series>
 </kendo-chart>
+
+<div class="container-fluid">
+  <p>Dormant : <b>{{dormant | titlecase}}</b></p>
+</div>
 
