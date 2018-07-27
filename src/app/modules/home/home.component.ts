@@ -164,6 +164,10 @@ export class HomeComponent implements OnInit {
   boxClicked(x: Number, y: Number) {
 
       const index = x.toString() + y.toString();
+      NodejsApiService.boxFilter = index;
+      this._nodeApi.getGenderCounts().subscribe((data)=>{
+        this._nodeApi.genderCounts.next(data);
+      })
       const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50', '60', '70' ];
       const primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
       const i = this.gridTileData.findIndex(ele => ele.key === index);
@@ -188,6 +192,7 @@ export class HomeComponent implements OnInit {
       this.modalIndex = index;
       const i = this.gridTileData.findIndex(x => x.key === index);
       this.modalData = this.gridTileData[i]['data'] === undefined ? [] : this.gridTileData[i]['data'];
+      
 
   }
 

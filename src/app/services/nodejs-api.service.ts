@@ -16,20 +16,23 @@ export class NodejsApiService {
   public secondaryDonutChartData = new Subject<any>();
   public dormantDonutChartData = new Subject<any>();
   public orgnizationList = new Subject<any>();
+  public genderCounts = new Subject<any>();
   // local variables
   private nodeJSAllDataEndpoint = '/data';
   private nodeJSPrimaryDonutChartData = '/primary-population/:';
   private nodeJSSecondaryDonutChartData = '/secondary-population/:';
   private nodeJSDormantDonutChartData = '/dormant-population/:';
   private nodeJSConferenceOrganizations = '/organizations/:';
+  private nodeJSGenderCountData = '/genderdata/:'
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
   //Static Variables
   static orgFilter = "gmail";
   static matrixOrgFilter = "all";
   static conFilter = "all";
-  static totalMales = 136;
+  static totalMales = 146;
   static totalFemales= 353;
+  static boxFilter = '15';
   static boxPrimaryData = [
     { key: 1, primary: "Innovation",languageOf: "Creativity", adjectives: "Creative, Entrepreneurial, Visionary", overview: "Push companies to innovate with creativity.", communication: "Tweak traditional conversation.", fascination:"Get creative.",otherLeaders:"Madonna, Albert Einstein, Amelia Earhart, Frank Lloyd Wright, Betty White" },
     { key: 2, primary: "Passion",languageOf: "Relationship", adjectives: "Engaging, Expressive, Intuitive", overview: "Build connections with warmth and enthusiam.", communication: "Immediately create an emotional connection.", fascination:"Connect with emotion.",otherLeaders:"Leonardo Da Vinci, Ronald Regan, Audrey Hepburn, Oprah Winfrey, George Lucas" },
@@ -106,6 +109,10 @@ export class NodejsApiService {
   }
   getConferenceOrganizations(): Observable<any>{
     return this.http.get(this.localNodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
+  }
+  getGenderCounts(): Observable<any>{
+    return this.http.get(this.localNodeJSEndpoint + this.nodeJSGenderCountData + NodejsApiService.conFilter + '/:'+ NodejsApiService.matrixOrgFilter + '/:'+ NodejsApiService.boxFilter);
+
   }
   constructor(private http: HttpClient) { }
 }
