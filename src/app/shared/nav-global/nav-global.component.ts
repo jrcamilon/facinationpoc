@@ -30,12 +30,15 @@ export class NavGlobalComponent implements OnInit {
       let row = event.target[i];
       if(row.selected){
         this.conference = row.label;
+        console.log(row.label);
       }
     }
 
-    
+    //For Donut Chart    
     NodejsApiService.conFilter = this.conference=="View All" ? "all" :  this.conference;
     NodejsApiService.orgFilter = "gmail";
+    //For Matrix
+    NodejsApiService.matrixConFilter = this.conference=="View All" ? "all" :  this.conference;
     NodejsApiService.matrixOrgFilter = "gmail";
    
 

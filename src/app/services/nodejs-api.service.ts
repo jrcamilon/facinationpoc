@@ -30,6 +30,7 @@ export class NodejsApiService {
   static orgFilter = "gmail";
   static matrixOrgFilter = "all";
   static conFilter = "all";
+  static matrixConFilter = "all";
   static totalMales = 146;
   static totalFemales= 353;
   static boxFilter = '15';
@@ -97,7 +98,7 @@ export class NodejsApiService {
 
   getAllFiles(): Observable<any> {
     console.log(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter)
-    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter);
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.matrixConFilter}` +'/:'+ NodejsApiService.matrixOrgFilter);
 
   }
   getPrimaryDonutChartData(): Observable<any> {

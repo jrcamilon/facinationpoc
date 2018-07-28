@@ -181,7 +181,7 @@ export class HomeComponent implements OnInit {
   resetMatrix() {
     // NodejsApiService.orgFilter = "gmail";
     NodejsApiService.matrixOrgFilter = "all"
-    NodejsApiService.conFilter = "all";
+    NodejsApiService.matrixConFilter = "all";
 
     this.getAllFiles();
     

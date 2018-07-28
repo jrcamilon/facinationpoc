@@ -86,7 +86,6 @@ export class DonutComponent implements OnInit {
           this.addToData(this.data);
           this.data = this.calculatePercentage(this.data);
           this.assignColors(this.data);
-
           this.title = `${NodejsApiService.orgFilter} ${NodejsApiService.conFilter} Dormant Advantage`;
       });
       break;
@@ -96,7 +95,6 @@ export class DonutComponent implements OnInit {
           this.addToData(this.data);
           this.data = this.calculatePercentage(this.data);
           this.assignColors(this.data);
-
           this.title = `${NodejsApiService.orgFilter}  ${NodejsApiService.conFilter} Secondary Advantage`;
       });
       break;
