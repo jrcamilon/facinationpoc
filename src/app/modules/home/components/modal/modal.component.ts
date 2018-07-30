@@ -16,7 +16,6 @@ import { SeriesLabels } from '@progress/kendo-angular-charts';
 })
 export class ModalComponent implements OnInit {
 
-  
   @Input() index;
   @Input() data;
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
@@ -44,6 +43,8 @@ export class ModalComponent implements OnInit {
   public opened = true;
   public videoBox = false;
 
+  public genderSeriesColors: any = [];
+
   public apiGenderData: any=[];
   conferenceData: any= [];
   organizationData: any=[];
@@ -60,6 +61,7 @@ export class ModalComponent implements OnInit {
   genderCateogires: string[];
   genderData: any[];
   genderTital = 'Gender Distribution';
+
   advantageColors = [
     { advantage: 'innovation', color: '#EDA716', videoBox: '10'},
     { advantage: 'passion', color: '#B74A2A', videoBox: '20'},
@@ -289,25 +291,31 @@ export class ModalComponent implements OnInit {
     switch(this.index[0]){
       case '1':
       this.innovation = true;
-      console.log("Innovation is true");
+      this.genderSeriesColors = ['#663300', '#666699', '#EDA716'];
       break;
       case '2':
       this.passion = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#B74A2A'];
       break;
       case '3':
       this.power = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#82181B'];
       break;
       case '4':
       this.prestige = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#472656'];
       break;
       case '5':
       this.trust = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#223D6E'];
       break;
       case '6':
       this.mystique = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#005B5D'];
       break;
       case '7':
       this.alert = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#285A17'];
       break;
     }
   }
