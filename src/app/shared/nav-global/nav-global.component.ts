@@ -13,7 +13,7 @@ export class NavGlobalComponent implements OnInit {
   @Output() searchContent : any;
   @Output() conference: any;
   public organizations: any;
-
+  public opened: any = false;
   constructor(private _nodeApi: NodejsApiService ) {
     this._nodeApi.orgnizationList.subscribe(data=>{
       this.organizations = data;
@@ -25,6 +25,8 @@ export class NavGlobalComponent implements OnInit {
   }
 
   changeConference(event:any){
+
+    console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);
 
     for(let i = 0; i< event.target.length;i++){
       let row = event.target[i];
@@ -43,10 +45,27 @@ export class NavGlobalComponent implements OnInit {
    
 
     this.getOrganizationList();
+
+    for(let i = 0 ; i < this.selectOrg.nativeElement.children.length; i++){
+      let row = this.selectOrg.nativeElement.children[i];
+
+      if(row.innerHTML ==NodejsApiService.previousOrgFilter){
+        console.log("found an instance");
+        this.selectOrg.nativeElement.selectedIndex = i;
+        NodejsApiService.orgFilter = row.innerHTML;
+        NodejsApiService.matrixOrgFilter = row.innerHTML;
+      }else{
+        this.open();
+      }
+    }
     this.getAllFiles();
     this.getDonutChartData();
   }
 
+  alertForEmptyOrgSet(){
+
+
+  }
   getOrganizationList(){
 
     this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
@@ -56,7 +75,13 @@ export class NavGlobalComponent implements OnInit {
       });
     });
   }
-
+  public open() {
+    this.opened = true;
+  }
+  public close(status) {
+    // console.log(`Dialog result: ${status}`);
+    this.opened = false;
+  }
   getDonutChartData(){
 
     //  NodejsApiService.orgFilter = this.searchContent;
@@ -113,10 +138,12 @@ export class NavGlobalComponent implements OnInit {
         this.searchContent = row.label;
       }
     }
+    NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
     NodejsApiService.matrixOrgFilter = this.searchContent;
-    
-    // console.log( this.searchContent);
     NodejsApiService.orgFilter = this.searchContent;
+    console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);
+
+
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
       this._nodeApi.primaryDonutChartData.next(data);
     });

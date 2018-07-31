@@ -28,6 +28,8 @@ export class NodejsApiService {
   private localNodeJSEndpoint = environment.nodeJs.local;
   //Static Variables
   static orgFilter = "gmail";
+  static previousOrgFilter = "";
+  
   static matrixOrgFilter = "all";
   static conFilter = "all";
   static matrixConFilter = "all";
