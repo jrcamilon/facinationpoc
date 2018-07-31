@@ -260,7 +260,7 @@ export class ModalComponent implements OnInit {
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
-    console.log(this.genderData);
+    // console.log(this.genderData);
     if (this.genderData[1] !== undefined) {
       this.totalMales = this.genderData[1].value;
     }

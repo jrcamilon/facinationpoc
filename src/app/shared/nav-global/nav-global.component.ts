@@ -13,6 +13,7 @@ export class NavGlobalComponent implements OnInit {
   @Output() searchContent : any;
   @Output() conference: any;
   public organizations: any;
+  foundOrgInCon: any;
   public opened: any = false;
   constructor(private _nodeApi: NodejsApiService ) {
     this._nodeApi.orgnizationList.subscribe(data=>{
@@ -26,8 +27,10 @@ export class NavGlobalComponent implements OnInit {
 
   changeConference(event:any){
 
+    console.log("User has changed the Conference");
     console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);
 
+    // this.getPreviousOrgFilter();
     for(let i = 0; i< event.target.length;i++){
       let row = event.target[i];
       if(row.selected){
@@ -36,30 +39,25 @@ export class NavGlobalComponent implements OnInit {
       }
     }
 
+
+    
+
     //For Donut Chart    
-    NodejsApiService.conFilter = this.conference=="View All" ? "all" :  this.conference;
-    NodejsApiService.orgFilter = "gmail";
+    NodejsApiService.conFilter = this.conference == "View All" ? "all" :  this.conference;
+    // NodejsApiService.orgFilter = "gmail";
     //For Matrix
-    NodejsApiService.matrixConFilter = this.conference=="View All" ? "all" :  this.conference;
-    NodejsApiService.matrixOrgFilter = "gmail";
+    NodejsApiService.matrixConFilter = this.conference == "View All" ? "all" :  this.conference;
+    // NodejsApiService.matrixOrgFilter = "gmail";
    
 
     this.getOrganizationList();
+    // console.log(this.organizations);
 
-    for(let i = 0 ; i < this.selectOrg.nativeElement.children.length; i++){
-      let row = this.selectOrg.nativeElement.children[i];
-
-      if(row.innerHTML ==NodejsApiService.previousOrgFilter){
-        console.log("found an instance");
-        this.selectOrg.nativeElement.selectedIndex = i;
-        NodejsApiService.orgFilter = row.innerHTML;
-        NodejsApiService.matrixOrgFilter = row.innerHTML;
-      }else{
-        this.open();
-      }
-    }
-    this.getAllFiles();
-    this.getDonutChartData();
+   
+  }
+  getPreviousOrgFilter(){
+    console.log(this.selectOrg.nativeElement);
+    // NodejsApiService.previousOrgFilter = this.selectOrg.nativeElement.selected;
   }
 
   alertForEmptyOrgSet(){
@@ -72,6 +70,33 @@ export class NavGlobalComponent implements OnInit {
       this._nodeApi.orgnizationList.next(data);
       this._nodeApi.orgnizationList.subscribe(data=>{
         this.organizations = data;
+
+        console.log("Searching for ",NodejsApiService.previousOrgFilter," in ",this.organizations);
+
+
+        for(let i = 0 ; i < this.organizations.length; i++){
+          let row = this.organizations[i];
+    
+          if(row.organization === NodejsApiService.previousOrgFilter){
+            // console.log("We found an instance");
+            this.foundOrgInCon = true;
+            this.selectOrg.nativeElement.selectedIndex = i;
+            NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
+            NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
+          }
+        }
+
+        if(this.foundOrgInCon){
+          console.log(true);
+        }else{
+          console.log(false);
+        }
+    
+    
+        
+        this.getAllFiles();
+        this.getDonutChartData();
+        
       });
     });
   }
@@ -102,7 +127,7 @@ export class NavGlobalComponent implements OnInit {
 
   getAllFiles(){
     this._nodeApi.getAllFiles().subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       let newArr: any = [];
      for (let i = 1 ; i <= 7 ; i++ ) {
        for (let j = 1; j <= 7 ; j++) {
@@ -132,16 +157,22 @@ export class NavGlobalComponent implements OnInit {
   }
 
   changeOrganization(event: any) {
+
+    console.log("User has changed the organization");
     for(let i = 0; i< event.target.length;i++){
       let row = event.target[i];
       if(row.selected){
         this.searchContent = row.label;
       }
     }
-    NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
+
+    console.log("Changing the org filter from ",NodejsApiService.orgFilter,"to", this.searchContent);
     NodejsApiService.matrixOrgFilter = this.searchContent;
     NodejsApiService.orgFilter = this.searchContent;
-    console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);
+    console.log("Changing the previous org filter from ",NodejsApiService.previousOrgFilter,"to",NodejsApiService.orgFilter);
+
+    NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
+
 
 
     this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{

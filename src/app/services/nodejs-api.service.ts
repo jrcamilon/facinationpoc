@@ -28,7 +28,7 @@ export class NodejsApiService {
   private localNodeJSEndpoint = environment.nodeJs.local;
   //Static Variables
   static orgFilter = "gmail";
-  static previousOrgFilter = "";
+  static previousOrgFilter = "gmail";
   
   static matrixOrgFilter = "all";
   static conFilter = "all";
@@ -99,24 +99,24 @@ export class NodejsApiService {
   ]
 
   getAllFiles(): Observable<any> {
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter)
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.conFilter}` +'/:'+ NodejsApiService.matrixOrgFilter)
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSAllDataEndpoint+'/:' + `${NodejsApiService.matrixConFilter}` +'/:'+ NodejsApiService.matrixOrgFilter);
 
   }
   getPrimaryDonutChartData(): Observable<any> {
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
 
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSPrimaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
   getSecondaryDonutChartData(): Observable<any> {
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSSecondaryDonutChartData + NodejsApiService.orgFilter+'/:'+`${NodejsApiService.conFilter}`);
   }
   getDormantDonutChartData(): Observable<any> {
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSDormantDonutChartData + NodejsApiService.orgFilter+'/:'+NodejsApiService.conFilter);
   }
   getConferenceOrganizations(): Observable<any>{
-    console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
 
   }
