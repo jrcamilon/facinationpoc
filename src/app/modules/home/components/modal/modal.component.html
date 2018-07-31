@@ -45,7 +45,8 @@
                         (pageChange)="pageChange($event)"
                         [height]="314"
                         [selectable]="true"
-                        (selectionChange)="selected($event)"          
+                        (selectionChange)="selected($event)"  
+                        
                         >
                         <!-- <kendo-grid-checkbox-column showSelectAll="true"></kendo-grid-checkbox-column> -->
                         <kendo-grid-column field="fuserid" title="User ID" [width]="150"></kendo-grid-column>
@@ -118,13 +119,10 @@
                                 <div class="row">
                                   <div class="col-6"><app-pie [males] ="totalMales" [others]="totalOthers" [type]="'archetype'" [females]="totalFemales" [title]="'Gender by Archetype'"></app-pie></div>
                                   <!-- <div class="col-6"><app-pie [males] ="totalMales" [type]="'pop'" [females]="totalFemales" [title]="'Gender by Population'"></app-pie> </div> -->
-                                  <kendo-chart class="col-6">
+                                  <kendo-chart class="col-6" [seriesColors]="this.genderSeriesColors">
+
+                                    <kendo-chart-area background="transparent" [height]="300"></kendo-chart-area>
                                     <kendo-chart-legend [visible]="true">
-                                      <!--              ^^^^^^^^^
-                                           Note the binding is required,
-                                           otherwise the property will be
-                                           bound to a 'false' string.
-                                      -->
                                     </kendo-chart-legend>
 
                                     <kendo-chart-title text="Gender by Conference, Orgnization, Archetype"></kendo-chart-title>

@@ -16,7 +16,6 @@ import { SeriesLabels } from '@progress/kendo-angular-charts';
 })
 export class ModalComponent implements OnInit {
 
-  
   @Input() index;
   @Input() data;
   @Output() modalClose: EventEmitter<any> = new EventEmitter();
@@ -44,6 +43,8 @@ export class ModalComponent implements OnInit {
   public opened = true;
   public videoBox = false;
 
+  public genderSeriesColors: any = [];
+
   public apiGenderData: any=[];
   conferenceData: any= [];
   organizationData: any=[];
@@ -60,6 +61,7 @@ export class ModalComponent implements OnInit {
   genderCateogires: string[];
   genderData: any[];
   genderTital = 'Gender Distribution';
+
   advantageColors = [
     { advantage: 'innovation', color: '#EDA716', videoBox: '10'},
     { advantage: 'passion', color: '#B74A2A', videoBox: '20'},
@@ -96,42 +98,50 @@ export class ModalComponent implements OnInit {
       // console.log(sortedBox);
 
 
-      for(let i = 0; i < 4 ;i++){
+
+      for (let i = 0; i < 4 ; i++) {
 
 
-        if(sortedConference[i]!=undefined){
+        if (sortedConference[i]!= undefined) {
         let str = sortedConference[i].gender.replace(/\s/g, '');
 
           switch(str){
             case "male":
             // console.log("found a male");
-            this.conferenceData.splice(1,0,{Type: "Conference","Total":sortedConference[i].Value});
+            this.conferenceData.splice(1,0,{Type: "Conference","Total":sortedConference[i].Value , color: '#172457'});
             break
             case "female":
             // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
-            this.conferenceData.splice(0,0, {Type: "Conference","Total":sortedConference[i].Value});
+            this.conferenceData.splice(0,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#711331'});
 
             break;
             case "Other":
-            this.conferenceData.splice(2,0, {Type: "Conference","Total":sortedConference[i].Value});
+            this.conferenceData.splice(2,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#567714'});
 
             // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
           }
         }
+      // shades of blue
+      // 172457, 303C74, 7B84AE
 
+      // shades of pink
+      // 711331, 973252, BD5E7C
+
+      // shades of green
+      // 567714, 7A9F35, A5C663
 
         if(sortedOrganization[i]!=undefined){
           let str1 = sortedOrganization[i].gender.replace(/\s/g, '');
     
           switch(str1){
             case "male":
-            this.organizationData.splice(1,0, {Type: "Organization","Total":sortedOrganization[i].Value});
+            this.organizationData.splice(1,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#303C74'});
             break
             case "female":
-            this.organizationData.splice(0,0,{Type: "Organization","Total":sortedOrganization[i].Value});
+            this.organizationData.splice(0,0,{Type: "Organization","Total":sortedOrganization[i].Value, color: '#973252'});
             break;
             case "Other":
-            this.organizationData.splice(2,0, {Type: "Organization","Total":sortedOrganization[i].Value});
+            this.organizationData.splice(2,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#7A9F35'});
           }
         }
     
@@ -141,13 +151,13 @@ export class ModalComponent implements OnInit {
 
           switch(str2){
             case "male":
-            this.boxData.splice(1,0,{Type: "Archetype","Total":sortedBox[i].Value});
+            this.boxData.splice(1,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#7B84AE'});
             break
             case "female":
-            this.boxData.splice(0,0,{Type: "Archetype","Total":sortedBox[i].Value});
+            this.boxData.splice(0,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#BD5E7C'});
             break;
             case "Other":
-            this.boxData.splice(2,0,{Type: "Archetype","Total":sortedBox[i].Value});
+            this.boxData.splice(2,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#A5C663'});
           }
     
       }
@@ -251,7 +261,7 @@ export class ModalComponent implements OnInit {
     this.genderData = organizedByGender;
 
     console.log(this.genderData);
-    if (this.genderData[1] !== undefined){
+    if (this.genderData[1] !== undefined) {
       this.totalMales = this.genderData[1].value;
     }
     else{
@@ -281,25 +291,31 @@ export class ModalComponent implements OnInit {
     switch(this.index[0]){
       case '1':
       this.innovation = true;
-      console.log("Innovation is true");
+      this.genderSeriesColors = ['#663300', '#666699', '#EDA716'];
       break;
       case '2':
       this.passion = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#B74A2A'];
       break;
       case '3':
       this.power = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#82181B'];
       break;
       case '4':
       this.prestige = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#472656'];
       break;
       case '5':
       this.trust = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#223D6E'];
       break;
       case '6':
       this.mystique = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#005B5D'];
       break;
       case '7':
       this.alert = true;
+      this.genderSeriesColors = ['#663300', '#666699', '#285A17'];
       break;
     }
   }

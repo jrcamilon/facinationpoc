@@ -17,13 +17,14 @@
     </ul>
 
     
-    <div class="form-inline my-2 my-lg-12 ">
+    <div class="form-inline">
 
         <select class="form-control  conferences nav-ele"  #selectCon (change)="changeConference($event)" id="power" required>
             <option  >View All</option>
             <option  >ACMP18</option>
             <option   > ICON2015</option>
-          </select>
+        </select>
+        
         <select class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="power" required>
         <option   *ngFor = "let organization of organizations" >{{organization.organization}}</option>
         </select>
