@@ -75,6 +75,7 @@ export class HomeComponent implements OnInit {
       this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
         this._nodeApi.orgnizationList.next(data);
       });
+    
       
   }
 
@@ -83,6 +84,21 @@ export class HomeComponent implements OnInit {
       let filterKey;
       let commonArchetypes = [];
       const newArr = [];
+
+  
+      this._nodeApi.getAllOrganizations().subscribe((data)=>{
+        this._nodeApi.allOrgs.next(data);
+
+      });
+      
+      this._nodeApi.getAcmpOrganizations().subscribe((data)=>{
+        this._nodeApi.acmpOrgs.next(data);
+
+      });
+      this._nodeApi.getIconOrganizations().subscribe((data)=>{
+        this._nodeApi.iconOrgs.next(data);
+
+      });
       // Matrix Data
       this._nodeApi.getAllFiles().subscribe((data) => {
         for (let i = 1 ; i <= this.advantages.length - 1 ; i++ ) {

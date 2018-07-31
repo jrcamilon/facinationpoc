@@ -19,16 +19,15 @@
     
     <div class="form-inline">
 
-        <select class="form-control  conferences nav-ele"  #selectCon (change)="changeConference($event)" id="power" required>
-            <option  >View All</option>
-            <option  >ACMP18</option>
-            <option   > ICON2015</option>
+        <select [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
+            <option  [value]="conference" *ngFor="let conference of conferences">{{conference}}</option>
+          
         </select>
         
-        <select class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="power" required>
-        <option   *ngFor = "let organization of organizations" >{{organization.organization}}</option>
+        <select [ngModel]="selectedItem"  class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="org" required>
+        <option  [ngValue]="organization" *ngFor = "let organization of organizations" >{{organization.organization}}</option>
         </select>
-
+      
         <button class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button>
         <a class="navbar-brand" href="#">
             <img id="InfoSolLogo" src="../../../assets/images/infosol-logo.svg">
@@ -38,7 +37,7 @@
   </div>
 </nav>
 
-<kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
-  <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+<kendo-dialog title="Notice" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+  <p style="margin: 30px; text-align: center;">The Conference {{conError}} does not contain data for the Organization {{orgError}}. Selecting Gmail instead. </p>
 
 </kendo-dialog>

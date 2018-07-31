@@ -17,6 +17,9 @@ export class NodejsApiService {
   public dormantDonutChartData = new Subject<any>();
   public orgnizationList = new Subject<any>();
   public genderCounts = new Subject<any>();
+  public acmpOrgs = new Subject<any>();
+  public allOrgs = new Subject<any>();
+  public iconOrgs = new Subject<any>();
   // local variables
   private nodeJSAllDataEndpoint = '/data';
   private nodeJSPrimaryDonutChartData = '/primary-population/:';
@@ -118,7 +121,19 @@ export class NodejsApiService {
   getConferenceOrganizations(): Observable<any>{
     // console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter);
-
+  }
+  getAllOrganizations(): Observable<any>{
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + "all");
+  }
+  
+  getAcmpOrganizations(): Observable<any>{
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + "ACMP18");
+  }
+  getIconOrganizations(): Observable<any>{
+    // console.log(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations + NodejsApiService.conFilter)
+    return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSConferenceOrganizations +"ICON2015");
   }
   getGenderCounts(): Observable<any>{
     return this.http.get(this.vm3NodeJSEndpoint + this.nodeJSGenderCountData + NodejsApiService.conFilter + '/:'+ NodejsApiService.matrixOrgFilter + '/:'+ NodejsApiService.boxFilter);
