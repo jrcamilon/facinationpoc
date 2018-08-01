@@ -296,8 +296,8 @@ export class HomeComponent implements OnInit {
       this.modalOpen = false;
   }
 
-  //Get Various Organization Lists
-  changeConference(event:any){
+  // Get Various Organization Lists
+  changeConference(event:any) {
 
     console.log("User has changed the Conference");
     console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);

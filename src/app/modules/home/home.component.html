@@ -4,24 +4,21 @@
 
 <kendo-panelbar (stateChange)="ngOnInit()" >
        
-            <kendo-panelbar-item [title]="'Drill Downs'" [expanded] = "isDrillDownExpanded">   
+            <kendo-panelbar-item [title]="'Drill Downs'" [expanded]="isDrillDownExpanded">   
                     <ng-template kendoPanelBarContent >
-                    <div class="form-inline">
+                    <div class="form-inline" style=" margin: 5px; margin-left: 45px;">
 
-                            <select [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
+                            FILTER BY:
+                            <select  style="margin-left: 10px;" [ngModel]="selectCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
                                 <option  [value]="conference" *ngFor="let conference of conferences">{{conference}}</option>
                               
                             </select>
-                            
-                            <select [ngModel]="selectedItem"  class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="org" required>
+                            <!-- ORGANIZATION: -->
+                            <select  style="margin-left: 10px;"  [ngModel]="selectedItem"  class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="org" required>
                                 <option>View All</option>
                             <option  [ngValue]="organization" *ngFor = "let organization of organizations" >{{organization.organization}}</option>
                             </select>
-                          
-                            <!-- <button class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button> -->
-                            <a class="navbar-brand" href="#">
-                                <img id="InfoSolLogo" src="../../../assets/images/infosol-logo.svg">
-                            </a>
+                        
                     
                         </div>
                 </ng-template>
@@ -79,7 +76,7 @@
                                 <div class="col box-container" *ngFor="let item2 of advantages; let y = index" [ngClass]="'padding-0'"  (click)="boxClicked(x, y)" >
                                     <div class="box" [attr.id]="'box' + x + y" >
                                         <div id="resetContainer" *ngIf="x===0 && y==0">
-                                        <button id="resetBtn" class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button>
+                                        <!-- <button id="resetBtn" class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button> -->
 
                                         </div>
                                         <div *ngIf="x === 0 && y !== 0">
