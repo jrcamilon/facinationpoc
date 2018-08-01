@@ -30,8 +30,8 @@ export class NodejsApiService {
   private vm3NodeJSEndpoint = environment.nodeJs.vm3;
   private localNodeJSEndpoint = environment.nodeJs.local;
   //Static Variables
-  static orgFilter = "gmail";
-  static previousOrgFilter = "gmail";
+  static orgFilter = "all";
+  static previousOrgFilter = "";
   
   static matrixOrgFilter = "all";
   static conFilter = "all";

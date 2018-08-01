@@ -68,55 +68,54 @@ export class HomeComponent implements OnInit {
   modalData: any;
 
 
-  //Nav Global Variables//
+  // Nav Global Variables//
 
-  @ViewChild("selectCon")  selectCon: ElementRef;
-  @ViewChild("selectOrg") selectOrg: ElementRef;
+  @ViewChild('selectCon')  selectCon: ElementRef;
+  @ViewChild('selectOrg') selectOrg: ElementRef;
 
-  @Output() searchContent : any;
+  @Output() searchContent: any;
   @Output() conference: any;
 
   public organizations: any;
-  public conferences: any = ["View All","ACMP18","ICON2015"];
+  public conferences: any = ['View All', 'ACMP18', 'ICON2015'];
   public conError: String;
   public orgError: String;
   public allOrgs: any;
   public acmpOrgs: any;
   public iconOrgs: any;
   public selectedItem: any;
-  public selectedCon: any = this.conferences[0]
+  public selectedCon: any = this.conferences[0];
   public opened: any = false;
   public isDrillDownExpanded = false;
   public isDonutExpanded = false;
   public isMatrixExpanded = true;
+  public isViewAllOrgs = true;
+  public isViewAllCons = true;
     // Constructor loading in the Node and IBE API Service
   constructor(private _nodeApi: NodejsApiService, public _IBE: IbeService) {
 
-    //Nav Global
+    // Nav Global
     this._nodeApi.getConferenceOrganizations().subscribe((data) => {
       this.organizations = data;
-      this.selectedItem = "View All";
+      this.selectedItem = 'View All';
     });
-    this._nodeApi.allOrgs.subscribe(data =>{
+    this._nodeApi.allOrgs.subscribe(data => {
       // this.organizations = data;
       this.allOrgs = data;
     });
-    this._nodeApi.acmpOrgs.subscribe(data =>{
+    this._nodeApi.acmpOrgs.subscribe(data => {
       this.acmpOrgs = data;
     });
-    this._nodeApi.iconOrgs.subscribe(data =>{
+    this._nodeApi.iconOrgs.subscribe(data => {
       this.iconOrgs = data;
     });
 
 
       this._nodeApi.allData.subscribe((data) => {
-        
       });
-      this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
+      this._nodeApi.getConferenceOrganizations().subscribe((data) => {
         this._nodeApi.orgnizationList.next(data);
       });
-    
-      
   }
 
     // On Initialize
@@ -124,31 +123,28 @@ export class HomeComponent implements OnInit {
       let filterKey;
       let commonArchetypes = [];
       const newArr = [];
-
-  
-      this._nodeApi.getAllOrganizations().subscribe((data)=>{
+      this._nodeApi.getAllOrganizations().subscribe((data) => {
         this._nodeApi.allOrgs.next(data);
 
       });
-      
-      this._nodeApi.getAcmpOrganizations().subscribe((data)=>{
+      this._nodeApi.getAcmpOrganizations().subscribe((data) => {
         this._nodeApi.acmpOrgs.next(data);
 
       });
-      this._nodeApi.getIconOrganizations().subscribe((data)=>{
+      this._nodeApi.getIconOrganizations().subscribe((data) => {
         this._nodeApi.iconOrgs.next(data);
 
       });
       // Matrix Data
       this._nodeApi.getAllFiles().subscribe((data) => {
         for (let i = 1 ; i <= this.advantages.length - 1 ; i++ ) {
-          for (let j = 1; j <= this.advantages.length -1 ; j++) {
+          for (let j = 1; j <= this.advantages.length - 1 ; j++) {
             filterKey  = `${i}${j}`;
             commonArchetypes = [];
             for (let a = 0; a < data.length; a++) {
               const row = data[a];
               // console.log(row.boxkey);
-              if ( `${row.boxkey}` == filterKey ) {
+              if ( `${row.boxkey}` === filterKey ) {
                 commonArchetypes.push(row);
               }
             }
@@ -161,27 +157,27 @@ export class HomeComponent implements OnInit {
       });
       // Primary Donut Data
       this._nodeApi.getPrimaryDonutChartData().subscribe((data) => {
-        // console.log("primaryData",data);
+        // console.log('primaryData',data);
         this._nodeApi.primaryDonutChartData.next(data);
       });
       // Dormant Donut Data
       this._nodeApi.getSecondaryDonutChartData().subscribe((data) => {
-        // console.log("secondaryData",data);
+        // console.log('secondaryData',data);
 
         this._nodeApi.secondaryDonutChartData.next(data);
       });
 
       // Dormant Donut Data
       this._nodeApi.getDormantDonutChartData().subscribe((data) => {
-        // console.log("dormantData",data);
+        // console.log('dormantData',data);
 
         this._nodeApi.dormantDonutChartData.next(data);
       });
 
-      this._nodeApi.gridTileData.subscribe(data=>{
+      this._nodeApi.gridTileData.subscribe(data => {
         this.gridTileData = data;
         // console.log(this.gridTileData);
-      })
+      });
 
       // Constants for IBE Services
       const parameters: Parameter[] = [];
@@ -204,67 +200,27 @@ export class HomeComponent implements OnInit {
         });
   }
 
-  // // Method to get all grid tile data
-  // addToService(arr: any) {
-  // this.gridTileData = arr;
-  // this._nodeApi.gridTileData.next(arr);
-  // }
-
-  // getAllFiles(){
-  //   this._nodeApi.getAllFiles().subscribe((data)=>{
-  //     // console.log(data);
-  //     let newArr: any = [];
-  //    for (let i = 1 ; i <= 7 ; i++ ) {
-  //      for (let j = 1; j <= 7 ; j++) {
-  //         let filterKey  = `${i}${j}`;
-  //        let commonArchetypes = [];
-
-  //        for (let a = 0; a < data.length; a++) {
-  //          const row = data[a];
-
-  //          if ( `${row.boxkey}` == filterKey ) {
-  //            commonArchetypes.push(row);
-  //          }
-  //        }
-  //        const newParsedBoxData = {key: filterKey , data: commonArchetypes};
-  //        newArr.push(newParsedBoxData);
-  //      }
-  //    }
-  //    this.addToService(newArr);
-  //     this._nodeApi.allData.next(data);
-  //   });
-  // }
-  // resetMatrix() {
-  //   // NodejsApiService.orgFilter = "gmail";
-  //   NodejsApiService.matrixOrgFilter = "all"
-  //   NodejsApiService.matrixConFilter = "all";
-
-  //   this.getAllFiles();
-    
-  //   this.ngOnInit();
-  // }
   changeDonut(event: any) {
 
-    this.dormant =(event==false) ? true : false;
-    this.secondary  = (event==false) ? false : true;
+    this.dormant = (event === false) ? true : false;
+    this.secondary  = (event === false) ? false : true;
     this.ngOnInit();
   }
 
   boxClicked(x: Number, y: Number) {
 
       const index = x.toString() + y.toString();
-      if(index=='00'){
+      if (index === '00') {
         console.log('reset');
-        this.resetMatrix("event");
-      } else{
+        this.resetMatrix('event');
+      } else {
         NodejsApiService.boxFilter = index;
-        this._nodeApi.getGenderCounts().subscribe((data)=>{
+        this._nodeApi.getGenderCounts().subscribe((data) => {
           this._nodeApi.genderCounts.next(data);
-        })
+        });
         const boxExcludeList = ['01', '02' , '03' , '04' , '05' , '06', '07', '10', '20', '30', '40', '50', '60', '70' ];
         const primaryBoxesForVideo = ['10', '20', '30', '40', '50', '60', '70'];
         const i = this.gridTileData.findIndex(ele => ele.key === index);
-  
         if (!boxExcludeList.includes(index) && this.gridTileData[i]['data'].length !== 0) {
           this.onModalOpen(index);
         } else if (primaryBoxesForVideo.includes(index)) {
@@ -272,8 +228,6 @@ export class HomeComponent implements OnInit {
           this.videoModalOpen(index);
         }
       }
-
-     
   }
 
   public videoModalOpen(index: any) {
@@ -288,131 +242,164 @@ export class HomeComponent implements OnInit {
       this.modalIndex = index;
       const i = this.gridTileData.findIndex(x => x.key === index);
       this.modalData = this.gridTileData[i]['data'] === undefined ? [] : this.gridTileData[i]['data'];
-      
-
   }
 
   onModalClose(event: any) {
       this.modalOpen = false;
   }
 
-  //Get Various Organization Lists
-  changeConference(event:any){
+  // Get Various Organization Lists
+  changeConference(event: any) {
 
-    console.log("User has changed the Conference");
-    console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);
 
-    this.conference =this.selectCon.nativeElement.value;
-    console.log("Retrieved the conference from the element", this.conference);
-    NodejsApiService.conFilter = this.conference === "View All" ? "all" :  this.conference;
-    console.log("Set the NodeJS Con Filter", NodejsApiService.conFilter);
-    NodejsApiService.matrixConFilter = NodejsApiService.conFilter;
-    // this.getOrganizationList();
 
-    switch(NodejsApiService.conFilter){
-      case "all":
-      this.organizations = this.allOrgs;
-      break;
-      case "ACMP18":
-      this.organizations = this.acmpOrgs;
-      break;
-      case "ICON2015":
-      this.organizations = this.iconOrgs;
-      break;
+    NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
+    this.conference = this.selectCon.nativeElement.value;
+    console.log('User has changed the Conference', this.conference);
+    this.isViewAllCons = (this.conference === 'View All' ? true : false);
+
+    if ( this.isViewAllOrgs && this.isViewAllCons) {
+      this.isDonutExpanded = false;
+      // Set the conferene filter to all
+      NodejsApiService.conFilter = 'all';
+      NodejsApiService.matrixConFilter = 'all';
+    } else if ( !this.isViewAllOrgs && this.isViewAllCons) {
+      // Set the conferene filter to all
+      NodejsApiService.conFilter = 'all';
+      NodejsApiService.matrixConFilter = 'all';
+
+      console.log('Retrieved the conference from the element', this.conference);
+      // NodejsApiService.conFilter = this.conference === 'View All' ? 'all' :  this.conference;
+      console.log('Set the NodeJS Con Filter', NodejsApiService.conFilter);
+      // NodejsApiService.matrixConFilter = NodejsApiService.conFilter;
+      // this.getOrganizationList();
+
+      switch (NodejsApiService.conFilter) {
+        case 'all':
+        this.organizations = this.allOrgs;
+        break;
+        case 'ACMP18':
+        this.organizations = this.acmpOrgs;
+        break;
+        case 'ICON2015':
+        this.organizations = this.iconOrgs;
+        break;
+      }
+
+      if (NodejsApiService.previousOrgFilter !== '' && NodejsApiService.previousOrgFilter !== 'all') {
+        const foundOrg = _.find(this.organizations, {organization: NodejsApiService.previousOrgFilter});
+        const index = _.findIndex(this.organizations, {organization: NodejsApiService.previousOrgFilter});
+      if ( foundOrg !== undefined ) {
+        console.log('found');
+        NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
+        NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
+        console.log(index);
+        // this.selectOrg.nativeElement.selectedIndex = index;
+        // console.log(this.selectOrg,NodejsApiService.previousOrgFilter);
+        // console.log(this.selectOrg.nativeElement.value);
+        this.getAllFiles();
+        this.getDonutChartData();
+        this.selectedItem = this.organizations[index];
+      } else {
+        // console.log('Not Found')
+        this.conError = NodejsApiService.conFilter;
+        this.orgError = NodejsApiService.previousOrgFilter;
+        NodejsApiService.orgFilter = 'gmail';
+        NodejsApiService.matrixOrgFilter = 'gmail';
+        NodejsApiService.previousOrgFilter = 'gmail';
+        this.getAllFiles();
+        this.getDonutChartData();
+        this.open();
+      }
+      this.isDonutExpanded = true;
+    }
+    } else if (this.isViewAllOrgs && !this.isViewAllCons) {
+      // Set the conference filter to the conference
+      NodejsApiService.conFilter = this.conference;
+      NodejsApiService.matrixConFilter = this.conference;
+
+      this.isDonutExpanded = false;
+
+    } else {
+      // Set the conference filter to the conference
+      NodejsApiService.conFilter = this.conference;
+      NodejsApiService.matrixConFilter = this.conference;
+      this.isDonutExpanded = true;
+
+      switch (NodejsApiService.conFilter) {
+        case 'all':
+        this.organizations = this.allOrgs;
+        break;
+        case 'ACMP18':
+        this.organizations = this.acmpOrgs;
+        break;
+        case 'ICON2015':
+        this.organizations = this.iconOrgs;
+        break;
+      }
+
+      if (NodejsApiService.previousOrgFilter !== '' && NodejsApiService.previousOrgFilter !== 'all') {
+        const foundOrg = _.find(this.organizations, {organization: NodejsApiService.previousOrgFilter});
+        const index = _.findIndex(this.organizations, {organization: NodejsApiService.previousOrgFilter});
+      if ( foundOrg !== undefined ) {
+        console.log('found');
+        NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
+        NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
+        console.log(index);
+        // this.selectOrg.nativeElement.selectedIndex = index;
+        // console.log(this.selectOrg,NodejsApiService.previousOrgFilter);
+        // console.log(this.selectOrg.nativeElement.value);
+  
+        this.selectedItem = this.organizations[index];
+      } else {
+        // console.log('Not Found')
+        this.conError = NodejsApiService.conFilter;
+        this.orgError = NodejsApiService.previousOrgFilter;
+        NodejsApiService.orgFilter = 'gmail';
+        NodejsApiService.matrixOrgFilter = 'gmail';
+        NodejsApiService.previousOrgFilter = 'gmail';
+        
+        this.open();
+      }
+      this.isDonutExpanded = true;
     }
 
-    let foundOrg = _.find(this.organizations,{organization:NodejsApiService.previousOrgFilter});
-    let index = _.findIndex(this.organizations,{organization:NodejsApiService.previousOrgFilter});
-    if(foundOrg!=undefined){
-      console.log("found");
-      NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
-      NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
-      console.log(index);
-      // this.selectOrg.nativeElement.selectedIndex = index;
-
-      
-      console.log(this.selectOrg,NodejsApiService.previousOrgFilter);
-      console.log(this.selectOrg.nativeElement.value);
-      this.getAllFiles();
-      this.getDonutChartData();
-      this.selectedItem = this.organizations[index];
-
-    } else{
-      console.log("Not Found")
-      this.conError = NodejsApiService.conFilter;
-      this.orgError = NodejsApiService.previousOrgFilter;
-      NodejsApiService.orgFilter = "gmail";
-      NodejsApiService.matrixOrgFilter = "gmail";
-      NodejsApiService.previousOrgFilter = "gmail"; 
-      this.getAllFiles();
-      this.getDonutChartData();
-      this.open();
     }
-    console.log(this.selectedItem);
 
+    this.getAllFiles();
+    this.getDonutChartData();
+ 
+  }
+
+  changeOrganization(event: any) {
+
+    console.log('User has changed the organization', event);
+    this.searchContent = event.target.selectedOptions[0].innerHTML;
+    this.isViewAllOrgs = (this.searchContent === 'View All' ? true : false);
+
+    console.log('Changing the previous org filter from ', NodejsApiService.previousOrgFilter, 'to', NodejsApiService.orgFilter);
+    NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
+    console.log('Changing the org filter from ', NodejsApiService.orgFilter, 'to', this.searchContent);
+    NodejsApiService.matrixOrgFilter = this.searchContent;
+    NodejsApiService.orgFilter = this.searchContent;
+
+    if (this.isViewAllOrgs) {
+      this.isDonutExpanded = false;
+      NodejsApiService.matrixOrgFilter = 'all';
+      this.selectCon.nativeElement.selectedIndex = '0';
+
+      this.getAllFiles();
+
+    } else {
+      this.isViewAllOrgs = false;
+      this.getAllFiles();
+      this.getDonutChartData();
+      this.isDonutExpanded = true;
+
+    }
   }
 
 
-  getOrganizationList(){
-    
-
-    let foundOrg = _.find(this.organizations,{organization:NodejsApiService.previousOrgFilter})
-
-    console.log(foundOrg);
-
-    if(foundOrg!=undefined){
-      NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
-      NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
-
-      
-      console.log(this.selectOrg,NodejsApiService.previousOrgFilter);
-      this.selectOrg.nativeElement.value = NodejsApiService.orgFilter;
-      console.log(this.selectOrg.nativeElement.value);
-      this.getAllFiles();
-      this.getDonutChartData();
-      
-    } else{
-      this.conError = NodejsApiService.conFilter;
-      this.orgError = NodejsApiService.previousOrgFilter;
-      // NodejsApiService.orgFilter = "gmail";
-      // NodejsApiService.matrixOrgFilter = "gmail";
-      // NodejsApiService.previousOrgFilter = "gmail";
-
-      this.open();
-    }
-    
-
-     
-    // this.foundOrgInCon = false;
-    // this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
-    //   this._nodeApi.orgnizationList.next(data);
-    //   this._nodeApi.orgnizationList.subscribe(data=>{
-    //     this.organizations = data;
-
-    //     console.log("Searching for ",NodejsApiService.previousOrgFilter," in ",this.organizations);
-
-    //     for(let i = 0 ; i < this.organizations.length; i++){
-    //       let row = this.organizations[i];
-    //       if(row.organization === NodejsApiService.previousOrgFilter){
-    //         this.foundOrgInCon = true;
-    //       }
-    //     }
-
-
-    //     if(this.foundOrgInCon){
-    //       console.log(true);
-    //       NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
-    //       this.selectOrg.nativeElement.value = NodejsApiService.orgFilter;
-    //    
-    //     }else{
-    //       console.log(false);
-    //       this.open();
-    //     }
-    
-
-    //   });
-    // });
-  }
   public open() {
     this.opened = true;
   }
@@ -420,10 +407,10 @@ export class HomeComponent implements OnInit {
     // console.log(`Dialog result: ${status}`);
     this.opened = false;
   }
-  getDonutChartData(){
+  getDonutChartData() {
 
     //  NodejsApiService.orgFilter = this.searchContent;
-    this._nodeApi.getPrimaryDonutChartData().subscribe((data)=>{
+    this._nodeApi.getPrimaryDonutChartData().subscribe((data) => {
       this._nodeApi.primaryDonutChartData.next(data);
     });
     // Dormant Donut Data
@@ -432,25 +419,25 @@ export class HomeComponent implements OnInit {
       this._nodeApi.dormantDonutChartData.next(data);
     });
     // console.log(this.searchContent);
-    this._nodeApi.getSecondaryDonutChartData().subscribe((data)=>{
+    this._nodeApi.getSecondaryDonutChartData().subscribe((data) => {
 
       this._nodeApi.secondaryDonutChartData.next(data);
     });
   }
 
-  getAllFiles(){
-    this._nodeApi.getAllFiles().subscribe((data)=>{
+  getAllFiles() {
+    this._nodeApi.getAllFiles().subscribe((data) => {
       // console.log(data);
-      let newArr: any = [];
+      const newArr: any = [];
      for (let i = 1 ; i <= 7 ; i++ ) {
        for (let j = 1; j <= 7 ; j++) {
-          let filterKey  = `${i}${j}`;
-         let commonArchetypes = [];
+          const filterKey  = `${i}${j}`;
+         const commonArchetypes = [];
 
          for (let a = 0; a < data.length; a++) {
            const row = data[a];
 
-           if ( `${row.boxkey}` == filterKey ) {
+           if ( `${row.boxkey}` === filterKey ) {
              commonArchetypes.push(row);
            }
          }
@@ -469,54 +456,19 @@ export class HomeComponent implements OnInit {
    this._nodeApi.gridTileData.next(arr);
   }
 
-  changeOrganization(event: any) {
-
-    console.log("User has changed the organization",event);
-    // for(let i = 0; i< event.target.length;i++){
-    //   let row = event.target[i];
-    //   if(row.selected){
-    //     this.searchContent = row.label;
-    //   }
-    // }
-    this.searchContent = event.target.selectedOptions[0].innerHTML;
-
-    if(this.searchContent === "View All"){
-      this.isDonutExpanded = false;
-      NodejsApiService.matrixOrgFilter = "all";
-      this.selectCon.nativeElement.selectedIndex = "0";
-
-      this.getAllFiles();
-
-    }else{
-      console.log("Changing the org filter from ",NodejsApiService.orgFilter,"to", this.searchContent);
-      NodejsApiService.matrixOrgFilter = this.searchContent;
-      NodejsApiService.orgFilter = this.searchContent;
-      console.log("Changing the previous org filter from ",NodejsApiService.previousOrgFilter,"to",NodejsApiService.orgFilter);
-  
-      NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
-      this.getAllFiles();
-      this.getDonutChartData();
-      this.isDonutExpanded = true;
-
-    }
-  
-  }
 
   resetMatrix(event: any) {
     NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
-    NodejsApiService.orgFilter = "gmail";
-    NodejsApiService.matrixOrgFilter = "gmail"
-    NodejsApiService.matrixConFilter = "all";
-    NodejsApiService.conFilter = "all";
+    NodejsApiService.orgFilter = 'gmail';
+    NodejsApiService.matrixOrgFilter = 'gmail';
+    NodejsApiService.matrixConFilter = 'all';
+    NodejsApiService.conFilter = 'all';
     this.selectedItem = this.organizations[0];
     console.log(this.selectedItem);
     this.selectedCon = this.conferences[0];
-    this.selectCon.nativeElement.selectedIndex = "0";
-    this.selectOrg.nativeElement.selectedIndex = "0";
-
- 
-  
-       this.getAllFiles();
+    this.selectCon.nativeElement.selectedIndex = '0';
+    this.selectOrg.nativeElement.selectedIndex = '0';
+    this.getAllFiles();
     this.getDonutChartData();
   }
 }
