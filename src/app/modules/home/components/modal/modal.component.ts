@@ -101,29 +101,32 @@ export class ModalComponent implements OnInit {
       let sortedOrganization = _.orderBy(data.organization,['gender'],['asc']);
       let sortedBox = _.orderBy(data.box,['gender'],['asc']);
 
-      // console.log(sortedConference);
-      // console.log(sortedOrganization);
-      // console.log(sortedBox);
+
+      console.log(sortedConference);
+      console.log(sortedOrganization);
+      console.log(sortedBox);
 
       for (let i = 0; i < 4 ; i++) {
 
         if (sortedConference[i]!== undefined) {
         let str = sortedConference[i].gender.replace(/\s/g, '');
 
+        console.log(str);
           switch(str){
             case "male":
             // console.log("found a male");
             this.conferenceData.splice(1,0,{Type: "Conference","Total":sortedConference[i].Value , color: '#172457'});
+
             this.conferenceArrScores.push(sortedConference[i].Value);
             break
             case "female":
             // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
-            this.conferenceData.splice(0,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#711331'});
+            this.conferenceData.splice(0,0, {Type: "Conference","Total": sortedConference[i].Value, color: '#711331'});
             this.conferenceArrScores.push(sortedConference[i].Value);
 
             break;
             case "Other":
-            this.conferenceData.splice(2,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#567714'});
+            this.conferenceData.splice(2,0, {Type: "Conference","Total": sortedConference[i].Value, color: '#567714'});
             this.conferenceArrScores.push(sortedConference[i].Value);
 
             // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
@@ -161,6 +164,7 @@ export class ModalComponent implements OnInit {
         if(sortedBox[i]!=undefined){
         let str2 = sortedBox[i].gender.replace(/\s/g, '');
 
+        // this.boxData = [ , , ];
           switch(str2){
             case "male":
             this.boxData.splice(1,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#7B84AE'});
@@ -299,22 +303,42 @@ export class ModalComponent implements OnInit {
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
-    console.log(this.genderData);
-    if (this.genderData[1] !== undefined) {
+    console.log(genderGrouped);
+    console.log(genderGrouped['male'],genderGrouped['female'],genderGrouped['Other'] === undefined )
+    if (genderGrouped['male'] === undefined){
+       this.totalMales = 0;
+    } else {
       this.totalMales = genderGrouped['male'].length;
-    } else {
-      this.totalMales = 0;
     }
-    if (this.genderData[0] !== undefined) {
-    this.totalFemales = genderGrouped['female'].length;
-    } else {
+    if (genderGrouped['female'] === undefined){
       this.totalFemales = 0;
-    }
-    if (this.genderData[2] !== undefined) {
-      this.totalOthers = genderGrouped['Other'].length;
-    }  else {
-      this.totalOthers = 0;
-    }
+   } else {
+     this.totalFemales = genderGrouped['female'].length;
+   }
+   if (genderGrouped['Other'] === undefined){
+    this.totalOthers = 0;
+  } else {
+    this.totalOthers = genderGrouped['Other'].length;
+  }
+
+
+
+    //     console.log(genderGrouped);
+    // if (this.genderData[1] !== undefined) {
+    //   this.totalMales = genderGrouped['male'].length;
+    // } else {
+    //   this.totalMales = 0;
+    // }
+    // if (this.genderData[0] !== undefined) {
+    // this.totalFemales = genderGrouped['female'].length;
+    // } else {
+    //   this.totalFemales = 0;
+    // }
+    // if (this.genderData[2] !== undefined) {
+    //   this.totalOthers = genderGrouped['Other'].length;
+    // }  else {
+    //   this.totalOthers = 0;
+    // }
 }
 
 

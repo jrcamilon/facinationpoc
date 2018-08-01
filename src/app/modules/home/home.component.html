@@ -2,10 +2,6 @@
      
 
 
-<kendo-panelbar (stateChange)="ngOnInit()" >
-       
-            <kendo-panelbar-item [title]="'Drill Downs'" [expanded]="isDrillDownExpanded">   
-                    <ng-template kendoPanelBarContent >
                     <div class="form-inline" style=" margin: 5px; margin-left: 45px;">
 
                             CONFERENCE:
@@ -21,8 +17,10 @@
                         
                     
                         </div>
-                </ng-template>
-            </kendo-panelbar-item>
+<kendo-panelbar (stateChange)="ngOnInit()" >
+       
+         
+      
 
 
             <!-- Donuts -->
