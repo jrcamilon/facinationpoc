@@ -8,12 +8,12 @@
                     <ng-template kendoPanelBarContent >
                     <div class="form-inline" style=" margin: 5px; margin-left: 45px;">
 
-                            FILTER BY:
-                            <select  style="margin-left: 10px;" [ngModel]="selectCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
+                            CONFERENCE:
+                            <select  style="margin-left: 10px;" [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
                                 <option  [value]="conference" *ngFor="let conference of conferences">{{conference}}</option>
                               
                             </select>
-                            <!-- ORGANIZATION: -->
+                            ORGANIZATION:
                             <select  style="margin-left: 10px;"  [ngModel]="selectedItem"  class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="org" required>
                                 <option>View All</option>
                             <option  [ngValue]="organization" *ngFor = "let organization of organizations" >{{organization.organization}}</option>

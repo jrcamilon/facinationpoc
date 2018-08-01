@@ -299,7 +299,7 @@ export class HomeComponent implements OnInit {
         // console.log(this.selectOrg.nativeElement.value);
         this.getAllFiles();
         this.getDonutChartData();
-        this.selectedItem = this.organizations[index];
+        this.selectedItem = "gmail";
       } else {
         // console.log('Not Found')
         this.conError = NodejsApiService.conFilter;
@@ -307,6 +307,8 @@ export class HomeComponent implements OnInit {
         NodejsApiService.orgFilter = 'gmail';
         NodejsApiService.matrixOrgFilter = 'gmail';
         NodejsApiService.previousOrgFilter = 'gmail';
+        this.selectedItem = "gmail";
+
         this.getAllFiles();
         this.getDonutChartData();
         this.open();
@@ -359,6 +361,7 @@ export class HomeComponent implements OnInit {
         NodejsApiService.orgFilter = 'gmail';
         NodejsApiService.matrixOrgFilter = 'gmail';
         NodejsApiService.previousOrgFilter = 'gmail';
+        this.selectedItem = this.organizations[index];
         
         this.open();
       }
