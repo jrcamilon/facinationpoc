@@ -312,6 +312,7 @@ export class HomeComponent implements OnInit {
         this.open();
       }
       this.isDonutExpanded = true;
+
     }
     } else if (this.isViewAllOrgs && !this.isViewAllCons) {
       // Set the conference filter to the conference

@@ -91,8 +91,6 @@
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
         
-                               
-
                                 <div class="row">
                                   <div class="col-6">
                                       <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
@@ -118,8 +116,9 @@
 
                                 <div class="row">
                                   <div class="col-6"><app-pie [males] ="totalMales" [others]="totalOthers" [type]="'archetype'" [females]="totalFemales" [title]="'Gender by Archetype'"></app-pie></div>
-                                  <!-- <div class="col-6"><app-pie [males] ="totalMales" [type]="'pop'" [females]="totalFemales" [title]="'Gender by Population'"></app-pie> </div> -->
                                   <kendo-chart class="col-6" [seriesColors]="this.genderSeriesColors">
+                                      <kendo-chart-tooltip>
+                                      </kendo-chart-tooltip>
 
                                     <kendo-chart-area background="transparent" [height]="300"></kendo-chart-area>
                                     <kendo-chart-legend [visible]="true">
@@ -131,14 +130,34 @@
                                         </kendo-chart-category-axis-item>
                                     </kendo-chart-category-axis>
 
+                                      
                                     <kendo-chart-series>
-                                    
-                                      <kendo-chart-series-item name="Conference" field="Total" category="Type" [labels]="seriesLabels" type="bar"  [gap]="1" [spacing]=".25" [data]="conferenceData" >
+
+            
+
+                                      <kendo-chart-series-item name="Conference" field="Total" category="Type" [labels]="seriesLabels" type="bar" [data]="conferenceData" >
+                                          <kendo-chart-series-item-tooltip [background]="this.genderSeriesColors[0]">
+                                              <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value" let-name="name">
+                                                  <div> Conference : {{ category }} : {{ getConferencePercentage(value) | number:'1.2-2' }} % </div>
+                                              </ng-template>
+                                            </kendo-chart-series-item-tooltip>
+  
                                       </kendo-chart-series-item>
                                       <kendo-chart-series-item name="Organization" [labels]="seriesLabels" field="Total" category="Type" type="bar" [data]="organizationData">
+                                          <kendo-chart-series-item-tooltip [background]="this.genderSeriesColors[1]">
+                                              <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
+                                                  <div> Organization : {{ category }} : {{ getOrganizationPercentage(value) | number:'1.2-2'  }} % </div>
+                                              </ng-template>
+                                            </kendo-chart-series-item-tooltip>
                                       </kendo-chart-series-item>
                                       <kendo-chart-series-item name="Archetype" [labels]="seriesLabels" field="Total" category="Type" type="bar" [data]="boxData">
+                                          <kendo-chart-series-item-tooltip [background]="this.genderSeriesColors[2]">
+                                              <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
+                                                  <div > {{archetype}} - {{ category }} : {{ getBoxPercentage(value) | number:'1.2-2'  }} % </div>
+                                              </ng-template>
+                                            </kendo-chart-series-item-tooltip>
                                       </kendo-chart-series-item>
+
                                     
                                     </kendo-chart-series>
                                   </kendo-chart>
