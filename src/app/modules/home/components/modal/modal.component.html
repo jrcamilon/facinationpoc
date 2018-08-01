@@ -138,7 +138,7 @@
                                       <kendo-chart-series-item name="Conference" field="Total" category="Type" [labels]="seriesLabels" type="bar" [data]="conferenceData" >
                                           <kendo-chart-series-item-tooltip [background]="this.genderSeriesColors[0]">
                                               <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value" let-name="name">
-                                                  <div> Conference : {{ category }} : {{ getConferencePercentage(value) | percent }} </div>
+                                                  <div> Conference : {{ category }} : {{ getConferencePercentage(value) | number:'1.2-2' }} % </div>
                                               </ng-template>
                                             </kendo-chart-series-item-tooltip>
   
@@ -146,14 +146,14 @@
                                       <kendo-chart-series-item name="Organization" [labels]="seriesLabels" field="Total" category="Type" type="bar" [data]="organizationData">
                                           <kendo-chart-series-item-tooltip [background]="this.genderSeriesColors[1]">
                                               <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
-                                                  <div> Organization : {{ category }} : {{ getOrganizationPercentage(value) | percent }} </div>
+                                                  <div> Organization : {{ category }} : {{ getOrganizationPercentage(value) | number:'1.2-2'  }} % </div>
                                               </ng-template>
                                             </kendo-chart-series-item-tooltip>
                                       </kendo-chart-series-item>
                                       <kendo-chart-series-item name="Archetype" [labels]="seriesLabels" field="Total" category="Type" type="bar" [data]="boxData">
                                           <kendo-chart-series-item-tooltip [background]="this.genderSeriesColors[2]">
                                               <ng-template kendoChartSharedTooltipTemplate let-category="category" let-value="value">
-                                                  <div > {{archetype}} - {{ category }} : {{ getBoxPercentage(value) | percent }} </div>
+                                                  <div > {{archetype}} - {{ category }} : {{ getBoxPercentage(value) | number:'1.2-2'  }} % </div>
                                               </ng-template>
                                             </kendo-chart-series-item-tooltip>
                                       </kendo-chart-series-item>

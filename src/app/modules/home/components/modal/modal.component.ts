@@ -196,15 +196,15 @@ export class ModalComponent implements OnInit {
     }
 
   public getConferencePercentage(value: number) {
-    return (value / this.conferenceArrScores.reduce((a, b) => a + b, 0)).toFixed(2);
+    return (value / this.conferenceArrScores.reduce((a, b) => a + b, 0)) * 100;
   }
 
   public getOrganizationPercentage(value: number) {
-    return (value / this.organizationArrScores.reduce((a, b) => a + b, 0)).toFixed(2);
+    return (value / this.organizationArrScores.reduce((a, b) => a + b, 0)) * 100;
   }
 
   public getBoxPercentage(value: number) {
-    return (value / this.boxArrScores.reduce((a, b) => a + b, 0)).toFixed(2);
+    return (value / this.boxArrScores.reduce((a, b) => a + b, 0)) * 100;
   }
 
 
@@ -265,10 +265,21 @@ export class ModalComponent implements OnInit {
 
   }
 
+
   public organizeByGender() {
 
-    const genderGrouped = _.groupBy(this.data, function(item) { return  item.gender; });
+
+    // Cleanup for trailing and leading spaces in object keys
+    const cleaned = this.data.map( ele => {
+      ele['gender']  = ele['gender'].trim();
+      return ele;
+    });
+
+
+    const genderGrouped = _.groupBy(cleaned, function(item) { return  item.gender; });
+
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
+
     const genderObjectsArray = [];
     const group = Object.keys(genderGrouped);
     for (let i = 0; i < groupGender.length; i++) {
@@ -276,47 +287,44 @@ export class ModalComponent implements OnInit {
     }
     const organizedByGender = genderObjectsArray.map(ele => {
 
-      if (ele.key!= "Other" ) {
-        return new Object({value: ele.value.length, color: ele.key == 'male' ? '#003F7F' : '#FF017E'});
+      if (ele.key !== "Other" ) {
+        return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
       } else {
 
-      return new Object({value: ele.value.length, color:'green' });
+      return new Object({value: ele.value.length, color: 'green' });
       }
     });
+
 
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
-    // console.log(this.genderData);
+    console.log(this.genderData);
     if (this.genderData[1] !== undefined) {
-      this.totalMales = this.genderData[1].value;
-    }
-    else {
+      this.totalMales = genderGrouped['male'].length;
+    } else {
       this.totalMales = 0;
     }
-    if(this.genderData[0] != undefined){
-    this.totalFemales = this.genderData[0].value;
-    }
-    else{
+    if (this.genderData[0] !== undefined) {
+    this.totalFemales = genderGrouped['female'].length;
+    } else {
       this.totalFemales = 0;
     }
-    if(this.genderData[2] != undefined){
-      this.totalOthers = this.genderData[2].value;
-    } 
-    else {
+    if (this.genderData[2] !== undefined) {
+      this.totalOthers = genderGrouped['Other'].length;
+    }  else {
       this.totalOthers = 0;
     }
 }
 
 
   public getColor(_advantage: String) {
-
     const index = this.advantageColors.findIndex(x => x.advantage === _advantage);
     return this.advantageColors[index].color;
   }
 
   private getTitleHeaderColor () {
-    switch(this.index[0]){
+    switch (this.index[0]) {
       case '1':
       this.innovation = true;
       this.genderSeriesColors = ['#663300', '#666699', '#EDA716'];
