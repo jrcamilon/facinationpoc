@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import {NodejsApiService} from '../../services/nodejs-api.service';
 import * as _ from 'lodash';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-nav-global',
