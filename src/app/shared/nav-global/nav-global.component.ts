@@ -23,7 +23,7 @@ export class NavGlobalComponent implements OnInit {
   public allOrgs: any;
   public acmpOrgs: any;
   public iconOrgs: any;
-  public selectedItem:any;
+  public selectedItem: any;
   public selectedCon: any = this.conferences[0]
   public opened: any = false;
   constructor(private _nodeApi: NodejsApiService ) {
@@ -49,14 +49,14 @@ export class NavGlobalComponent implements OnInit {
       this.organizations = data;
       this.selectedItem = this.organizations[0];
     });
-    this._nodeApi.allOrgs.subscribe(data =>{
+    this._nodeApi.allOrgs.subscribe(data => {
       // this.organizations = data;
       this.allOrgs = data;
     });
-    this._nodeApi.acmpOrgs.subscribe(data =>{
+    this._nodeApi.acmpOrgs.subscribe(data => {
       this.acmpOrgs = data;
     });
-    this._nodeApi.iconOrgs.subscribe(data =>{
+    this._nodeApi.iconOrgs.subscribe(data => {
       this.iconOrgs = data;
     });
     this.getAllFiles();
