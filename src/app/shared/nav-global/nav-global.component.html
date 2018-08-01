@@ -11,14 +11,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Dashboard</a>
-      </li>
+   
     </ul>
 
-    
+     
     <div class="form-inline">
-
+<!--
         <select [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
             <option  [value]="conference" *ngFor="let conference of conferences">{{conference}}</option>
           
@@ -28,7 +26,7 @@
         <option  [ngValue]="organization" *ngFor = "let organization of organizations" >{{organization.organization}}</option>
         </select>
       
-        <button class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button>
+        <button class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button> -->
         <a class="navbar-brand" href="#">
             <img id="InfoSolLogo" src="../../../assets/images/infosol-logo.svg">
         </a>
@@ -37,7 +35,3 @@
   </div>
 </nav>
 
-<kendo-dialog title="Notice" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
-  <p style="margin: 30px; text-align: center;">The Conference {{conError}} does not contain data for the Organization {{orgError}}. Selecting Gmail instead. </p>
-
-</kendo-dialog>
