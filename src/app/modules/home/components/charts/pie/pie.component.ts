@@ -26,17 +26,17 @@ export class PieComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.type);
-    if (this.type === 'archetype') {  
+    if (this.type === 'archetype') {
       if(this.males!=undefined){
         console.log(this.males);
-        this.pieData[0].value = ( this.males / (this.males + this.females)) * 100
+        this.pieData[0].value = ( this.males / (this.males + this.females + this.others)) * 100;
 
       }
       else{
         this.pieData[0].value = 0;
       }
       if(this.females !=undefined){
-        this.pieData[1].value = ( this.females / (this.males + this.females))* 100;
+        this.pieData[1].value = ( this.females / (this.males + this.females + this.others)) * 100;
         console.log(this.females);
 
       }
@@ -44,7 +44,7 @@ export class PieComponent implements OnInit {
         this.pieData[1].value = 0;
       }
       if(this.others != undefined){
-        this.pieData[2].value = (this.others/(this.males+this.females+this.others))*100;
+        this.pieData[2].value = (this.others/(this.males + this.females + this.others)) * 100;
       } 
       else {
         this.pieData[2].value= 0;
