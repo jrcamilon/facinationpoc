@@ -97,103 +97,138 @@ export class ModalComponent implements OnInit {
       this.apiGenderData = data;
       // console.log(data);
 
-      let sortedConference = _.orderBy(data.conference,['gender'],['asc']);
-      let sortedOrganization = _.orderBy(data.organization,['gender'],['asc']);
-      let sortedBox = _.orderBy(data.box,['gender'],['asc']);
+      // let sortedConference = _.orderBy(data.conference,['gender'],['asc']);
+      // let sortedOrganization = _.orderBy(data.organization,['gender'],['asc']);
+      // let sortedBox = _.orderBy(data.box,['gender'],['asc']);
 
-      // console.log(sortedConference);
-      // console.log(sortedOrganization);
-      // console.log(sortedBox);
+      const conference = _.groupBy(data['conference'], function(ele) { return ele['gender']; });
+      const organization = _.groupBy(data['organization'], function(ele) { return ele['gender']; });
+      const box = _.groupBy(data['box'], function(ele) { return ele['gender']; });
 
-      for (let i = 0; i < 4 ; i++) {
+      const conferenceCleaned = JSON.parse(JSON.stringify(conference).replace(/\s/g, ''));
+      const organizationCleaned = JSON.parse(JSON.stringify(organization).replace(/\s/g, ''));
+      const boxCleaned = JSON.parse(JSON.stringify(box).replace(/\s/g, ''));
 
-        if (sortedConference[i]!== undefined) {
-        let str = sortedConference[i].gender.replace(/\s/g, '');
+      const confOther = conferenceCleaned['Other'] === undefined ? 0 : conferenceCleaned['Other'][0]['Value'];
+      const confFemale = conferenceCleaned['female'] === undefined ? 0 : conferenceCleaned['female'][0]['Value'];
+      const confMale = conferenceCleaned['male'] === undefined ? 0 : conferenceCleaned['male'][0]['Value'];
 
-          switch(str){
-            case "male":
-            // console.log("found a male");
-            this.conferenceData.splice(1,0,{Type: "Conference","Total":sortedConference[i].Value , color: '#172457'});
-            this.conferenceArrScores.push(sortedConference[i].Value);
-            break
-            case "female":
-            // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
-            this.conferenceData.splice(0,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#711331'});
-            this.conferenceArrScores.push(sortedConference[i].Value);
+      const orgOther = organizationCleaned['Other'] === undefined ? 0 : organizationCleaned['Other'][0]['Value'];
+      const orgMale = organizationCleaned['male'] === undefined ? 0 : organizationCleaned['male'][0]['Value'];
+      const orgFemale = organizationCleaned['female'] === undefined ? 0 : organizationCleaned['female'][0]['Value'];
+ 
+      const boxOther = boxCleaned['Other'] === undefined ? 0 : boxCleaned['Other'][0]['Value'];
+      const boxFemale = boxCleaned['female'] === undefined ? 0 : boxCleaned['female'][0]['Value'];
+      const boxMale = boxCleaned['male'] === undefined ? 0 : boxCleaned['male'][0]['Value'];
 
-            break;
-            case "Other":
-            this.conferenceData.splice(2,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#567714'});
-            this.conferenceArrScores.push(sortedConference[i].Value);
+      this.conferenceData.push(new Object({Type: 'Conference', Total: confFemale , color: '#711331'}));
+      this.conferenceData.push(new Object({Type: 'Conference', Total: confMale , color: '#172457'}));
+      this.conferenceData.push(new Object({Type: 'Conference', Total: confOther , color: '#567714'}));
+      this.conferenceArrScores.push(confFemale, confMale, confOther);
 
-            // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
-          }
+      this.organizationData.push(new Object({Type: 'Organization', Total: orgFemale , color: '#973252'}));
+      this.organizationData.push(new Object({Type: 'Organization', Total: orgMale , color: '#303C74'}));
+      this.organizationData.push(new Object({Type: 'Organization', Total: orgOther , color: '#7A9F35'}));
+      this.organizationArrScores.push(orgFemale, orgMale, orgOther);
 
-        }
-      // shades of blue
-      // 172457, 303C74, 7B84AE
+      this.boxData.push(new Object({Type: 'Other', Total: boxFemale , color: '#BD5E7C'}));
+      this.boxData.push(new Object({Type: 'Other', Total: boxMale , color: '#7B84AE'}));
+      this.boxData.push(new Object({Type: 'Other', Total: boxOther , color: '#A5C663'}));
+      this.boxArrScores.push(boxFemale, boxMale, boxOther);
 
-      // shades of pink
-      // 711331, 973252, BD5E7C
+      console.log(this.conferenceData);
+      console.log(this.organizationData);
+      console.log(this.boxData);
 
-      // shades of green
-      // 567714, 7A9F35, A5C663
+      // for (let i = 0; i < 4 ; i++) {
 
-        if(sortedOrganization[i]!=undefined){
-          let str1 = sortedOrganization[i].gender.replace(/\s/g, '');
+      //   if (sortedConference[i]!== undefined) {
+      //   let str = sortedConference[i].gender.replace(/\s/g, '');
 
-          switch(str1){
-            case "male":
-            this.organizationData.splice(1,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#303C74'});
-            this.organizationArrScores.push(sortedOrganization[i].Value);
-            break
-            case "female":
-            this.organizationData.splice(0,0,{Type: "Organization","Total":sortedOrganization[i].Value, color: '#973252'});
-            this.organizationArrScores.push(sortedOrganization[i].Value);
-            break;
-            case "Other":
-            this.organizationData.splice(2,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#7A9F35'});
-            this.organizationArrScores.push(sortedOrganization[i].Value);
-          }
-        }
+      //     switch (str) {
+      //       case "male":
+      //       // console.log("found a male");
+      //       this.conferenceData.splice(1,0,{Type: "Conference","Total":sortedConference[i].Value , color: '#172457'});
+      //       this.conferenceArrScores.push(sortedConference[i].Value);
+      //       break
+      //       case "female":
+      //       // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
+      //       this.conferenceData.splice(0,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#711331'});
+      //       this.conferenceArrScores.push(sortedConference[i].Value);
+
+      //       break;
+      //       case "Other":
+      //       this.conferenceData.splice(2,0, {Type: "Conference","Total":sortedConference[i].Value, color: '#567714'});
+      //       this.conferenceArrScores.push(sortedConference[i].Value);
+
+      //       // this.conferenceData.push((data.conference[i]==undefined)? 0: data.conference[i].Value);
+      //     }
+
+      //   }
+      // // shades of blue
+      // // 172457, 303C74, 7B84AE
+
+      // // shades of pink
+      // // 711331, 973252, BD5E7C
+
+      // // shades of green
+      // // 567714, 7A9F35, A5C663
+
+      //   if(sortedOrganization[i]!=undefined){
+      //     let str1 = sortedOrganization[i].gender.replace(/\s/g, '');
+
+      //     switch(str1){
+      //       case "male":
+      //       this.organizationData.splice(1,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#303C74'});
+      //       this.organizationArrScores.push(sortedOrganization[i].Value);
+      //       break
+      //       case "female":
+      //       this.organizationData.splice(0,0,{Type: "Organization","Total":sortedOrganization[i].Value, color: '#973252'});
+      //       this.organizationArrScores.push(sortedOrganization[i].Value);
+      //       break;
+      //       case "Other":
+      //       this.organizationData.splice(2,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#7A9F35'});
+      //       this.organizationArrScores.push(sortedOrganization[i].Value);
+      //     }
+      //   }
 
 
-        if(sortedBox[i]!=undefined){
-        let str2 = sortedBox[i].gender.replace(/\s/g, '');
+      //   if(sortedBox[i]!=undefined){
+      //   let str2 = sortedBox[i].gender.replace(/\s/g, '');
 
-          switch(str2){
-            case "male":
-            this.boxData.splice(1,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#7B84AE'});
-            this.boxArrScores.push(sortedBox[i].Value);
-            break
-            case "female":
-            this.boxData.splice(0,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#BD5E7C'});
-            this.boxArrScores.push(sortedBox[i].Value);
-            break;
-            case "Other":
-            this.boxData.splice(2,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#A5C663'});
-            this.boxArrScores.push(sortedBox[i].Value);
-          }
+      //     switch(str2){
+      //       case "male":
+      //       this.boxData.splice(1,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#7B84AE'});
+      //       this.boxArrScores.push(sortedBox[i].Value);
+      //       break
+      //       case "female":
+      //       this.boxData.splice(0,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#BD5E7C'});
+      //       this.boxArrScores.push(sortedBox[i].Value);
+      //       break;
+      //       case "Other":
+      //       this.boxData.splice(2,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#A5C663'});
+      //       this.boxArrScores.push(sortedBox[i].Value);
+      //     }
     
-      }
-      // // Get Females
-      // this.conferenceData.push((data.conference[0]==undefined)? 0: data.conference[1].Value);
-      // this.organizationData.push((data.organization[2]==undefined)? 0: data.conference[2].Value);
-      // this.boxData.push((data.box[3]==undefined)? 0: data.conference[3].Value);
+      // }
+      // // // Get Females
+      // // this.conferenceData.push((data.conference[0]==undefined)? 0: data.conference[1].Value);
+      // // this.organizationData.push((data.organization[2]==undefined)? 0: data.conference[2].Value);
+      // // this.boxData.push((data.box[3]==undefined)? 0: data.conference[3].Value);
 
-      //   // Get males
-      //   this.conferenceData.push((data.conference[2]==undefined)? 0: data.conference[2].Value);
-      //   this.organizationData.push((data.organization[1]==undefined)? 0: data.conference[1].Value);
-      //   this.boxData.push((data.box[1]==undefined)? 0: data.conference[1].Value);
+      // //   // Get males
+      // //   this.conferenceData.push((data.conference[2]==undefined)? 0: data.conference[2].Value);
+      // //   this.organizationData.push((data.organization[1]==undefined)? 0: data.conference[1].Value);
+      // //   this.boxData.push((data.box[1]==undefined)? 0: data.conference[1].Value);
 
-      //   // Get Others
-        // this.conferenceData.push((data.conference[1]==undefined)? 0: data.conference[1].Value);
-        // this.organizationData.push((data.organization[1]==undefined)? 0: data.conference[1].Value);
-        // this.boxData.push((data.box[2]==undefined)? 0: data.conference[2].Value);
-    }
+      // //   // Get Others
+      //   // this.conferenceData.push((data.conference[1]==undefined)? 0: data.conference[1].Value);
+      //   // this.organizationData.push((data.organization[1]==undefined)? 0: data.conference[1].Value);
+      //   // this.boxData.push((data.box[2]==undefined)? 0: data.conference[2].Value);
+    // }
 
     });
-    }
+  }
 
   public getConferencePercentage(value: number) {
     return (value / this.conferenceArrScores.reduce((a, b) => a + b, 0)) * 100;
@@ -222,7 +257,7 @@ export class ModalComponent implements OnInit {
       // Method to set the header type
       this.getTitleHeaderColor();
     }
-    
+
   }
 
   public organizeChartData() {
@@ -277,7 +312,6 @@ export class ModalComponent implements OnInit {
 
 
     const genderGrouped = _.groupBy(cleaned, function(item) { return  item.gender; });
-
     const groupGender = Object.keys(genderGrouped).map(i => genderGrouped[i]);
 
     const genderObjectsArray = [];
@@ -290,7 +324,6 @@ export class ModalComponent implements OnInit {
       if (ele.key !== "Other" ) {
         return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
       } else {
-
       return new Object({value: ele.value.length, color: 'green' });
       }
     });
@@ -300,20 +333,20 @@ export class ModalComponent implements OnInit {
     this.genderData = organizedByGender;
 
     console.log(this.genderData);
-    if (this.genderData[1] !== undefined) {
-      this.totalMales = genderGrouped['male'].length;
-    } else {
+    if (genderGrouped['male'] === undefined){
       this.totalMales = 0;
-    }
-    if (this.genderData[0] !== undefined) {
+   } else {
+     this.totalMales = genderGrouped['male'].length;
+   }
+   if (genderGrouped['female'] === undefined){
+     this.totalFemales = 0;
+  } else {
     this.totalFemales = genderGrouped['female'].length;
+      }
+  if (genderGrouped['Other'] === undefined){
+   this.totalOthers = 0;
     } else {
-      this.totalFemales = 0;
-    }
-    if (this.genderData[2] !== undefined) {
-      this.totalOthers = genderGrouped['Other'].length;
-    }  else {
-      this.totalOthers = 0;
+   this.totalOthers = genderGrouped['Other'].length;
     }
 }
 
