@@ -330,7 +330,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  public openDonutChart(event: any){
+    this.isDonutExpanded = true;
+  }
+  public closeDonutChart(event: any){
+    this.isDonutExpanded = false;
+  }
   public open() {
     this.opened = true;
   }

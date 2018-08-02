@@ -11,12 +11,18 @@
 .main {
     background-color:whitesmoke;
     color: white;
+    margin-top: 65px;
 }
 #typeDiv{
     float: right;
 
 }
-
+.navy{
+    top:0;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
 #switchContainer{
     float:right;
     margin-right: 20px;

@@ -1,8 +1,9 @@
 
      
+<app-nav-global class = "navy" (openDonut)="openDonutChart($event)" (closeDonut)="closeDonutChart($event)"></app-nav-global>
 
 
-                    <div class="form-inline" style=" margin: 5px; margin-left: 45px;">
+                    <!-- <div class="form-inline" style=" margin: 5px; margin-left: 45px;">
 
                             CONFERENCE:
                             <select  style="margin-left: 10px;" [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
@@ -16,7 +17,11 @@
                             </select>
                         
                     
-                        </div>
+                        </div> -->
+<div class="main">
+
+
+
 <kendo-panelbar (stateChange)="ngOnInit()" >
        
          
@@ -125,3 +130,4 @@
         <p style="margin: 30px; text-align: center;">The Conference {{conError}} does not contain data for the Organization {{orgError}}. Selecting Gmail instead. </p>
       
 </kendo-dialog>
+</div>
