@@ -91,12 +91,12 @@
                           <ng-template kendoTabContent>
                                 <!-- Tab Content -->
         
-                                <div class="row">
-                                  <div class="col-6">
+                                <div class="halfWidth row">
+                                  <div class="  col-6">
                                       <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
                                       <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar>
                                   </div>
-                                  <div class="col-6">
+                                  <div class=" col-6">
                                       <!-- <div *ngIf="!primaryIndividualData" style="text-align: center">Select A User Above!</div>
                                       <app-bar  *ngIf="primaryIndividualTitle" [categories]="primaryIndividualCategories" [data]="primaryIndividualData" [title]="primaryIndividualTitle"></app-bar> -->
                                       <app-stacked-bar  *ngIf="primaryAndSecondaryScoresArray" [dataIn]="primaryAndSecondaryScoresArray" [primaryPercentage]="primaryPercentage"
@@ -114,7 +114,7 @@
 
                                 <app-pie [males] ="totalMales" [type]="pieTypes.pop" [females]="totalFemales"></app-pie> -->
 
-                                <div class="row">
+                                <div class=" halfWidth row">
                                   <div class="col-6"><app-pie [males] ="totalMales" [others]="totalOthers" [type]="'archetype'" [females]="totalFemales" [title]="'Gender by Archetype'"></app-pie></div>
                                   <kendo-chart class="col-6" [seriesColors]="this.genderSeriesColors">
                                       <kendo-chart-tooltip>

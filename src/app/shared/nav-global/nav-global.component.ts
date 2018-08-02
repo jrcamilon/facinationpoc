@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import {NodejsApiService} from '../../services/nodejs-api.service';
 import * as _ from 'lodash';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-nav-global',
@@ -10,27 +9,34 @@ import * as $ from 'jquery';
 })
 export class NavGlobalComponent implements OnInit {
 
-  @ViewChild("selectCon")  selectCon: ElementRef;
-  @ViewChild("selectOrg") selectOrg: ElementRef;
+  @ViewChild('selectCon')  selectCon: ElementRef;
+  @ViewChild('selectOrg') selectOrg: ElementRef;
 
-  @Output() searchContent : any;
+  @Output() searchContent: any;
   @Output() conference: any;
 
+  @Output() openDonut: EventEmitter<any> = new EventEmitter();
+  @Output() closeDonut: EventEmitter<any> = new EventEmitter();
+
   public organizations: any;
-  public conferences: any = ["View All","ACMP18","ICON2015"];
+  public conferences: any = ['View All', 'ACMP18', 'ICON2015'];
   public conError: String;
   public orgError: String;
   public allOrgs: any;
   public acmpOrgs: any;
   public iconOrgs: any;
   public selectedItem: any;
-  public selectedCon: any = this.conferences[0]
+  public selectedCon: any = this.conferences[0];
   public opened: any = false;
+  public isDrillDownExpanded = false;
+  public isDonutExpanded = false;
+  public isMatrixExpanded = true;
+  public isViewAllOrgs = true;
+  public isViewAllCons = true;
   constructor(private _nodeApi: NodejsApiService ) {
  
-    this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
+    this._nodeApi.getConferenceOrganizations().subscribe((data) => {
       this.organizations = data;
-      this.selectedItem = this.organizations[0];
     });
     this._nodeApi.allOrgs.subscribe(data =>{
       // this.organizations = data;
@@ -45,9 +51,10 @@ export class NavGlobalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._nodeApi.getConferenceOrganizations().subscribe((data)=>{
+    this._nodeApi.getConferenceOrganizations().subscribe((data) => {
       this.organizations = data;
-      this.selectedItem = this.organizations[0];
+      this.selectedItem = "View All";
+
     });
     this._nodeApi.allOrgs.subscribe(data => {
       // this.organizations = data;
@@ -60,62 +67,6 @@ export class NavGlobalComponent implements OnInit {
       this.iconOrgs = data;
     });
     this.getAllFiles();
-
-  }
-
-  //Get Various Organization Lists
-  changeConference(event:any){
-
-    console.log("User has changed the Conference");
-    console.log("The previous org filter was ",NodejsApiService.previousOrgFilter);
-
-    this.conference =this.selectCon.nativeElement.value;
-    console.log("Retrieved the conference from the element", this.conference);
-    NodejsApiService.conFilter = this.conference === "View All" ? "all" :  this.conference;
-    console.log("Set the NodeJS Con Filter", NodejsApiService.conFilter);
-    NodejsApiService.matrixConFilter = NodejsApiService.conFilter;
-    // this.getOrganizationList();
-
-    switch(NodejsApiService.conFilter){
-      case "all":
-      this.organizations = this.allOrgs;
-      break;
-      case "ACMP18":
-      this.organizations = this.acmpOrgs;
-      break;
-      case "ICON2015":
-      this.organizations = this.iconOrgs;
-      break;
-    }
-
-    let foundOrg = _.find(this.organizations,{organization:NodejsApiService.previousOrgFilter});
-    let index = _.findIndex(this.organizations,{organization:NodejsApiService.previousOrgFilter});
-    if(foundOrg!=undefined){
-      console.log("found");
-      NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
-      NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
-      console.log(index);
-      // this.selectOrg.nativeElement.selectedIndex = index;
-
-      
-      console.log(this.selectOrg,NodejsApiService.previousOrgFilter);
-      console.log(this.selectOrg.nativeElement.value);
-      this.getAllFiles();
-      this.getDonutChartData();
-      this.selectedItem = this.organizations[index];
-
-    } else{
-      console.log("Not Found")
-      this.conError = NodejsApiService.conFilter;
-      this.orgError = NodejsApiService.previousOrgFilter;
-      NodejsApiService.orgFilter = "gmail";
-      NodejsApiService.matrixOrgFilter = "gmail";
-      NodejsApiService.previousOrgFilter = "gmail"; 
-      this.getAllFiles();
-      this.getDonutChartData();
-      this.open();
-    }
-    console.log(this.selectedItem);
 
   }
 
@@ -236,26 +187,91 @@ export class NavGlobalComponent implements OnInit {
    this._nodeApi.gridTileData.next(arr);
   }
 
-  changeOrganization(event: any) {
+ // Get Various Organization Lists
+ changeConference(event: any) {
 
-    console.log("User has changed the organization",event);
-    // for(let i = 0; i< event.target.length;i++){
-    //   let row = event.target[i];
-    //   if(row.selected){
-    //     this.searchContent = row.label;
-    //   }
-    // }
-    this.searchContent =event.target.selectedOptions[0].innerHTML;
+  NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
+  this.conference = this.selectCon.nativeElement.value;
+  this.isViewAllCons = (this.conference === 'View All' ? true : false);
+  if (!this.isViewAllCons) {
+    NodejsApiService.conFilter = this.conference;
+    NodejsApiService.matrixConFilter = this.conference;
 
-    console.log("Changing the org filter from ",NodejsApiService.orgFilter,"to", this.searchContent);
-    NodejsApiService.matrixOrgFilter = this.searchContent;
-    NodejsApiService.orgFilter = this.searchContent;
-    console.log("Changing the previous org filter from ",NodejsApiService.previousOrgFilter,"to",NodejsApiService.orgFilter);
+  } else {
+    NodejsApiService.conFilter = 'all';
+    NodejsApiService.matrixConFilter = 'all';
+  }
+  switch (NodejsApiService.conFilter) {
+    case 'all':
+    this.organizations = this.allOrgs;
+    break;
+    case 'ACMP18':
+    this.organizations = this.acmpOrgs;
+    break;
+    case 'ICON2015':
+    this.organizations = this.iconOrgs;
+    break;
+  }
+ if ( !this.isViewAllOrgs  ) {
+    
+    if (NodejsApiService.previousOrgFilter !== '' && NodejsApiService.previousOrgFilter !== 'all') {
+      const foundOrg = _.find(this.organizations, {organization: NodejsApiService.previousOrgFilter});
+      const index = _.findIndex(this.organizations, {organization: NodejsApiService.previousOrgFilter});
+    if ( foundOrg !== undefined ) {
+      console.log('found');
+      NodejsApiService.orgFilter = NodejsApiService.previousOrgFilter;
+      NodejsApiService.matrixOrgFilter = NodejsApiService.previousOrgFilter;
+      console.log(index);
+      // this.selectOrg.nativeElement.selectedIndex = index;
+      // console.log(this.selectOrg,NodejsApiService.previousOrgFilter);
+      // console.log(this.selectOrg.nativeElement.value);
+      // this.getAllFiles();
+      // this.getDonutChartData();
+      this.selectedItem = this.organizations[index];
+    } else {
+      console.log('Not Found');
+      this.conError = NodejsApiService.conFilter;
+      this.orgError = NodejsApiService.previousOrgFilter;
+      NodejsApiService.orgFilter = 'gmail';
+      NodejsApiService.matrixOrgFilter = 'gmail';
+      NodejsApiService.previousOrgFilter = 'gmail';
+      this.selectedItem = this.organizations[0];
+      // this.getAllFiles();
+      // this.getDonutChartData();
+      this.open();
+    }
+    this.isDonutExpanded = true;
+  }
+  }
+  this.getAllFiles();
+  this.getDonutChartData();
+}
 
-    NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
+changeOrganization(event: any) {
+
+  this.searchContent = event.target.selectedOptions[0].innerHTML;
+  this.isViewAllOrgs = (this.searchContent === 'View All' ? true : false);
+  NodejsApiService.previousOrgFilter = this.searchContent;
+  NodejsApiService.matrixOrgFilter = this.searchContent;
+  NodejsApiService.orgFilter = this.searchContent;
+
+  if (this.isViewAllOrgs) {
+    this.isDonutExpanded = false;
+    NodejsApiService.matrixOrgFilter = 'all';
+    // this.selectCon.nativeElement.selectedIndex = '0';
+
+    this.getAllFiles();
+    this.closeDonut.emit(null)
+
+  } else {
+    this.isViewAllOrgs = false;
     this.getAllFiles();
     this.getDonutChartData();
+    this.isDonutExpanded = true;
+    this.openDonut.emit(null);
+
   }
+}
 
   resetMatrix(event: any) {
     NodejsApiService.previousOrgFilter = NodejsApiService.orgFilter;
@@ -268,9 +284,6 @@ export class NavGlobalComponent implements OnInit {
     this.selectedCon = this.conferences[0];
     this.selectCon.nativeElement.selectedIndex = "0";
     this.selectOrg.nativeElement.selectedIndex = "0";
-
- 
-  
        this.getAllFiles();
     this.getDonutChartData();
   }

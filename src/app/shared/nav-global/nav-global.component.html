@@ -11,27 +11,35 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-   
     </ul>
-
-     
     <div class="form-inline">
-<!--
+      <!--
         <select [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
             <option  [value]="conference" *ngFor="let conference of conferences">{{conference}}</option>
-          
         </select>
-        
         <select [ngModel]="selectedItem"  class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="org" required>
         <option  [ngValue]="organization" *ngFor = "let organization of organizations" >{{organization.organization}}</option>
         </select>
-      
         <button class="btn btn-outline-secondary my-2 my-sm-0 nav-ele" (click)="resetMatrix()">Reset</button> -->
+
+        <p class="filterLabel" >CONFERENCE:</p>
+        <select  style="margin-left: 10px;" [ngModel]="selectedCon" class="form-control  conferences nav-ele"  #selectCon (ngModelChange)="changeConference($event)" id="power" required>
+            <option  [value]="conference" *ngFor="let conference of conferences">{{conference}}</option>
+          
+        </select>
+        <p class="filterLabel">ORGANIZATION:</p>
+        <select  style="margin-left: 10px;"  [ngModel]="selectedItem"  class="form-control  organizations nav-ele" #selectOrg  (change)="changeOrganization($event)" id="org" required>
+            <option>View All</option>
+        <option  [ngValue]="organization" *ngFor = "let organization of organizations" >{{organization.organization}}</option>
+        </select>
         <a class="navbar-brand" href="http://www.infosol.com/">
             <img id="InfoSolLogo" src="../../../assets/images/infosol-logo.svg">
         </a>
-
     </div>
   </div>
 </nav>
 
+<kendo-dialog title="Notice" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+    <p style="margin: 30px; text-align: center;">The Conference {{conError}} does not contain data for the Organization {{orgError}}. Selecting Gmail instead. </p>
+  
+</kendo-dialog>

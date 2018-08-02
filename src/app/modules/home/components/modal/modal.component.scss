@@ -1,6 +1,5 @@
 @import "../../../../../assets/sass/_variables";
 
-
 .box11{  background-color: $innovation11; }
 .box21{  background-color: $passion21; }
 .box31{  background-color: $power31; }
@@ -68,3 +67,6 @@
 #box76{  background-color: $alert76; }
 #box77{  background-color: $alert77; }
 
+.halfWidth{
+    width: 100%;
+}

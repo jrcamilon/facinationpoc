@@ -332,6 +332,7 @@ export class ModalComponent implements OnInit {
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
+<<<<<<< HEAD
     console.log(this.genderData);
     if (genderGrouped['male'] === undefined){
       this.totalMales = 0;
@@ -348,6 +349,44 @@ export class ModalComponent implements OnInit {
     } else {
    this.totalOthers = genderGrouped['Other'].length;
     }
+=======
+    console.log(genderGrouped);
+    console.log(genderGrouped['male'],genderGrouped['female'],genderGrouped['Other'] === undefined )
+    if (genderGrouped['male'] === undefined){
+       this.totalMales = 0;
+    } else {
+      this.totalMales = genderGrouped['male'].length;
+    }
+    if (genderGrouped['female'] === undefined){
+      this.totalFemales = 0;
+   } else {
+     this.totalFemales = genderGrouped['female'].length;
+   }
+   if (genderGrouped['Other'] === undefined){
+    this.totalOthers = 0;
+  } else {
+    this.totalOthers = genderGrouped['Other'].length;
+  }
+
+
+
+    //     console.log(genderGrouped);
+    // if (this.genderData[1] !== undefined) {
+    //   this.totalMales = genderGrouped['male'].length;
+    // } else {
+    //   this.totalMales = 0;
+    // }
+    // if (this.genderData[0] !== undefined) {
+    // this.totalFemales = genderGrouped['female'].length;
+    // } else {
+    //   this.totalFemales = 0;
+    // }
+    // if (this.genderData[2] !== undefined) {
+    //   this.totalOthers = genderGrouped['Other'].length;
+    // }  else {
+    //   this.totalOthers = 0;
+    // }
+>>>>>>> ac7650749baa552c06da5ef50fda96d41500bde7
 }
 
 
