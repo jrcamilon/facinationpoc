@@ -135,6 +135,10 @@ export class HomeComponent implements OnInit {
         this._nodeApi.iconOrgs.next(data);
 
       });
+      this._nodeApi.getInfosolOrganizations().subscribe((data) => {
+        this._nodeApi.infosolOrgs.next(data);
+      });
+
       // Matrix Data
       this._nodeApi.getAllFiles().subscribe((data) => {
         for (let i = 1 ; i <= this.advantages.length - 1 ; i++ ) {
@@ -273,7 +277,6 @@ export class HomeComponent implements OnInit {
       break;
     }
    if ( !this.isViewAllOrgs  ) {
-      
       if (NodejsApiService.previousOrgFilter !== '' && NodejsApiService.previousOrgFilter !== 'all') {
         const foundOrg = _.find(this.organizations, {organization: NodejsApiService.previousOrgFilter});
         const index = _.findIndex(this.organizations, {organization: NodejsApiService.previousOrgFilter});
@@ -330,10 +333,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public openDonutChart(event: any){
+  public openDonutChart(event: any) {
     this.isDonutExpanded = true;
   }
-  public closeDonutChart(event: any){
+  public closeDonutChart(event: any) {
     this.isDonutExpanded = false;
   }
   public open() {

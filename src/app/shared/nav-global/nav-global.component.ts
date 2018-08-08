@@ -19,12 +19,13 @@ export class NavGlobalComponent implements OnInit {
   @Output() closeDonut: EventEmitter<any> = new EventEmitter();
 
   public organizations: any;
-  public conferences: any = ['View All', 'ACMP18', 'ICON2015'];
+  public conferences: any = ['View All', 'ACMP18', 'ICON2015', 'InfoSolAcademy'];
   public conError: String;
   public orgError: String;
   public allOrgs: any;
   public acmpOrgs: any;
   public iconOrgs: any;
+  public infosolOrgs: any;
   public selectedItem: any;
   public selectedCon: any = this.conferences[0];
   public opened: any = false;
@@ -38,15 +39,18 @@ export class NavGlobalComponent implements OnInit {
     this._nodeApi.getConferenceOrganizations().subscribe((data) => {
       this.organizations = data;
     });
-    this._nodeApi.allOrgs.subscribe(data =>{
+    this._nodeApi.allOrgs.subscribe(data => {
       // this.organizations = data;
       this.allOrgs = data;
     });
-    this._nodeApi.acmpOrgs.subscribe(data =>{
+    this._nodeApi.acmpOrgs.subscribe(data => {
       this.acmpOrgs = data;
     });
-    this._nodeApi.iconOrgs.subscribe(data =>{
+    this._nodeApi.iconOrgs.subscribe(data => {
       this.iconOrgs = data;
+    });
+    this._nodeApi.infosolOrgs.subscribe(data => {
+      this.infosolOrgs = data;
     });
   }
 
@@ -211,9 +215,10 @@ export class NavGlobalComponent implements OnInit {
     case 'ICON2015':
     this.organizations = this.iconOrgs;
     break;
+    case 'InfoSolAcademy':
+    this.organizations = this.infosolOrgs;
   }
  if ( !this.isViewAllOrgs  ) {
-    
     if (NodejsApiService.previousOrgFilter !== '' && NodejsApiService.previousOrgFilter !== 'all') {
       const foundOrg = _.find(this.organizations, {organization: NodejsApiService.previousOrgFilter});
       const index = _.findIndex(this.organizations, {organization: NodejsApiService.previousOrgFilter});
@@ -229,22 +234,33 @@ export class NavGlobalComponent implements OnInit {
       // this.getDonutChartData();
       this.selectedItem = this.organizations[index];
     } else {
+      this.isDonutExpanded = false;
+
       console.log('Not Found');
       this.conError = NodejsApiService.conFilter;
       this.orgError = NodejsApiService.previousOrgFilter;
-      NodejsApiService.orgFilter = 'gmail';
-      NodejsApiService.matrixOrgFilter = 'gmail';
-      NodejsApiService.previousOrgFilter = 'gmail';
-      this.selectedItem = this.organizations[0];
+     
+      if(NodejsApiService.conFilter === 'InfoSolAcademy') {
+        NodejsApiService.orgFilter = 'gmail';
+        NodejsApiService.matrixOrgFilter = 'gmail';
+        NodejsApiService.previousOrgFilter = 'gmail';
+        this.selectedItem = this.organizations[3];
+      } else {
+        NodejsApiService.orgFilter = 'gmail';
+        NodejsApiService.matrixOrgFilter = 'gmail';
+        NodejsApiService.previousOrgFilter = 'gmail';
+        this.selectedItem =  this.organizations[0];
+      }
+     
       // this.getAllFiles();
       // this.getDonutChartData();
       this.open();
     }
-    this.isDonutExpanded = true;
   }
   }
   this.getAllFiles();
   this.getDonutChartData();
+  
 }
 
 changeOrganization(event: any) {

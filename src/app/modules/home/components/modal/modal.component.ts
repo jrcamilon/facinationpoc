@@ -116,7 +116,6 @@ export class ModalComponent implements OnInit {
       const orgOther = organizationCleaned['Other'] === undefined ? 0 : organizationCleaned['Other'][0]['Value'];
       const orgMale = organizationCleaned['male'] === undefined ? 0 : organizationCleaned['male'][0]['Value'];
       const orgFemale = organizationCleaned['female'] === undefined ? 0 : organizationCleaned['female'][0]['Value'];
- 
       const boxOther = boxCleaned['Other'] === undefined ? 0 : boxCleaned['Other'][0]['Value'];
       const boxFemale = boxCleaned['female'] === undefined ? 0 : boxCleaned['female'][0]['Value'];
       const boxMale = boxCleaned['male'] === undefined ? 0 : boxCleaned['male'][0]['Value'];
@@ -209,7 +208,6 @@ export class ModalComponent implements OnInit {
       //       this.boxData.splice(2,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#A5C663'});
       //       this.boxArrScores.push(sortedBox[i].Value);
       //     }
-    
       // }
       // // // Get Females
       // // this.conferenceData.push((data.conference[0]==undefined)? 0: data.conference[1].Value);
@@ -285,11 +283,11 @@ export class ModalComponent implements OnInit {
     this.organizeByGender();
 
     // set title and other data related to the archetype
-    this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] + " - " : 'No Data';
-    const archIndex = _.findIndex(NodejsApiService.archetypeData, (a) => a.boxkey == this.index)
+    this.title = this.data[0]['archetype'] !== undefined ? this.data[0]['archetype'] + ' - ' : 'No Data';
+    const archIndex = _.findIndex(NodejsApiService.archetypeData, (a) => a.boxkey == this.index );
     this.title += NodejsApiService.archetypeData[archIndex].adjectives;
 
-    const dataIndex = _.findIndex(NodejsApiService.boxPrimaryData, (a) => a.key == this.index[0])
+    const dataIndex = _.findIndex(NodejsApiService.boxPrimaryData, (a) => a.key == this.index[0] );
     const primaryData =  NodejsApiService.boxPrimaryData[dataIndex];
 
     this.languageOf = primaryData.languageOf;
@@ -321,7 +319,7 @@ export class ModalComponent implements OnInit {
     }
     const organizedByGender = genderObjectsArray.map(ele => {
 
-      if (ele.key !== "Other" ) {
+      if (ele.key !== 'Other' ) {
         return new Object({value: ele.value.length, color: ele.key === 'male' ? '#003F7F' : '#FF017E'});
       } else {
       return new Object({value: ele.value.length, color: 'green' });
@@ -332,26 +330,6 @@ export class ModalComponent implements OnInit {
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
-<<<<<<< HEAD
-    console.log(this.genderData);
-    if (genderGrouped['male'] === undefined){
-      this.totalMales = 0;
-   } else {
-     this.totalMales = genderGrouped['male'].length;
-   }
-   if (genderGrouped['female'] === undefined){
-     this.totalFemales = 0;
-  } else {
-    this.totalFemales = genderGrouped['female'].length;
-      }
-  if (genderGrouped['Other'] === undefined){
-   this.totalOthers = 0;
-    } else {
-   this.totalOthers = genderGrouped['Other'].length;
-    }
-=======
-    console.log(genderGrouped);
-    console.log(genderGrouped['male'],genderGrouped['female'],genderGrouped['Other'] === undefined )
     if (genderGrouped['male'] === undefined){
        this.totalMales = 0;
     } else {
@@ -386,7 +364,6 @@ export class ModalComponent implements OnInit {
     // }  else {
     //   this.totalOthers = 0;
     // }
->>>>>>> ac7650749baa552c06da5ef50fda96d41500bde7
 }
 
 
