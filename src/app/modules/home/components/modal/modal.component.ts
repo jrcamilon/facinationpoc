@@ -330,6 +330,7 @@ export class ModalComponent implements OnInit {
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
+<<<<<<< HEAD
     if (genderGrouped['male'] === undefined){
        this.totalMales = 0;
     } else {
@@ -364,6 +365,24 @@ export class ModalComponent implements OnInit {
     // }  else {
     //   this.totalOthers = 0;
     // }
+=======
+    console.log(this.genderData);
+    if (genderGrouped['male'] === undefined){
+      this.totalMales = 0;
+   } else {
+     this.totalMales = genderGrouped['male'].length;
+   }
+   if (genderGrouped['female'] === undefined){
+     this.totalFemales = 0;
+  } else {
+    this.totalFemales = genderGrouped['female'].length;
+      }
+  if (genderGrouped['Other'] === undefined){
+   this.totalOthers = 0;
+    } else {
+   this.totalOthers = genderGrouped['Other'].length;
+    }
+>>>>>>> 766f789aab6ae017dc51abe91825851ebc5ef01f
 }
 
 
