@@ -175,7 +175,6 @@ export class ModalComponent implements OnInit {
 
       //   if(sortedOrganization[i]!=undefined){
       //     let str1 = sortedOrganization[i].gender.replace(/\s/g, '');
-
       //     switch(str1){
       //       case "male":
       //       this.organizationData.splice(1,0, {Type: "Organization","Total":sortedOrganization[i].Value, color: '#303C74'});
@@ -190,11 +189,8 @@ export class ModalComponent implements OnInit {
       //       this.organizationArrScores.push(sortedOrganization[i].Value);
       //     }
       //   }
-
-
       //   if(sortedBox[i]!=undefined){
       //   let str2 = sortedBox[i].gender.replace(/\s/g, '');
-
       //     switch(str2){
       //       case "male":
       //       this.boxData.splice(1,0,{Type: "Archetype","Total":sortedBox[i].Value, color: '#7B84AE'});
@@ -330,42 +326,6 @@ export class ModalComponent implements OnInit {
     this.genderCateogires = group;
     this.genderData = organizedByGender;
 
-<<<<<<< HEAD
-    if (genderGrouped['male'] === undefined){
-       this.totalMales = 0;
-    } else {
-      this.totalMales = genderGrouped['male'].length;
-    }
-    if (genderGrouped['female'] === undefined){
-      this.totalFemales = 0;
-   } else {
-     this.totalFemales = genderGrouped['female'].length;
-   }
-   if (genderGrouped['Other'] === undefined){
-    this.totalOthers = 0;
-  } else {
-    this.totalOthers = genderGrouped['Other'].length;
-  }
-
-
-
-    //     console.log(genderGrouped);
-    // if (this.genderData[1] !== undefined) {
-    //   this.totalMales = genderGrouped['male'].length;
-    // } else {
-    //   this.totalMales = 0;
-    // }
-    // if (this.genderData[0] !== undefined) {
-    // this.totalFemales = genderGrouped['female'].length;
-    // } else {
-    //   this.totalFemales = 0;
-    // }
-    // if (this.genderData[2] !== undefined) {
-    //   this.totalOthers = genderGrouped['Other'].length;
-    // }  else {
-    //   this.totalOthers = 0;
-    // }
-=======
     console.log(this.genderData);
     if (genderGrouped['male'] === undefined){
       this.totalMales = 0;
@@ -382,7 +342,6 @@ export class ModalComponent implements OnInit {
     } else {
    this.totalOthers = genderGrouped['Other'].length;
     }
->>>>>>> 766f789aab6ae017dc51abe91825851ebc5ef01f
 }
 
 
